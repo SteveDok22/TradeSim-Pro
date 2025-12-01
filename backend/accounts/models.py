@@ -33,3 +33,11 @@ class CustomUser(AbstractUser):
     # Use email for login
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+    
+    def __str__(self):
+        return f'{self.username} ({self.email})'
+    
+    def reset_balance(self):
+        """Reset balance to $10,000"""
+        self.account_balance = Decimal('10000.00')
+        self.save()
