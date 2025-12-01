@@ -20,3 +20,23 @@ class Portfolio(models.Model):
     
     def __str__(self):
         return f'Portfolio of {self.user.username}'
+    
+class Watchlist(models.Model):
+    """User watchlist for tracking assets."""
+    
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='watchlist'
+    )
+    asset = models.ForeignKey(
+        'trading.Asset',
+        on_delete=models.CASCADE
+    )
+    added_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ['user', 'asset']
+    
+    def __str__(self):
+        return f'{self.user.username} watching {self.asset.symbol}'
