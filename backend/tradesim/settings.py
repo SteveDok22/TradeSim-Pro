@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     
     # Local apps
     'accounts',
+    'trading',
+    'portfolio',
 ]
 
 MIDDLEWARE = [
