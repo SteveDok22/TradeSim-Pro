@@ -52,4 +52,16 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             password=validated_data['password'],
         )
-        return user        
+        return user
+    
+class BalanceSerializer(serializers.ModelSerializer):
+    """Serializer for user balance."""
+    
+    formatted_balance = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = User
+        fields = ['account_balance', 'formatted_balance']
+    
+    def get_formatted_balance(self, obj):
+        return f'${obj.account_balance:,.2f}'    
