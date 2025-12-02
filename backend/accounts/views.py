@@ -47,3 +47,33 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     
     def get_object(self):
         return self.request.user
+    
+class BalanceView(APIView):
+    """
+    API endpoint for user balance.
+    GET /api/auth/balance/
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        serializer = BalanceSerializer(request.user)
+        return Response(serializer.data)
+
+
+class ResetBalanceView(APIView):
+    """
+    API endpoint to reset balance to $10,000.
+    POST /api/auth/balance/reset/
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        user = request.user
+        old_balance = user.account_balance
+        user.reset_balance()
+        
+        return Response({
+            'message': 'Balance reset successful!',
+            'old_balance': f'${old_balance:,.2f}',
+            'new_balance': f'${user.account_balance:,.2f}',
+        })    
