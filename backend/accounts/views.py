@@ -8,3 +8,42 @@ from django.contrib.auth import get_user_model
 from .serializers import UserSerializer, RegisterSerializer, BalanceSerializer
 
 User = get_user_model()
+
+class RegisterView(generics.CreateAPIView):
+    """
+    API endpoint for user registration.
+    POST /api/auth/register/
+    """
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        
+        # Create tokens for the new user
+        refresh = RefreshToken.for_user(user)
+        
+        return Response({
+            'message': 'Registration successful!',
+            'user': UserSerializer(user).data,
+            'tokens': {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            }
+        }, status=status.HTTP_201_CREATED)
+
+
+class ProfileView(generics.RetrieveUpdateAPIView):
+    """
+    API endpoint for user profile.
+    GET /api/auth/profile/ - Get current user
+    PUT /api/auth/profile/ - Update profile
+    """
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_object(self):
+        return self.request.user
