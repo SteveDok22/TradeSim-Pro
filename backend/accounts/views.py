@@ -77,3 +77,20 @@ class ResetBalanceView(APIView):
             'old_balance': f'${old_balance:,.2f}',
             'new_balance': f'${user.account_balance:,.2f}',
         })    
+        
+class LogoutView(APIView):
+    """
+    API endpoint for logout (blacklist refresh token).
+    POST /api/auth/logout/
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        try:
+            refresh_token = request.data.get('refresh')
+            if refresh_token:
+                token = RefreshToken(refresh_token)
+                token.blacklist()
+            return Response({'message': 'Logout successful!'})
+        except Exception:
+            return Response({'message': 'Logout successful!'})        
