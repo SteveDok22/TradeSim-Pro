@@ -83,3 +83,32 @@ class PriceService:
         except Exception as e:
             print(f'Binance error for {symbol}: {e}')
             return None
+        
+    def _fetch_stock(self, symbol):
+        """Fetch stock price from Alpha Vantage."""
+        if not self.alpha_vantage_key:
+            print('Alpha Vantage API key not set')
+            return None
+        
+        try:
+            response = requests.get(
+                self.ALPHA_VANTAGE_URL,
+                params={
+                    'function': 'GLOBAL_QUOTE',
+                    'symbol': symbol,
+                    'apikey': self.alpha_vantage_key,
+                },
+                timeout=10
+            )
+            response.raise_for_status()
+            data = response.json()
+            
+            quote = data.get('Global Quote', {})
+            price = quote.get('05. price')
+            
+            if price:
+                return Decimal(price)
+            return None
+        except Exception as e:
+            print(f'Alpha Vantage error for {symbol}: {e}')
+            return None    
