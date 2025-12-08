@@ -54,3 +54,32 @@ class PriceService:
             cache.set(cache_key, str(price), self.CACHE_TIMEOUT)
         
         return price
+    
+    def get_all_prices(self, assets):
+        """
+        Get prices for multiple assets.
+        """
+        prices = {}
+        for asset in assets:
+            try:
+                prices[asset.symbol] = self.get_price(asset.symbol)
+            except Exception as e:
+                print(f'Error fetching {asset.symbol}: {e}')
+                prices[asset.symbol] = None
+        return prices
+    
+    def _fetch_binance(self, symbol):
+        """Fetch crypto price from Binance."""
+        try:
+            api_symbol = self.BINANCE_SYMBOLS.get(symbol)
+            response = requests.get(
+                self.BINANCE_URL,
+                params={'symbol': api_symbol},
+                timeout=10
+            )
+            response.raise_for_status()
+            data = response.json()
+            return Decimal(data['price'])
+        except Exception as e:
+            print(f'Binance error for {symbol}: {e}')
+            return None
