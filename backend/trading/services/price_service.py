@@ -112,3 +112,34 @@ class PriceService:
         except Exception as e:
             print(f'Alpha Vantage error for {symbol}: {e}')
             return None    
+        
+    def _fetch_forex(self, symbol):
+        """Fetch forex rate from Alpha Vantage."""
+        if not self.alpha_vantage_key:
+            print('Alpha Vantage API key not set')
+            return None
+        
+        try:
+            from_curr, to_curr = self.FOREX_PAIRS.get(symbol)
+            response = requests.get(
+                self.ALPHA_VANTAGE_URL,
+                params={
+                    'function': 'CURRENCY_EXCHANGE_RATE',
+                    'from_currency': from_curr,
+                    'to_currency': to_curr,
+                    'apikey': self.alpha_vantage_key,
+                },
+                timeout=10
+            )
+            response.raise_for_status()
+            data = response.json()
+            
+            rate_data = data.get('Realtime Currency Exchange Rate', {})
+            rate = rate_data.get('5. Exchange Rate')
+            
+            if rate:
+                return Decimal(rate)
+            return None
+        except Exception as e:
+            print(f'Alpha Vantage forex error for {symbol}: {e}')
+            return None    
