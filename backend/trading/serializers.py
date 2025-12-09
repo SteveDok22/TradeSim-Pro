@@ -52,3 +52,27 @@ class TradeSerializer(serializers.ModelSerializer):
             'id', 'quantity', 'entry_price', 'exit_price',
             'pnl', 'pnl_percent', 'status', 'opened_at', 'closed_at'
         ]
+
+class OpenTradeSerializer(serializers.Serializer):
+    """Serializer for opening a new trade."""
+    
+    asset_id = serializers.IntegerField()
+    amount_usd = serializers.DecimalField(max_digits=12, decimal_places=2)
+    trade_type = serializers.ChoiceField(choices=['BUY', 'SELL'], default='BUY')
+    stop_loss = serializers.DecimalField(
+        max_digits=18, decimal_places=8, required=False, allow_null=True
+    )
+    take_profit = serializers.DecimalField(
+        max_digits=18, decimal_places=8, required=False, allow_null=True
+    )
+    
+    def validate_amount_usd(self, value):
+        if value < 1:
+            raise serializers.ValidationError('Minimum trade amount is $1.00')
+        return value
+
+
+class CloseTradeSerializer(serializers.Serializer):
+    """Serializer for closing a trade."""
+    
+    trade_id = serializers.IntegerField()
