@@ -143,3 +143,6 @@ class PriceService:
         except Exception as e:
             print(f'Alpha Vantage forex error for {symbol}: {e}')
             return None    
+        
+# Singleton instance
+price_service = PriceService()
