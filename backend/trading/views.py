@@ -84,3 +84,72 @@ class PriceDetailView(APIView):
             'asset_type': asset.asset_type,
             'price': str(price) if price else None,
         })
+        
+class OpenTradeView(APIView):
+    """
+    POST /api/trading/trades/open/
+    Open a new trade position.
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        serializer = OpenTradeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        data = serializer.validated_data
+        user = request.user
+        
+        # Get asset
+        try:
+            asset = Asset.objects.get(id=data['asset_id'], is_active=True)
+        except Asset.DoesNotExist:
+            return Response(
+                {'error': 'Asset not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
+        # Get current price
+        price_service = PriceService(
+            alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
+        )
+        current_price = price_service.get_price(asset.symbol)
+        
+        if not current_price:
+            return Response(
+                {'error': 'Could not fetch current price'},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE
+            )
+        
+        amount_usd = Decimal(str(data['amount_usd']))
+        
+        # Check balance
+        if amount_usd > user.account_balance:
+            return Response(
+                {'error': f'Insufficient funds. Available: ${user.account_balance}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Calculate quantity
+        quantity = amount_usd / current_price
+        
+        # Create trade
+        trade = Trade.objects.create(
+            user=user,
+            asset=asset,
+            trade_type=data['trade_type'],
+            quantity=quantity,
+            entry_price=current_price,
+            stop_loss=data.get('stop_loss'),
+            take_profit=data.get('take_profit'),
+            status='OPEN',
+        )
+        
+        # Deduct from balance
+        user.account_balance -= amount_usd
+        user.save()
+        
+        return Response({
+            'message': 'Trade opened successfully!',
+            'trade': TradeSerializer(trade).data,
+            'new_balance': str(user.account_balance),
+        }, status=status.HTTP_201_CREATED)        
