@@ -142,3 +142,6 @@ REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_HTTPONLY': False,
 }
+
+# Alpha Vantage API Key
+ALPHA_VANTAGE_KEY = os.environ.get('ALPHA_VANTAGE_KEY', '')
