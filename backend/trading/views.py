@@ -242,3 +242,14 @@ class OpenPositionsView(generics.ListAPIView):
             data.append(trade_data)
         
         return Response(data)        
+    
+class TradeHistoryView(generics.ListAPIView):
+    """
+    GET /api/trading/trades/history/
+    List closed trades for current user.
+    """
+    serializer_class = TradeSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return Trade.objects.filter(user=self.request.user, status='CLOSED')   
