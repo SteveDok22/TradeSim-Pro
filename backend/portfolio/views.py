@@ -95,3 +95,41 @@ class WatchlistView(generics.ListAPIView):
     
     def get_queryset(self):
         return Watchlist.objects.filter(user=self.request.user)
+    
+class AddToWatchlistView(APIView):
+    """
+    POST /api/portfolio/watchlist/add/
+    Add asset to watchlist.
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        serializer = AddToWatchlistSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        asset_id = serializer.validated_data['asset_id']
+        
+        try:
+            asset = Asset.objects.get(id=asset_id, is_active=True)
+        except Asset.DoesNotExist:
+            return Response(
+                {'error': 'Asset not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
+        # Check if already in watchlist
+        if Watchlist.objects.filter(user=request.user, asset=asset).exists():
+            return Response(
+                {'error': 'Asset already in watchlist'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        watchlist_item = Watchlist.objects.create(
+            user=request.user,
+            asset=asset
+        )
+        
+        return Response({
+            'message': f'{asset.symbol} added to watchlist',
+            'item': WatchlistSerializer(watchlist_item).data
+        }, status=status.HTTP_201_CREATED)   
