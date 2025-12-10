@@ -4,7 +4,9 @@ from decimal import Decimal
 
 
 class Asset(models.Model):
-    """Tradeable asset (crypto, stock, or forex)."""
+    """
+    Tradeable asset (crypto, stock, or forex).
+    """
     
     ASSET_TYPES = [
         ('CRYPTO', 'Cryptocurrency'),
@@ -32,7 +34,9 @@ class Asset(models.Model):
 
 
 class Trade(models.Model):
-    """User trade (buy/sell position)."""
+    """
+    User trade (buy/sell position).
+    """
     
     TRADE_TYPES = [
         ('BUY', 'Buy'),
@@ -71,3 +75,34 @@ class Trade(models.Model):
     
     def __str__(self):
         return f'{self.trade_type} {self.quantity} {self.asset.symbol} @ {self.entry_price}'
+    
+    @property
+    def position_value(self):
+        """Total value of position at entry."""
+        return self.quantity * self.entry_price
+    
+    def calculate_pnl(self, current_price):
+        """Calculate profit/loss based on current price."""
+        current_price = Decimal(str(current_price))
+        
+        if self.trade_type == 'BUY':
+            price_diff = current_price - self.entry_price
+        else:
+            price_diff = self.entry_price - current_price
+        
+        pnl_amount = price_diff * self.quantity
+        pnl_percent = (price_diff / self.entry_price) * 100
+        
+        return (round(pnl_amount, 2), round(pnl_percent, 2))
+    
+    def close_trade(self, exit_price):
+        """Close the trade at exit price."""
+        from django.utils import timezone
+        
+        self.exit_price = Decimal(str(exit_price))
+        self.pnl, self.pnl_percent = self.calculate_pnl(exit_price)
+        self.status = 'CLOSED'
+        self.closed_at = timezone.now()
+        self.save()
+        
+        return self.pnl
