@@ -204,3 +204,41 @@ class CloseTradeView(APIView):
             'pnl': str(pnl),
             'new_balance': str(user.account_balance),
         })        
+        
+class OpenPositionsView(generics.ListAPIView):
+    """
+    GET /api/trading/trades/open/
+    List all open positions for current user.
+    """
+    serializer_class = TradeSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return Trade.objects.filter(user=self.request.user, status='OPEN')
+    
+    def list(self, request, *args, **kwargs):
+        trades = self.get_queryset()
+        
+        # Get current prices
+        price_service = PriceService(
+            alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
+        )
+        
+        data = []
+        for trade in trades:
+            current_price = price_service.get_price(trade.asset.symbol)
+            trade_data = TradeSerializer(trade).data
+            
+            if current_price:
+                pnl, pnl_percent = trade.calculate_pnl(current_price)
+                trade_data['current_price'] = str(current_price)
+                trade_data['unrealized_pnl'] = str(pnl)
+                trade_data['unrealized_pnl_percent'] = str(pnl_percent)
+            else:
+                trade_data['current_price'] = None
+                trade_data['unrealized_pnl'] = None
+                trade_data['unrealized_pnl_percent'] = None
+            
+            data.append(trade_data)
+        
+        return Response(data)        
