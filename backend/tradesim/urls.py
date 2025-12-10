@@ -16,8 +16,14 @@ def api_root(request):
                 'profile': '/api/auth/profile/',
                 'balance': '/api/auth/balance/',
             },
-            'trading': '/api/trading/',
-            'portfolio': '/api/portfolio/',
+            'trading': {
+                'assets': '/api/trading/assets/',
+                'prices': '/api/trading/prices/',
+                'open_trade': '/api/trading/trades/open/',
+                'close_trade': '/api/trading/trades/close/',
+                'positions': '/api/trading/trades/positions/',
+                'history': '/api/trading/trades/history/',
+            },
         }
     })
 
@@ -26,4 +32,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', api_root, name='api-root'),
     path('api/auth/', include('accounts.urls')),
+    path('api/trading/', include('trading.urls')),
 ]
