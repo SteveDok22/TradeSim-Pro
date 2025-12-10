@@ -153,3 +153,54 @@ class OpenTradeView(APIView):
             'trade': TradeSerializer(trade).data,
             'new_balance': str(user.account_balance),
         }, status=status.HTTP_201_CREATED)        
+        
+class CloseTradeView(APIView):
+    """
+    POST /api/trading/trades/close/
+    Close an existing trade position.
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        serializer = CloseTradeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        trade_id = serializer.validated_data['trade_id']
+        user = request.user
+        
+        # Get trade
+        try:
+            trade = Trade.objects.get(id=trade_id, user=user, status='OPEN')
+        except Trade.DoesNotExist:
+            return Response(
+                {'error': 'Trade not found or already closed'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
+        # Get current price
+        price_service = PriceService(
+            alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
+        )
+        current_price = price_service.get_price(trade.asset.symbol)
+        
+        if not current_price:
+            return Response(
+                {'error': 'Could not fetch current price'},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE
+            )
+        
+        # Close trade and calculate PnL
+        pnl = trade.close_trade(current_price)
+        
+        # Return position value + PnL to balance
+        position_value = trade.quantity * trade.entry_price
+        return_amount = position_value + pnl
+        user.account_balance += return_amount
+        user.save()
+        
+        return Response({
+            'message': 'Trade closed successfully!',
+            'trade': TradeSerializer(trade).data,
+            'pnl': str(pnl),
+            'new_balance': str(user.account_balance),
+        })        
