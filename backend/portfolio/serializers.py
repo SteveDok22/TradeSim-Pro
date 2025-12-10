@@ -27,3 +27,20 @@ class PortfolioSerializer(serializers.ModelSerializer):
             'losing_trades',
             'updated_at',
         ]
+        
+class WatchlistSerializer(serializers.ModelSerializer):
+    """Serializer for Watchlist model."""
+    
+    asset = AssetSerializer(read_only=True)
+    asset_id = serializers.IntegerField(write_only=True)
+    
+    class Meta:
+        model = Watchlist
+        fields = ['id', 'asset', 'asset_id', 'added_at']
+        read_only_fields = ['id', 'added_at']
+
+
+class AddToWatchlistSerializer(serializers.Serializer):
+    """Serializer for adding asset to watchlist."""
+    
+    asset_id = serializers.IntegerField()        
