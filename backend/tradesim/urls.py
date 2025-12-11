@@ -24,6 +24,11 @@ def api_root(request):
                 'positions': '/api/trading/trades/positions/',
                 'history': '/api/trading/trades/history/',
             },
+            'portfolio': {
+                'stats': '/api/portfolio/',
+                'summary': '/api/portfolio/summary/',
+                'watchlist': '/api/portfolio/watchlist/',
+            },
         }
     })
 
@@ -33,4 +38,5 @@ urlpatterns = [
     path('api/', api_root, name='api-root'),
     path('api/auth/', include('accounts.urls')),
     path('api/trading/', include('trading.urls')),
+    path('api/portfolio/', include('portfolio.urls')),
 ]
