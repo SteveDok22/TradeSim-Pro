@@ -133,3 +133,24 @@ class AddToWatchlistView(APIView):
             'message': f'{asset.symbol} added to watchlist',
             'item': WatchlistSerializer(watchlist_item).data
         }, status=status.HTTP_201_CREATED)   
+        
+class RemoveFromWatchlistView(APIView):
+    """
+    DELETE /api/portfolio/watchlist/<id>/
+    Remove asset from watchlist.
+    """
+    permission_classes = [IsAuthenticated]
+    
+    def delete(self, request, pk):
+        try:
+            item = Watchlist.objects.get(id=pk, user=request.user)
+            symbol = item.asset.symbol
+            item.delete()
+            return Response({
+                'message': f'{symbol} removed from watchlist'
+            })
+        except Watchlist.DoesNotExist:
+            return Response(
+                {'error': 'Watchlist item not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )        
