@@ -56,6 +56,12 @@ TradeSim Pro is a comprehensive prop trading simulator designed for beginner tra
 - Track performance with detailed statistics and charts
 - Learn from mistakes without losing real money
 
+### Application Flowchart
+
+![Application Flowchart](docs/flowchart-app.png)
+
+The flowchart above shows the main user journey through the application, from registration to trading operations.
+
 ---
 
 ## UX Design
@@ -275,3 +281,27 @@ TradeSim Pro is a comprehensive prop trading simulator designed for beginner tra
 | Email Alerts | Price alert notifications | Medium |
 
 ---
+
+## Credits
+
+For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)
+
+### Quick Summary
+
+| Category | Source |
+|----------|--------|
+| Backend Framework | [Django 5.0](https://docs.djangoproject.com/) |
+| API Framework | [Django REST Framework](https://www.django-rest-framework.org/) |
+| Authentication | [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/) |
+| Crypto Prices | [Binance API](https://binance-docs.github.io/apidocs/) |
+| Stock/Forex Prices | [Alpha Vantage](https://www.alphavantage.co/documentation/) |
+
+### Acknowledgements
+
+- **Code Institute** - For the learning materials and project guidelines
+- **My Mentor** - For guidance and feedback throughout the project
+- **Slack Community** - For support and troubleshooting help
+
+---
+
+**Developed by Stiven** | [GitHub](https://github.com/SteveDok22) | 2025
