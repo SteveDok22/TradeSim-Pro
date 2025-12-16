@@ -77,3 +77,22 @@ user = models.OneToOneField(
 - **License:** BSD 3-Clause License
 - **Usage:** RESTful API endpoints
 
+#### Code Adaptations:
+```python
+# ModelSerializer pattern from DRF documentation
+# Used in accounts/serializers.py lines 8-20
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'account_balance']
+        read_only_fields = ['id', 'account_balance']
+```
+- **Reference:** [DRF Serializers](https://www.django-rest-framework.org/api-guide/serializers/#modelserializer)
+```python
+# SerializerMethodField from DRF documentation
+# Used in accounts/serializers.py lines 35-45
+formatted_balance = serializers.SerializerMethodField()
+
+def get_formatted_balance(self, obj):
+    return f'${obj.account_balance:,.2f}'
+```
