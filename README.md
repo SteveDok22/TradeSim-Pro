@@ -425,6 +425,22 @@ coverage run manage.py test
 coverage report
 ```
 
+### Bugs
+
+#### Solved Bugs
+
+| Bug | Cause | Solution |
+|-----|-------|----------|
+| TBD | TBD | TBD |
+
+#### Known Bugs
+
+| Bug | Status | Notes |
+|-----|--------|-------|
+| None currently | - | - |
+
+---
+
 ## Credits
 
 For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)
