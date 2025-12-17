@@ -96,3 +96,44 @@ formatted_balance = serializers.SerializerMethodField()
 def get_formatted_balance(self, obj):
     return f'${obj.account_balance:,.2f}'
 ```
+
+- **Reference:** [DRF SerializerMethodField](https://www.django-rest-framework.org/api-guide/fields/#serializermethodfield)
+```python
+# Password validation in serializer from DRF examples
+# Used in accounts/serializers.py lines 15-30
+def validate(self, data):
+    if data['password'] != data['password_confirm']:
+        raise serializers.ValidationError({
+            'password_confirm': 'Passwords do not match.'
+        })
+    return data
+```
+- **Reference:** [DRF Validators](https://www.django-rest-framework.org/api-guide/validators/)
+```python
+# Generic views pattern from DRF documentation
+# Used in accounts/views.py lines 15-25
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
+```
+- **Reference:** [DRF Generic Views](https://www.django-rest-framework.org/api-guide/generic-views/)
+```python
+# APIView pattern from DRF documentation
+# Used in trading/views.py lines 30-60
+class PriceListView(APIView):
+    permission_classes = [AllowAny]
+    
+    def get(self, request):
+        # Implementation
+        return Response(data)
+```
+- **Reference:** [DRF APIView](https://www.django-rest-framework.org/api-guide/views/#class-based-views)
+```python
+# Permission classes from DRF documentation
+# Used throughout views.py files
+permission_classes = [IsAuthenticated]
+```
+- **Reference:** [DRF Permissions](https://www.django-rest-framework.org/api-guide/permissions/)
+
+---
