@@ -333,3 +333,74 @@ def _fetch_forex(self, symbol):
 - **Reference:** [Alpha Vantage CURRENCY_EXCHANGE_RATE](https://www.alphavantage.co/documentation/#currency-exchange)
 
 ---
+
+## Python Standard Library
+
+### Decimal Module - Financial Calculations
+- **Source:** [Python Decimal Documentation](https://docs.python.org/3/library/decimal.html)
+- **License:** PSF License
+- **Usage:** Precise financial calculations
+
+#### Code Adaptations:
+```python
+# Decimal for monetary values from Python documentation
+# Used throughout all models and services
+from decimal import Decimal
+
+account_balance = Decimal('10000.00')
+quantity = amount_usd / current_price
+pnl = (exit_price - entry_price) * quantity
+```
+- **Reference:** [Python Decimal Module](https://docs.python.org/3/library/decimal.html)
+
+---
+
+### datetime Module - Timestamps
+- **Source:** [Python datetime Documentation](https://docs.python.org/3/library/datetime.html)
+- **License:** PSF License
+- **Usage:** Trade timestamps
+
+#### Code Adaptations:
+```python
+# Timezone-aware datetime from Django documentation
+# Used in trading/models.py lines 85-90
+from django.utils import timezone
+
+def close_trade(self, exit_price):
+    self.closed_at = timezone.now()
+    self.save()
+```
+- **Reference:** [Django Timezone](https://docs.djangoproject.com/en/5.0/topics/i18n/timezones/)
+
+---
+
+## Design Patterns & Best Practices
+
+### Service Layer Pattern
+- **Source:** [Django Design Patterns](https://django-design-patterns.readthedocs.io/)
+- **Inspiration:** Separation of business logic from views
+
+#### Code Adaptations:
+```python
+# Service class pattern for business logic
+# Used in trading/services/price_service.py
+class PriceService:
+    """Service for fetching prices from external APIs."""
+    
+    def __init__(self, alpha_vantage_key=None):
+        self.alpha_vantage_key = alpha_vantage_key
+    
+    def get_price(self, symbol):
+        """Get price for a symbol."""
+        # Implementation...
+    
+    def get_all_prices(self, assets):
+        """Get prices for multiple assets."""
+        # Implementation...
+
+# Singleton instance
+price_service = PriceService()
+```
+- **Reference:** [Service Layer Pattern](https://www.cosmicpython.com/book/chapter_04_service_layer.html)
+
+---
