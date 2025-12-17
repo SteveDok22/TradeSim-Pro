@@ -404,3 +404,66 @@ price_service = PriceService()
 - **Reference:** [Service Layer Pattern](https://www.cosmicpython.com/book/chapter_04_service_layer.html)
 
 ---
+
+### PnL Calculation Pattern
+- **Source:** [Investopedia - How to Calculate Profit and Loss](https://www.investopedia.com/articles/investing/062113/how-calculate-profitloss-options.asp)
+- **Inspiration:** Standard trading PnL formulas
+
+#### Code Adaptations:
+```python
+# PnL calculation from standard trading formulas
+# Used in trading/models.py lines 70-85
+def calculate_pnl(self, current_price):
+    """Calculate profit/loss based on current price."""
+    current_price = Decimal(str(current_price))
+    
+    if self.trade_type == 'BUY':
+        # Long position: profit when price goes up
+        price_diff = current_price - self.entry_price
+    else:
+        # Short position: profit when price goes down
+        price_diff = self.entry_price - current_price
+    
+    pnl_amount = price_diff * self.quantity
+    pnl_percent = (price_diff / self.entry_price) * 100
+    
+    return (round(pnl_amount, 2), round(pnl_percent, 2))
+```
+- **Reference:** [Investopedia P&L](https://www.investopedia.com/terms/p/plstatement.asp)
+
+---
+
+## Community Resources & Tutorials
+
+### Django REST Framework Tutorial
+- **Source:** [DRF Quickstart Tutorial](https://www.django-rest-framework.org/tutorial/quickstart/)
+- **License:** BSD 3-Clause
+- **Usage:** Overall API structure and patterns
+
+### JWT.io - JWT Understanding
+- **Source:** [JWT Introduction](https://jwt.io/introduction)
+- **Usage:** Understanding JWT token structure and flow
+
+### Stack Overflow Solutions
+
+#### Currency Formatting Pattern
+- **Source:** [Stack Overflow - Python Currency Formatting](https://stackoverflow.com/questions/320929/currency-formatting-in-python)
+- **License:** CC BY-SA 4.0
+```python
+# Currency formatting adapted from Stack Overflow
+# Used in accounts/serializers.py
+def get_formatted_balance(self, obj):
+    return f'${obj.account_balance:,.2f}'
+```
+
+#### Safe Dictionary Access
+- **Source:** [Stack Overflow - Python Dict Get](https://stackoverflow.com/questions/11041405/why-dict-getkey-instead-of-dictkey)
+- **License:** CC BY-SA 4.0
+```python
+# Safe dictionary access from Stack Overflow patterns
+# Used in trading/services/price_service.py
+quote = data.get('Global Quote', {})
+price = quote.get('05. price')
+```
+
+---
