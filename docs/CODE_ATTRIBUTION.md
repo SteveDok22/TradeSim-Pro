@@ -467,3 +467,47 @@ price = quote.get('05. price')
 ```
 
 ---
+
+## Project Inspiration
+
+### Code Institute PP4 Examples
+- **Source:** Code Institute Learning Materials
+- **Usage:** Project structure and assessment criteria understanding
+
+### I Think Therefore I Blog
+- **Source:** Code Institute Django Blog Walkthrough
+- **Usage:** Django project setup patterns and authentication flow
+
+---
+
+## Tools Used
+
+| Tool | Purpose | Link |
+|------|---------|------|
+| VS Code | Code editor | [VS Code](https://code.visualstudio.com/) |
+| Postman | API testing | [Postman](https://www.postman.com/) |
+| Git | Version control | [Git](https://git-scm.com/) |
+| GitHub | Repository hosting | [GitHub](https://github.com/) |
+| GitHub Projects | Agile management | [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects) |
+| Heroku | Cloud deployment | [Heroku](https://www.heroku.com/) |
+| Draw.io | Flowcharts & ERD | [Draw.io](https://app.diagrams.net/) |
+| PostgreSQL | Production database | [PostgreSQL](https://www.postgresql.org/) |
+
+---
+
+## License Compliance Summary
+
+| Library | License | Commercial Use | Modification | Distribution |
+|---------|---------|----------------|--------------|--------------|
+| Django | BSD 3-Clause | ✅ | ✅ | ✅ |
+| DRF | BSD 3-Clause | ✅ | ✅ | ✅ |
+| SimpleJWT | MIT | ✅ | ✅ | ✅ |
+| Requests | Apache 2.0 | ✅ | ✅ | ✅ |
+| django-cors-headers | MIT | ✅ | ✅ | ✅ |
+| Gunicorn | MIT | ✅ | ✅ | ✅ |
+| Whitenoise | MIT | ✅ | ✅ | ✅ |
+| psycopg2 | LGPL | ✅ | ✅ | ✅ |
+
+All libraries used in this project are open-source and permit commercial use, modification, and distribution.
+
+---
