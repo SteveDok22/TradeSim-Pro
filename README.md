@@ -411,6 +411,20 @@ All user stories were created as GitHub Issues with:
 
 ---
 
+## Testing
+
+### Automated Testing
+
+#### Python Tests (Django)
+```bash
+# Run all tests
+python manage.py test
+
+# Run with coverage
+coverage run manage.py test
+coverage report
+```
+
 ## Credits
 
 For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)

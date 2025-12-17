@@ -258,3 +258,78 @@ if price:
 - **Reference:** [Django Cache Framework](https://docs.djangoproject.com/en/5.0/topics/cache/#the-low-level-cache-api)
 
 ---
+
+## External APIs
+
+### Binance API - Cryptocurrency Prices
+- **Source:** [Binance API Documentation](https://binance-docs.github.io/apidocs/)
+- **License:** Free for public endpoints
+- **Usage:** Real-time BTC and ETH prices
+
+#### Code Adaptations:
+```python
+# Binance ticker price endpoint from API documentation
+# Used in trading/services/price_service.py lines 50-65
+BINANCE_URL = 'https://api.binance.com/api/v3/ticker/price'
+
+def _fetch_binance(self, symbol):
+    api_symbol = self.BINANCE_SYMBOLS.get(symbol)  # BTC -> BTCUSDT
+    response = requests.get(
+        self.BINANCE_URL,
+        params={'symbol': api_symbol}
+    )
+    data = response.json()
+    return Decimal(data['price'])
+```
+- **Reference:** [Binance Symbol Price Ticker](https://binance-docs.github.io/apidocs/spot/en/#symbol-price-ticker)
+
+---
+
+### Alpha Vantage API - Stock & Forex Prices
+- **Source:** [Alpha Vantage Documentation](https://www.alphavantage.co/documentation/)
+- **License:** Free tier with API key
+- **Usage:** Stock quotes (TSLA, AAPL) and forex rates (EURUSD, GBPUSD, JPYUSD)
+
+#### Code Adaptations:
+```python
+# Stock quote endpoint from Alpha Vantage documentation
+# Used in trading/services/price_service.py lines 70-90
+ALPHA_VANTAGE_URL = 'https://www.alphavantage.co/query'
+
+def _fetch_stock(self, symbol):
+    response = requests.get(
+        self.ALPHA_VANTAGE_URL,
+        params={
+            'function': 'GLOBAL_QUOTE',
+            'symbol': symbol,
+            'apikey': self.alpha_vantage_key,
+        }
+    )
+    data = response.json()
+    quote = data.get('Global Quote', {})
+    price = quote.get('05. price')
+    return Decimal(price) if price else None
+```
+- **Reference:** [Alpha Vantage GLOBAL_QUOTE](https://www.alphavantage.co/documentation/#latestprice)
+```python
+# Forex exchange rate endpoint from Alpha Vantage documentation
+# Used in trading/services/price_service.py lines 95-115
+def _fetch_forex(self, symbol):
+    from_curr, to_curr = self.FOREX_PAIRS.get(symbol)
+    response = requests.get(
+        self.ALPHA_VANTAGE_URL,
+        params={
+            'function': 'CURRENCY_EXCHANGE_RATE',
+            'from_currency': from_curr,
+            'to_currency': to_curr,
+            'apikey': self.alpha_vantage_key,
+        }
+    )
+    data = response.json()
+    rate_data = data.get('Realtime Currency Exchange Rate', {})
+    rate = rate_data.get('5. Exchange Rate')
+    return Decimal(rate) if rate else None
+```
+- **Reference:** [Alpha Vantage CURRENCY_EXCHANGE_RATE](https://www.alphavantage.co/documentation/#currency-exchange)
+
+---
