@@ -385,6 +385,32 @@ The flowchart above shows the main user journey through the application, from re
 
 ---
 
+## Agile Methodology
+
+### GitHub Projects Board
+
+This project was developed using Agile methodology with GitHub Projects as the management tool.
+
+**Board Link:** [TradeSim Pro Project Board](https://github.com/users/SteveDok22/projects/XX)
+
+### Sprint Structure
+
+| Sprint | Focus |
+|--------|-------|
+| Sprint 1 | Setup, Auth, Models |
+| Sprint 2 | Trading, Prices, API |
+| Sprint 3 | Frontend, Testing, Deploy |
+
+### User Stories
+
+All user stories were created as GitHub Issues with:
+- Acceptance Criteria
+- Tasks checklist
+- Labels (Must Have, Should Have, Could Have)
+- Linked to Epics
+
+---
+
 ## Credits
 
 For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)

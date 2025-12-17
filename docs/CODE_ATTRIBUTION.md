@@ -200,3 +200,61 @@ CORS_ALLOW_CREDENTIALS = True
 - **Reference:** [django-cors-headers Configuration](https://github.com/adamchainz/django-cors-headers#configuration)
 
 ---
+
+### Requests (v2.31.0) - HTTP Library
+- **Source:** [Requests Documentation](https://requests.readthedocs.io/)
+- **License:** Apache License 2.0
+- **Usage:** External API calls to Binance and Alpha Vantage
+
+#### Code Adaptations:
+```python
+# HTTP GET request pattern from Requests documentation
+# Used in trading/services/price_service.py lines 55-70
+response = requests.get(
+    self.BINANCE_URL,
+    params={'symbol': api_symbol},
+    timeout=10
+)
+response.raise_for_status()
+data = response.json()
+```
+- **Reference:** [Requests Quickstart](https://requests.readthedocs.io/en/latest/user/quickstart/)
+```python
+# Error handling for HTTP requests from Requests documentation
+# Used in trading/services/price_service.py lines 45-55
+try:
+    response = requests.get(url, params=params, timeout=10)
+    response.raise_for_status()
+except requests.RequestException as e:
+    print(f'API error: {e}')
+    return None
+```
+- **Reference:** [Requests Exceptions](https://requests.readthedocs.io/en/latest/user/quickstart/#errors-and-exceptions)
+
+---
+
+### Django Cache Framework
+- **Source:** [Django Cache Documentation](https://docs.djangoproject.com/en/5.0/topics/cache/)
+- **License:** BSD 3-Clause License
+- **Usage:** Price caching to avoid API rate limits
+
+#### Code Adaptations:
+```python
+# Cache get/set pattern from Django documentation
+# Used in trading/services/price_service.py lines 30-45
+from django.core.cache import cache
+
+# Check cache first
+cache_key = f'price_{symbol}'
+cached = cache.get(cache_key)
+if cached:
+    return Decimal(str(cached))
+
+# Fetch and cache
+price = self._fetch_price(symbol)
+if price:
+    cache.set(cache_key, str(price), self.CACHE_TIMEOUT)
+```
+- **Reference:** [Django Cache Framework](https://docs.djangoproject.com/en/5.0/topics/cache/#the-low-level-cache-api)
+
+---
