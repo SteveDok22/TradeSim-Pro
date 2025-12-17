@@ -137,3 +137,66 @@ permission_classes = [IsAuthenticated]
 - **Reference:** [DRF Permissions](https://www.django-rest-framework.org/api-guide/permissions/)
 
 ---
+
+### Simple JWT (v5.3.1) - JWT Authentication
+- **Source:** [SimpleJWT Documentation](https://django-rest-framework-simplejwt.readthedocs.io/)
+- **License:** MIT License
+- **Usage:** Token-based authentication
+
+#### Code Adaptations:
+```python
+# JWT token generation from SimpleJWT documentation
+# Used in accounts/views.py lines 25-35
+from rest_framework_simplejwt.tokens import RefreshToken
+
+refresh = RefreshToken.for_user(user)
+return Response({
+    'tokens': {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }
+})
+```
+- **Reference:** [SimpleJWT Creating Tokens Manually](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/creating_tokens_manually.html)
+```python
+# JWT settings configuration from SimpleJWT documentation
+# Used in tradesim/settings.py lines 85-95
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+}
+```
+- **Reference:** [SimpleJWT Settings](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html)
+```python
+# Token blacklist for logout from SimpleJWT documentation
+# Used in accounts/views.py lines 70-80
+from rest_framework_simplejwt.tokens import RefreshToken
+
+def post(self, request):
+    refresh_token = request.data.get('refresh')
+    token = RefreshToken(refresh_token)
+    token.blacklist()
+```
+- **Reference:** [SimpleJWT Blacklist App](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/blacklist_app.html)
+
+---
+
+### Django CORS Headers (v4.3.1)
+- **Source:** [django-cors-headers Documentation](https://github.com/adamchainz/django-cors-headers)
+- **License:** MIT License
+- **Usage:** Cross-Origin Resource Sharing
+
+#### Code Adaptations:
+```python
+# CORS configuration from documentation
+# Used in tradesim/settings.py lines 100-105
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+]
+CORS_ALLOW_CREDENTIALS = True
+```
+- **Reference:** [django-cors-headers Configuration](https://github.com/adamchainz/django-cors-headers#configuration)
+
+---

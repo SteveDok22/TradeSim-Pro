@@ -282,6 +282,109 @@ The flowchart above shows the main user journey through the application, from re
 
 ---
 
+## Database Design
+
+### Entity Relationship Diagram
+
+![ERD Diagram](docs/erd/database-erd.png)
+
+### Models
+
+#### CustomUser Model
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | AutoField | Primary key |
+| username | CharField | Unique username |
+| email | EmailField | Unique email (used for login) |
+| password | CharField | Hashed password |
+| account_balance | DecimalField | Virtual balance (default: $10,000) |
+| trading_tier | CharField | BASIC, PRO, MASTER |
+| bio | TextField | Optional user bio |
+| date_joined | DateTimeField | Registration date |
+
+#### Asset Model
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | AutoField | Primary key |
+| symbol | CharField | Trading symbol (BTC, TSLA, EURUSD) |
+| name | CharField | Full name |
+| asset_type | CharField | CRYPTO, STOCK, FOREX |
+| api_source | CharField | BINANCE, ALPHAVANTAGE |
+| is_active | BooleanField | Available for trading |
+
+#### Trade Model
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | AutoField | Primary key |
+| user | ForeignKey | Link to CustomUser |
+| asset | ForeignKey | Link to Asset |
+| trade_type | CharField | BUY or SELL |
+| quantity | DecimalField | Amount traded |
+| entry_price | DecimalField | Price at open |
+| exit_price | DecimalField | Price at close (nullable) |
+| stop_loss | DecimalField | Stop-loss price (nullable) |
+| take_profit | DecimalField | Take-profit price (nullable) |
+| pnl | DecimalField | Profit/Loss (nullable) |
+| pnl_percent | DecimalField | PnL percentage |
+| status | CharField | OPEN or CLOSED |
+| opened_at | DateTimeField | Trade open time |
+| closed_at | DateTimeField | Trade close time (nullable) |
+
+#### Portfolio Model
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | AutoField | Primary key |
+| user | OneToOneField | Link to CustomUser |
+| total_pnl | DecimalField | All-time realized PnL |
+| total_pnl_percent | DecimalField | PnL percentage |
+| win_rate | DecimalField | Winning trade percentage |
+| total_trades | IntegerField | Total closed trades |
+| winning_trades | IntegerField | Winning trades count |
+| losing_trades | IntegerField | Losing trades count |
+| updated_at | DateTimeField | Last update |
+
+#### Watchlist Model
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | AutoField | Primary key |
+| user | ForeignKey | Link to CustomUser |
+| asset | ForeignKey | Link to Asset |
+| added_at | DateTimeField | Date added |
+
+---
+
+## Technologies Used
+
+### Languages
+
+- Python 3.12
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+
+### Frameworks & Libraries
+
+| Technology | Version | Purpose |
+
+### Databases
+
+| Database | Usage |
+|----------|-------|
+| SQLite | Development |
+| PostgreSQL | Production (Heroku) |
+
+### Tools & Services
+
+| Tool | Purpose |
+|------|---------|
+
+---
+
 ## Credits
 
 For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)
