@@ -427,17 +427,71 @@ coverage report
 
 ### Bugs
 
-#### Solved Bugs
+### Resolved Issues
 
-| Bug | Cause | Solution |
-|-----|-------|----------|
-| TBD | TBD | TBD |
+#### Bug #1: Custom User Model Migration Error
+**Issue:** `AUTH_USER_MODEL refers to model 'accounts.CustomUser' that has not been installed`  
+**Cause:** Custom User Model was defined after initial Django migrations were created  
+**Fix:** Deleted all migration files and database, created CustomUser before first migration:
+```bash
+# Terminal commands
+rm -rf accounts/migrations/0*.py
+rm db.sqlite3
+python manage.py makemigrations accounts
+python manage.py migrate
+```
+**Status:** ✅ Resolved in v1.0.0
 
-#### Known Bugs
+---
 
-| Bug | Status | Notes |
-|-----|--------|-------|
-| None currently | - | - |
+#### Bug #2: CORS Error - No Access-Control-Allow-Origin
+**Issue:** Browser blocking API requests with `No 'Access-Control-Allow-Origin' header present`  
+**Cause:** Django backend rejecting requests from React frontend running on different port (3000)  
+**Fix:** Installed and configured django-cors-headers in `settings.py`:
+```python
+# settings.py lines 25-30
+INSTALLED_APPS = [
+    ...
+    'corsheaders',
+]
+
+MIDDLEWARE = [
+    ...
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+# Lines 95-100
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+]
+CORS_ALLOW_CREDENTIALS = True
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #3: JWT Token 401 Unauthorized
+**Issue:** API returning `401 Unauthorized` even with valid JWT token  
+**Cause:** Missing "Bearer " prefix when sending token in Authorization header  
+**Fix:** Updated Postman/frontend to use correct header format:
+```python
+# Correct format
+headers = {
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+}
+
+# Wrong format (was causing error)
+headers = {
+    'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+}
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+
 
 ---
 
