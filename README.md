@@ -513,6 +513,74 @@ def create_user_portfolio(sender, instance, created, **kwargs):
 
 ---
 
+#### Bug #5: Floating Point Precision Error
+**Issue:** Prices showing incorrect decimals (e.g., BTC: 97000.12345678901234)  
+**Cause:** Using `FloatField` for monetary values caused floating-point precision errors  
+**Fix:** Changed all monetary fields to `DecimalField` in models:
+```python
+# trading/models.py lines 45-55
+from decimal import Decimal
+
+entry_price = models.DecimalField(
+    max_digits=18,
+    decimal_places=8
+)
+pnl = models.DecimalField(
+    max_digits=18,
+    decimal_places=2
+)
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #6: Django Sites Framework Error
+**Issue:** `django.contrib.sites.models.Site.DoesNotExist` on startup  
+**Cause:** Django Allauth requires Site object but database had none  
+**Fix:** Added SITE_ID to settings and ran migrations:
+```python
+# settings.py line 75
+SITE_ID = 1
+```
+```bash
+# Terminal
+python manage.py migrate sites
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #7: Alpha Vantage Returning None
+**Issue:** Stock and forex prices returning `None` instead of actual values  
+**Cause:** Free tier API rate limit (5 calls/minute) exceeded  
+**Fix:** Implemented price caching in `trading/services/price_service.py`:
+```python
+# price_service.py lines 25-40
+from django.core.cache import cache
+
+CACHE_TIMEOUT = 30  # seconds
+
+def get_price(self, symbol):
+    # Check cache first
+    cache_key = f'price_{symbol}'
+    cached = cache.get(cache_key)
+    if cached:
+        return Decimal(str(cached))
+    
+    # Fetch from API
+    price = self._fetch_from_api(symbol)
+    
+    # Cache the result
+    if price:
+        cache.set(cache_key, str(price), self.CACHE_TIMEOUT)
+    
+    return price
+```
+**Status:** ✅ Resolved in v1.0.2
+
+---
+
+
 ---
 
 ## Credits
