@@ -580,6 +580,53 @@ def get_price(self, symbol):
 
 ---
 
+#### Bug #8: Binance API KeyError
+**Issue:** `KeyError: 'BTCUSDT'` when fetching cryptocurrency prices  
+**Cause:** Sending internal symbol 'BTC' to Binance API instead of required format 'BTCUSDT'  
+**Fix:** Created symbol mapping dictionary in `price_service.py`:
+```python
+# price_service.py lines 15-20
+BINANCE_SYMBOLS = {
+    'BTC': 'BTCUSDT',
+    'ETH': 'ETHUSDT',
+}
+
+def _fetch_binance(self, symbol):
+    api_symbol = self.BINANCE_SYMBOLS.get(symbol)
+    response = requests.get(
+        self.BINANCE_URL,
+        params={'symbol': api_symbol}
+    )
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #9: Incorrect PnL for SELL Positions
+**Issue:** Short (SELL) positions calculating profit/loss incorrectly  
+**Cause:** Using same PnL formula for both BUY and SELL trade types  
+**Fix:** Added conditional calculation in `trading/models.py`:
+```python
+# trading/models.py lines 70-85
+def calculate_pnl(self, current_price):
+    current_price = Decimal(str(current_price))
+    
+    if self.trade_type == 'BUY':
+        # Long: profit when price goes UP
+        price_diff = current_price - self.entry_price
+    else:
+        # Short: profit when price goes DOWN
+        price_diff = self.entry_price - current_price
+    
+    pnl_amount = price_diff * self.quantity
+    pnl_percent = (price_diff / self.entry_price) * 100
+    
+    return (round(pnl_amount, 2), round(pnl_percent, 2))
+```
+**Status:** ✅ Resolved in v1.0.1
+
+---
+
 
 ---
 
