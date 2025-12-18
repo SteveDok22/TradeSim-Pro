@@ -491,7 +491,27 @@ headers = {
 
 ---
 
+#### Bug #4: User Has No Portfolio Error
+**Issue:** `RelatedObjectDoesNotExist: User has no portfolio` when accessing portfolio endpoint  
+**Cause:** Portfolio instance not automatically created when new user registers  
+**Fix:** Added Django signal to create Portfolio on user creation in `accounts/signals.py`:
+```python
+# accounts/signals.py lines 10-20
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth import get_user_model
+from portfolio.models import Portfolio
 
+User = get_user_model()
+
+@receiver(post_save, sender=User)
+def create_user_portfolio(sender, instance, created, **kwargs):
+    if created:
+        Portfolio.objects.create(user=instance)
+```
+**Status:** ✅ Resolved in v1.0.1
+
+---
 
 ---
 
