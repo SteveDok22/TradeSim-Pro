@@ -627,6 +627,76 @@ def calculate_pnl(self, current_price):
 
 ---
 
+#### Bug #10: Allauth Middleware Missing
+**Issue:** `ImproperlyConfigured: allauth requires AccountMiddleware`  
+**Cause:** Django-allauth v0.60+ requires explicit middleware configuration  
+**Fix:** Added middleware to `settings.py`:
+```python
+# settings.py MIDDLEWARE list
+MIDDLEWARE = [
+    ...
+    'allauth.account.middleware.AccountMiddleware',
+]
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #11: Negative Balance After Trade
+**Issue:** User balance becoming negative when opening large trades  
+**Cause:** No validation checking if user has sufficient funds before trade  
+**Fix:** Added balance validation in `trading/views.py`:
+```python
+# trading/views.py lines 85-95
+def post(self, request):
+    amount_usd = Decimal(str(data['amount_usd']))
+    
+    # Check balance before trade
+    if amount_usd > request.user.account_balance:
+        return Response(
+            {'error': f'Insufficient funds. Available: ${request.user.account_balance}'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Proceed with trade...
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #12: ModuleNotFoundError for Services
+**Issue:** `ModuleNotFoundError: No module named 'trading.services'`  
+**Cause:** Missing `__init__.py` file in services directory  
+**Fix:** Created init file in `trading/services/__init__.py`:
+```python
+# trading/services/__init__.py
+from .price_service import PriceService
+
+__all__ = ['PriceService']
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #13: Circular Import Error
+**Issue:** `ImportError: cannot import name 'Trade' from partially initialized module`  
+**Cause:** Portfolio model directly importing Trade model which imports User  
+**Fix:** Used string reference instead of direct import in ForeignKey:
+```python
+# portfolio/models.py line 25
+# Before (causing error)
+from trading.models import Asset
+asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+
+# After (fixed)
+asset = models.ForeignKey(
+    'trading.Asset',
+    on_delete=models.CASCADE
+)
+```
+**Status:** ✅ Resolved in v1.0.1
+
+---
 
 ---
 
