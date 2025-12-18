@@ -698,6 +698,26 @@ asset = models.ForeignKey(
 
 ---
 
+#### Bug #14: Token Blacklist Table Missing
+**Issue:** `ProgrammingError: relation "token_blacklist_outstandingtoken" does not exist`  
+**Cause:** SimpleJWT blacklist app not in INSTALLED_APPS  
+**Fix:** Added app and ran migrations:
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'rest_framework_simplejwt.token_blacklist',
+]
+```
+```bash
+python manage.py migrate
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+
+
 ---
 
 ## Credits
