@@ -716,7 +716,54 @@ python manage.py migrate
 
 ---
 
+#### Bug #15: DisallowedHost on Heroku
+**Issue:** `DisallowedHost at / - Invalid HTTP_HOST header`  
+**Cause:** Heroku domain not included in Django ALLOWED_HOSTS  
+**Fix:** Updated production settings:
+```python
+# settings.py
+import os
 
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+
+# Heroku config
+# heroku config:set ALLOWED_HOSTS=tradesim-pro-app.herokuapp.com
+```
+**Status:** ✅ Resolved in v1.0.0
+
+---
+
+### Known Issues
+
+#### Issue #1: Alpha Vantage Rate Limiting
+**Description:** Free Alpha Vantage API tier limited to 5 calls/minute, 500 calls/day  
+**Impact:** Medium - stock and forex prices may show "unavailable" during high usage  
+**Workaround:** Implemented 30-second caching to reduce API calls  
+**Planned Fix:** Upgrade to premium API key for production (v2.0)
+
+---
+
+#### Issue #2: Price Delay on First Load
+**Description:** First price fetch after cache expiry takes 1-2 seconds  
+**Impact:** Low - slight delay on initial page load  
+**Workaround:** Prices cached for 30 seconds, subsequent loads instant  
+**Planned Fix:** Implement background price refresh task with Celery (v2.0)
+
+---
+
+#### Issue #3: UTC Timezone Display
+**Description:** All timestamps displayed in UTC regardless of user location  
+**Impact:** Low - user sees trades in UTC time  
+**Workaround:** None currently  
+**Planned Fix:** Add user timezone preference in profile settings (v2.0)
+
+---
+
+#### Issue #4: No Real-Time Price Updates
+**Description:** Prices require manual page refresh to update  
+**Impact:** Medium - users must refresh to see latest prices  
+**Workaround:** Users can manually refresh the page  
+**Planned Fix:** Implement WebSocket connection for real-time updates (v2.0)
 
 ---
 
