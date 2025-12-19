@@ -58,7 +58,13 @@ TradeSim Pro is a comprehensive prop trading simulator designed for beginner tra
 
 ### Application Flowchart
 
-![Application Flowchart](docs/flowchart-app.png)
+![Application Flowchart](docs\images\TradeSimProApplicationFlow.png)
+
+---
+
+### API Request Flowchart
+
+![Application API Request Flowchart](docs\images\API-RequestFlow.png)
 
 The flowchart above shows the main user journey through the application, from registration to trading operations.
 
@@ -286,7 +292,7 @@ The flowchart above shows the main user journey through the application, from re
 
 ### Entity Relationship Diagram
 
-![ERD Diagram](docs/erd/database-erd.png)
+![ERD Diagram](docs\images\ERD-Diagram.png)
 
 ### Models
 
