@@ -1,0 +1,1 @@
+web: cd backend && gunicorn tradesim.wsgi:application
