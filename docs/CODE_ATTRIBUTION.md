@@ -480,6 +480,91 @@ price = quote.get('05. price')
 
 ---
 
+## Deployment & Infrastructure
+
+### dj-database-url (v2.1.0)
+- **Source:** [dj-database-url Documentation](https://github.com/jazzband/dj-database-url)
+- **License:** BSD 2-Clause License
+- **Usage:** Parse DATABASE_URL for Heroku PostgreSQL
+
+#### Code Adaptations:
+```python
+# Database URL parsing from dj-database-url documentation
+# Used in tradesim/settings.py lines 55-70
+import dj_database_url
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True,
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+```
+- **Reference:** [dj-database-url Usage](https://github.com/jazzband/dj-database-url#usage)
+
+---
+
+### Gunicorn (v21.2.0)
+- **Source:** [Gunicorn Documentation](https://gunicorn.org/)
+- **License:** MIT License
+- **Usage:** Production WSGI HTTP server for Heroku
+
+#### Code Adaptations:
+```
+# Procfile for Heroku deployment
+web: cd backend && gunicorn tradesim.wsgi:application
+```
+- **Reference:** [Gunicorn Django Deployment](https://docs.gunicorn.org/en/stable/deploy.html)
+
+---
+
+### WhiteNoise (v6.6.0)
+- **Source:** [WhiteNoise Documentation](http://whitenoise.evans.io/)
+- **License:** MIT License
+- **Usage:** Serve static files in production
+
+#### Code Adaptations:
+```python
+# WhiteNoise configuration from documentation
+# Used in tradesim/settings.py
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add after SecurityMiddleware
+    ...
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+```
+- **Reference:** [WhiteNoise Django Guide](http://whitenoise.evans.io/en/stable/django.html)
+
+---
+
+### Heroku Platform
+- **Source:** [Heroku Dev Center](https://devcenter.heroku.com/)
+- **License:** Proprietary (Free tier used)
+- **Usage:** Cloud application hosting
+
+#### Configuration:
+- Deployment via GitHub integration (Heroku Dashboard)
+- PostgreSQL database via Heroku Postgres add-on
+- Environment variables via Config Vars
+- Python buildpack for Django application
+
+- **Reference:** [Heroku Python Support](https://devcenter.heroku.com/articles/python-support)
+
+---
+
 ## Tools Used
 
 | Tool | Purpose | Link |

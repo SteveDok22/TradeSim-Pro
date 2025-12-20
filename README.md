@@ -819,6 +819,128 @@ cd backend && python manage.py migrate
 
 ---
 
+## Deployment
+
+### Heroku Deployment
+
+The application is deployed on Heroku using GitHub integration.
+
+**Live URL:** https://tradesim-pro-stiven-62203fadbb77.herokuapp.com
+
+#### Deployment Steps
+
+1. **Create Heroku App**
+   - Log in to [Heroku Dashboard](https://dashboard.heroku.com/)
+   - Click "New" → "Create new app"
+   - Enter app name and select region (Europe)
+
+2. **Connect GitHub Repository**
+   - In Deploy tab, select "GitHub" as deployment method
+   - Search and connect your repository
+   - Enable "Automatic Deploys" (optional)
+
+3. **Add PostgreSQL Database**
+   - Go to Resources tab
+   - Search for "Heroku Postgres"
+   - Select "Essential 0" plan
+   - Database URL automatically added to Config Vars
+
+4. **Configure Environment Variables**
+   - Go to Settings tab → "Reveal Config Vars"
+   - Add the following variables:
+
+   | Key | Value |
+   |-----|-------|
+   | `SECRET_KEY` | Your secret key |
+   | `DEBUG` | `False` |
+   | `ALPHA_VANTAGE_KEY` | Your API key |
+   | `DISABLE_COLLECTSTATIC` | `0` |
+
+5. **Add Buildpack**
+   - In Settings tab → Buildpacks
+   - Add "python" buildpack
+
+6. **Deploy**
+   - Go to Deploy tab
+   - Click "Deploy Branch" (main)
+   - Wait for build to complete
+
+7. **Run Migrations**
+   - Click "More" → "Run console"
+   - Enter: `cd backend && python manage.py migrate`
+
+8. **Create Superuser**
+   - In console: `cd backend && python manage.py createsuperuser`
+
+9. **Add Initial Data**
+   - Access admin panel: `/admin/`
+   - Add Asset records (BTC, ETH, TSLA, etc.)
+
+#### Heroku Files
+
+**Procfile** (repository root):
+```
+web: cd backend && gunicorn tradesim.wsgi:application
+```
+
+**runtime.txt** (repository root):
+```
+python-3.12.0
+```
+
+### Local Development
+
+#### Prerequisites
+- Python 3.12+
+- Git
+- Virtual environment
+
+#### Setup Steps
+
+1. **Clone Repository**
+```bash
+git clone https://github.com/SteveDok22/TradeSim-Pro.git
+cd TradeSim-Pro/backend
+```
+
+2. **Create Virtual Environment**
+```bash
+python -m venv venv
+source venv/bin/activate  # Mac/Linux
+venv\Scripts\activate     # Windows
+```
+
+3. **Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+4. **Create .env File**
+```
+SECRET_KEY=your-secret-key
+DEBUG=True
+ALPHA_VANTAGE_KEY=your-api-key
+```
+
+5. **Run Migrations**
+```bash
+python manage.py migrate
+```
+
+6. **Create Superuser**
+```bash
+python manage.py createsuperuser
+```
+
+7. **Run Server**
+```bash
+python manage.py runserver
+```
+
+8. **Access Application**
+- API: http://127.0.0.1:8000/api/
+- Admin: http://127.0.0.1:8000/admin/
+
 ## Credits
 
 For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)
