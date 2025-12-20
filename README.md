@@ -2,7 +2,7 @@
 
 ![Am I Responsive](docs/responsive-mockup.png)
 
-**Live Site:** [TradeSim Pro on Heroku](https://tradesim-pro-app.herokuapp.com)
+**Live Site:** [TradeSim Pro on Heroku](https://tradesim-pro-stiven-62203fadbb77.herokuapp.com)
 
 **Repository:** [GitHub](https://github.com/SteveDok22/tradesim-pro)
 
@@ -376,18 +376,39 @@ The flowchart above shows the main user journey through the application, from re
 ### Frameworks & Libraries
 
 | Technology | Version | Purpose |
+|------------|---------|---------|
+| Django | 5.0.1 | Backend framework |
+| Django REST Framework | 3.14.0 | API development |
+| Simple JWT | 5.3.1 | JWT authentication |
+| django-cors-headers | 4.3.1 | CORS handling |
+| django-allauth | 0.60.1 | User authentication |
+| dj-rest-auth | 5.0.2 | REST authentication |
+| psycopg2-binary | 2.9.9 | PostgreSQL adapter |
+| dj-database-url | 2.1.0 | Database configuration |
+| gunicorn | 21.2.0 | WSGI server |
+| whitenoise | 6.6.0 | Static files |
+| requests | 2.31.0 | HTTP requests |
 
 ### Databases
 
 | Database | Usage |
 |----------|-------|
-| SQLite | Development |
+| SQLite | Local development |
 | PostgreSQL | Production (Heroku) |
 
 ### Tools & Services
 
 | Tool | Purpose |
 |------|---------|
+| Git | Version control |
+| GitHub | Repository hosting |
+| GitHub Projects | Agile project management |
+| Heroku | Cloud deployment |
+| Postman | API testing |
+| VS Code | Code editor |
+| Draw.io | Flowcharts & ERD diagrams |
+| Binance API | Cryptocurrency prices |
+| Alpha Vantage API | Stock & forex prices |
 
 ---
 
@@ -736,6 +757,31 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 # heroku config:set ALLOWED_HOSTS=tradesim-pro-app.herokuapp.com
 ```
 **Status:** ✅ Resolved in v1.0.0
+
+---
+
+#### Bug #16: Heroku "No Process Types" Warning
+**Issue:** Heroku showing "This app has no process types yet" after deployment  
+**Cause:** Procfile was in `backend/` folder but Heroku reads from repository root  
+**Fix:** Created Procfile in repository root with correct path:
+```
+# Procfile (in repository root)
+web: cd backend && gunicorn tradesim.wsgi:application
+```
+**Status:** ✅ Resolved in v1.0.3
+
+---
+
+#### Bug #17: 43 Unapplied Migrations on Heroku
+**Issue:** Console showing "I have 43 unapplied migration(s)" after first deploy  
+**Cause:** Database migrations not automatically run on Heroku PostgreSQL  
+**Fix:** Manually ran migrations via Heroku Console:
+```bash
+# Heroku Console
+cd backend && python manage.py migrate
+```
+**Note:** For future deploys, added release command to Procfile (optional)
+**Status:** ✅ Resolved in v1.0.3
 
 ---
 
