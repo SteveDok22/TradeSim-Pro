@@ -111,3 +111,30 @@ class WatchlistModelTest(TestCase):
         
         with self.assertRaises(Exception):
             Watchlist.objects.create(user=self.user, asset=self.asset)        
+            
+class PortfolioViewTest(APITestCase):
+    """Tests for portfolio endpoint."""
+    
+    def setUp(self):
+        """Create test user."""
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@test.com',
+            password='testpass123'
+        )
+        self.client.force_authenticate(user=self.user)
+    
+    def test_get_portfolio(self):
+        """Test getting portfolio stats."""
+        response = self.client.get('/api/portfolio/')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('total_pnl', response.data)
+        self.assertIn('win_rate', response.data)
+    
+    def test_portfolio_unauthenticated(self):
+        """Test portfolio requires authentication."""
+        self.client.force_authenticate(user=None)
+        response = self.client.get('/api/portfolio/')
+        
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)            
