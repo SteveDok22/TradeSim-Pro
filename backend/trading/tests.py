@@ -95,3 +95,32 @@ class TradeModelTest(TestCase):
         self.assertEqual(self.trade.exit_price, Decimal('55000.00'))
         self.assertEqual(pnl, Decimal('500.00'))
         self.assertIsNotNone(self.trade.closed_at)    
+        
+class AssetListViewTest(APITestCase):
+    """Tests for asset list endpoint."""
+    
+    def setUp(self):
+        """Create test assets."""
+        Asset.objects.create(
+            symbol='BTC',
+            name='Bitcoin',
+            asset_type='CRYPTO',
+            api_source='BINANCE'
+        )
+        Asset.objects.create(
+            symbol='ETH',
+            name='Ethereum',
+            asset_type='CRYPTO',
+            api_source='BINANCE'
+        )
+    
+    def test_list_assets(self):
+        """Test listing all assets."""
+        response = self.client.get('/api/trading/assets/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 2)
+    
+    def test_list_assets_no_auth_required(self):
+        """Test assets endpoint is public."""
+        response = self.client.get('/api/trading/assets/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)        
