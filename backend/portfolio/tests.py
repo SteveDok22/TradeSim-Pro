@@ -137,4 +137,22 @@ class PortfolioViewTest(APITestCase):
         self.client.force_authenticate(user=None)
         response = self.client.get('/api/portfolio/')
         
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)            
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)           
+        
+class WatchlistViewTest(APITestCase):
+    """Tests for watchlist endpoints."""
+    
+    def setUp(self):
+        """Create test user and asset."""
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@test.com',
+            password='testpass123'
+        )
+        self.asset = Asset.objects.create(
+            symbol='BTC',
+            name='Bitcoin',
+            asset_type='CRYPTO',
+            api_source='BINANCE'
+        )
+        self.client.force_authenticate(user=self.user)         
