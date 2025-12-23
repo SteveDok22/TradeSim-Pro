@@ -171,3 +171,27 @@ class WatchlistViewTest(APITestCase):
         
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Watchlist.objects.count(), 1)    
+        
+    def test_add_duplicate_to_watchlist(self):
+        """Test adding same asset twice."""
+        Watchlist.objects.create(user=self.user, asset=self.asset)
+        
+        data = {'asset_id': self.asset.id}
+        response = self.client.post('/api/portfolio/watchlist/add/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    
+    def test_remove_from_watchlist(self):
+        """Test removing asset from watchlist."""
+        watchlist = Watchlist.objects.create(user=self.user, asset=self.asset)
+        
+        response = self.client.delete(f'/api/portfolio/watchlist/{watchlist.id}/')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Watchlist.objects.count(), 0)
+    
+    def test_remove_nonexistent_watchlist(self):
+        """Test removing non-existent watchlist item."""
+        response = self.client.delete('/api/portfolio/watchlist/9999/')
+        
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)    
