@@ -156,3 +156,18 @@ class WatchlistViewTest(APITestCase):
             api_source='BINANCE'
         )
         self.client.force_authenticate(user=self.user)         
+        
+     def test_get_empty_watchlist(self):
+        """Test getting empty watchlist."""
+        response = self.client.get('/api/portfolio/watchlist/')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
+    
+    def test_add_to_watchlist(self):
+        """Test adding asset to watchlist."""
+        data = {'asset_id': self.asset.id}
+        response = self.client.post('/api/portfolio/watchlist/add/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Watchlist.objects.count(), 1)    
