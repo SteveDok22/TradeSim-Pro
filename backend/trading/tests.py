@@ -35,3 +35,47 @@ class AssetModelTest(TestCase):
     def test_asset_is_active_default(self):
         """Test asset is active by default."""
         self.assertTrue(self.asset.is_active)
+        
+class TradeModelTest(TestCase):
+    """Tests for Trade model."""
+    
+    def setUp(self):
+        """Create test user, asset, and trade."""
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@test.com',
+            password='testpass123'
+        )
+        self.asset = Asset.objects.create(
+            symbol='BTC',
+            name='Bitcoin',
+            asset_type='CRYPTO',
+            api_source='BINANCE'
+        )
+        self.trade = Trade.objects.create(
+            user=self.user,
+            asset=self.asset,
+            trade_type='BUY',
+            quantity=Decimal('0.1'),
+            entry_price=Decimal('50000.00'),
+            status='OPEN'
+        )
+    
+    def test_trade_creation(self):
+        """Test trade is created correctly."""
+        self.assertEqual(self.trade.user, self.user)
+        self.assertEqual(self.trade.asset, self.asset)
+        self.assertEqual(self.trade.trade_type, 'BUY')
+        self.assertEqual(self.trade.status, 'OPEN')
+    
+    def test_position_value(self):
+        """Test position value calculation."""
+        expected = Decimal('0.1') * Decimal('50000.00')
+        self.assertEqual(self.trade.position_value, expected)
+    
+    def test_calculate_pnl_profit(self):
+        """Test PnL calculation with profit."""
+        pnl, pnl_percent = self.trade.calculate_pnl(Decimal('55000.00'))
+        # (55000 - 50000) * 0.1 = 500
+        self.assertEqual(pnl, Decimal('500.00'))
+        self.assertEqual(pnl_percent, Decimal('10.00'))        
