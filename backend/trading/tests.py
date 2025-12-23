@@ -79,3 +79,19 @@ class TradeModelTest(TestCase):
         # (55000 - 50000) * 0.1 = 500
         self.assertEqual(pnl, Decimal('500.00'))
         self.assertEqual(pnl_percent, Decimal('10.00'))        
+        
+    def test_calculate_pnl_loss(self):
+        """Test PnL calculation with loss."""
+        pnl, pnl_percent = self.trade.calculate_pnl(Decimal('45000.00'))
+        # (45000 - 50000) * 0.1 = -500
+        self.assertEqual(pnl, Decimal('-500.00'))
+        self.assertEqual(pnl_percent, Decimal('-10.00'))
+    
+    def test_close_trade(self):
+        """Test closing a trade."""
+        pnl = self.trade.close_trade(Decimal('55000.00'))
+        
+        self.assertEqual(self.trade.status, 'CLOSED')
+        self.assertEqual(self.trade.exit_price, Decimal('55000.00'))
+        self.assertEqual(pnl, Decimal('500.00'))
+        self.assertIsNotNone(self.trade.closed_at)    
