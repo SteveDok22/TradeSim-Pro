@@ -260,4 +260,44 @@ class CloseTradeViewTest(APITestCase):
         data = {'trade_id': self.trade.id}
         response = self.client.post('/api/trading/trades/close/', data)
         
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)          
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)       
+        
+class OpenPositionsViewTest(APITestCase):
+    """Tests for open positions endpoint."""
+    
+    def setUp(self):
+        """Create test user with trades."""
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@test.com',
+            password='testpass123'
+        )
+        self.asset = Asset.objects.create(
+            symbol='BTC',
+            name='Bitcoin',
+            asset_type='CRYPTO',
+            api_source='BINANCE'
+        )
+        # Create open trade
+        Trade.objects.create(
+            user=self.user,
+            asset=self.asset,
+            trade_type='BUY',
+            quantity=Decimal('0.1'),
+            entry_price=Decimal('50000.00'),
+            status='OPEN'
+        )
+        # Create closed trade
+        Trade.objects.create(
+            user=self.user,
+            asset=self.asset,
+            trade_type='BUY',
+            quantity=Decimal('0.1'),
+            entry_price=Decimal('48000.00'),
+            exit_price=Decimal('52000.00'),
+            pnl=Decimal('400.00'),
+            status='CLOSED'
+        )
+        self.client.force_authenticate(user=self.user)
+    
+    @patch('trading.views.PriceService')           
