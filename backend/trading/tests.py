@@ -230,4 +230,34 @@ class CloseTradeViewTest(APITestCase):
         
         self.client.force_authenticate(user=self.user)
     
-    @patch('trading.views.PriceService')            
+    @patch('trading.views.PriceService')  
+    def test_close_trade_success(self, mock_price_service):
+        """Test successful trade closing."""
+        mock_instance = mock_price_service.return_value
+        mock_instance.get_price.return_value = Decimal('55000.00')
+        
+        data = {'trade_id': self.trade.id}
+        response = self.client.post('/api/trading/trades/close/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('pnl', response.data)
+        
+        self.trade.refresh_from_db()
+        self.assertEqual(self.trade.status, 'CLOSED')
+    
+    def test_close_trade_not_found(self):
+        """Test closing non-existent trade."""
+        data = {'trade_id': 9999}
+        response = self.client.post('/api/trading/trades/close/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+    
+    def test_close_trade_already_closed(self):
+        """Test closing already closed trade."""
+        self.trade.status = 'CLOSED'
+        self.trade.save()
+        
+        data = {'trade_id': self.trade.id}
+        response = self.client.post('/api/trading/trades/close/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)          
