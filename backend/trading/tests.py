@@ -301,3 +301,13 @@ class OpenPositionsViewTest(APITestCase):
         self.client.force_authenticate(user=self.user)
     
     @patch('trading.views.PriceService')           
+    def test_get_open_positions(self, mock_price_service):
+        """Test getting open positions only."""
+        mock_instance = mock_price_service.return_value
+        mock_instance.get_price.return_value = Decimal('51000.00')
+        
+        response = self.client.get('/api/trading/trades/positions/')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)  # Only open trade
+        self.assertEqual(response.data[0]['status'], 'OPEN')
