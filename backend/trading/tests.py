@@ -124,3 +124,78 @@ class AssetListViewTest(APITestCase):
         """Test assets endpoint is public."""
         response = self.client.get('/api/trading/assets/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)        
+        
+class OpenTradeViewTest(APITestCase):
+    """Tests for open trade endpoint."""
+    
+    def setUp(self):
+        """Create test user and asset."""
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@test.com',
+            password='testpass123'
+        )
+        self.asset = Asset.objects.create(
+            symbol='BTC',
+            name='Bitcoin',
+            asset_type='CRYPTO',
+            api_source='BINANCE'
+        )
+        self.client.force_authenticate(user=self.user)
+    
+    @patch('trading.views.PriceService')
+    def test_open_trade_success(self, mock_price_service):
+        """Test successful trade opening."""
+        # Mock price service
+        mock_instance = mock_price_service.return_value
+        mock_instance.get_price.return_value = Decimal('50000.00')
+        
+        data = {
+            'asset_id': self.asset.id,
+            'amount_usd': '100.00',
+            'trade_type': 'BUY'
+        }
+        response = self.client.post('/api/trading/trades/open/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertIn('trade', response.data)
+        self.assertEqual(response.data['trade']['status'], 'OPEN')
+    
+    @patch('trading.views.PriceService')
+    def test_open_trade_insufficient_funds(self, mock_price_service):
+        """Test trade with insufficient balance."""
+        mock_instance = mock_price_service.return_value
+        mock_instance.get_price.return_value = Decimal('50000.00')
+        
+        data = {
+            'asset_id': self.asset.id,
+            'amount_usd': '20000.00',  # More than balance
+            'trade_type': 'BUY'
+        }
+        response = self.client.post('/api/trading/trades/open/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('error', response.data)
+    
+    def test_open_trade_unauthenticated(self):
+        """Test trade without authentication."""
+        self.client.force_authenticate(user=None)
+        data = {
+            'asset_id': self.asset.id,
+            'amount_usd': '100.00',
+            'trade_type': 'BUY'
+        }
+        response = self.client.post('/api/trading/trades/open/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+    
+    def test_open_trade_invalid_asset(self):
+        """Test trade with non-existent asset."""
+        data = {
+            'asset_id': 9999,
+            'amount_usd': '100.00',
+            'trade_type': 'BUY'
+        }
+        response = self.client.post('/api/trading/trades/open/', data)
+        
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)        
