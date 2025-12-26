@@ -33,3 +33,38 @@ export const AuthProvider = ({ children }) => {
     setUser(userData)
     return userData
   }
+
+   const register = async (userData) => {
+    const data = await authAPI.register(userData)
+    localStorage.setItem('access_token', data.tokens.access)
+    localStorage.setItem('refresh_token', data.tokens.refresh)
+    setUser(data.user)
+    return data.user
+  }
+
+  const logout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+    setUser(null)
+  }
+
+  const updateBalance = (newBalance) => {
+    setUser(prev => ({ ...prev, account_balance: newBalance }))
+  }
+
+  return (
+    <AuthContext.Provider value={{ 
+      user, 
+      loading, 
+      login, 
+      register, 
+      logout,
+      updateBalance,
+      isAuthenticated: !!user 
+    }}>
+      {children}
+    </AuthContext.Provider>
+  )
+}
+
+export const useAuth = () => useContext(AuthContext)
