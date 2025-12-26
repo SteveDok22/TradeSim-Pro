@@ -32,3 +32,40 @@
   color: #d1d5db;
   text-decoration: none;
   transition: color 0.3s;
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-balance {
+  color: #10b981;
+  font-weight: bold;
+  padding: 8px 15px;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-radius: 5px;
+}
+
+.btn-logout {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background-color: #dc2626;
+}
+
+.btn-register {
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-register:hover {
+  background-color: #1d4ed8;
+}  
