@@ -1,9 +1,11 @@
 .navbar {
-  background-color: #1f2937;
+  background: var(--bg-secondary);
   padding: 15px 0;
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 .navbar-container {
@@ -16,56 +18,88 @@
 }
 
 .navbar-logo {
-  color: white;
+  color: var(--accent-primary);
   font-size: 24px;
   font-weight: bold;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logo:hover {
+  text-shadow: var(--shadow-glow);
 }
 
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
 }
 
 .nav-link {
-  color: #d1d5db;
+  color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.3s;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
 
 .nav-link:hover {
-  color: white;
+  color: var(--accent-primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .nav-balance {
-  color: #10b981;
+  color: var(--success);
   font-weight: bold;
-  padding: 8px 15px;
-  background-color: rgba(16, 185, 129, 0.1);
-  border-radius: 5px;
+  padding: 10px 20px;
+  background: rgba(0, 212, 170, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 170, 0.3);
 }
 
 .btn-logout {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .btn-logout:hover {
-  background-color: #dc2626;
+  background: var(--danger);
+  color: white;
 }
 
 .btn-register {
-  background-color: #2563eb;
-  color: white;
-  padding: 8px 15px;
-  border-radius: 5px;
+  background: var(--gradient-primary);
+  color: var(--bg-primary);
+  padding: 10px 20px;
+  border-radius: 8px;
   text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .btn-register:hover {
-  background-color: #1d4ed8;
-}  
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
