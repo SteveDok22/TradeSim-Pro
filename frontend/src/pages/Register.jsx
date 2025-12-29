@@ -50,3 +50,32 @@ const Register = () => {
       setLoading(false)
     }
   }
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>Create Account</h1>
+          <p>Start trading with $10,000 virtual money</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Choose a username"
+              required
+            />
+          </div>
+          </div>
+      </div>
+    </div>
+  )
+}
+
+export default Register      
