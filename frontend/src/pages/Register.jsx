@@ -72,6 +72,53 @@ const Register = () => {
               required
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Min 8 characters"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password_confirm">Confirm Password</label>
+            <input
+              type="password"
+              id="password_confirm"
+              name="password_confirm"
+              value={formData.password_confirm}
+              onChange={handleChange}
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn-submit" disabled={loading}>
+            {loading ? 'Creating Account...' : 'Create Account'}
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          <p>Already have an account? <Link to="/login">Login</Link></p>
           </div>
       </div>
     </div>
