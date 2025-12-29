@@ -128,6 +128,41 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Open Positions */}
+      {positions.length > 0 && (
+        <div className="section">
+          <h2>Open Positions</h2>
+          <div className="positions-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset</th>
+                  <th>Type</th>
+                  <th>Entry Price</th>
+                  <th>Current Price</th>
+                  <th>P&L</th>
+                </tr>
+              </thead>
+              <tbody>
+                {positions.map((pos) => (
+                  <tr key={pos.id}>
+                    <td>{pos.asset_symbol}</td>
+                    <td className={pos.trade_type === 'BUY' ? 'text-success' : 'text-danger'}>
+                      {pos.trade_type}
+                    </td>
+                    <td>${parseFloat(pos.entry_price).toLocaleString()}</td>
+                    <td>${parseFloat(pos.current_price || 0).toLocaleString()}</td>
+                    <td className={parseFloat(pos.unrealized_pnl || 0) >= 0 ? 'text-success' : 'text-danger'}>
+                      {parseFloat(pos.unrealized_pnl || 0) >= 0 ? '+' : ''}
+                      ${parseFloat(pos.unrealized_pnl || 0).toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
