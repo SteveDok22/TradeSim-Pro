@@ -85,6 +85,13 @@ const Dashboard = () => {
           </div>
         </div>
 
+        <div className="stat-card">
+          <span className="stat-icon">🎯</span>
+          <div className="stat-info">
+            <h3>Trading Tier</h3>
+            <p className="stat-value">{user?.trading_tier || 'BASIC'}</p>
+          </div>
+        </div>
        </div>
 
        {/* Quick Actions */}
