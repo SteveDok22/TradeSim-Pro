@@ -47,3 +47,42 @@ const Dashboard = () => {
   if (loading) {
     return <div className="loading">Loading dashboard...</div>
   }
+
+  return (
+    <div className="dashboard">
+      <div className="dashboard-header">
+        <h1>Welcome, {user?.username}! 👋</h1>
+        <p>Here's your trading overview</p>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <span className="stat-icon">💰</span>
+          <div className="stat-info">
+            <h3>Account Balance</h3>
+            <p className="stat-value">
+              ${parseFloat(user?.account_balance || 0).toLocaleString()}
+            </p>
+          </div>
+        </div>
+       </div>
+
+       {/* Quick Actions */}
+      <div className="quick-actions">
+        <Link to="/trade" className="action-btn primary">
+          ➕ New Trade
+        </Link>
+        <Link to="/positions" className="action-btn secondary">
+          📊 View Positions
+        </Link>
+        <Link to="/history" className="action-btn secondary">
+          📜 Trade History
+        </Link>
+      </div>
+
+    </div>
+  )
+}
+
+export default Dashboard
