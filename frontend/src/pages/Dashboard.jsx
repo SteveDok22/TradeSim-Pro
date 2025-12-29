@@ -66,6 +66,25 @@ const Dashboard = () => {
             </p>
           </div>
         </div>
+
+       <div className="stat-card">
+          <span className="stat-icon">📈</span>
+          <div className="stat-info">
+            <h3>Open Positions</h3>
+            <p className="stat-value">{positions.length}</p>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <span className="stat-icon">💹</span>
+          <div className="stat-info">
+            <h3>Unrealized P&L</h3>
+            <p className={`stat-value ${totalUnrealizedPnL >= 0 ? 'text-success' : 'text-danger'}`}>
+              {totalUnrealizedPnL >= 0 ? '+' : ''}${totalUnrealizedPnL.toFixed(2)}
+            </p>
+          </div>
+        </div>
+
        </div>
 
        {/* Quick Actions */}
@@ -79,6 +98,27 @@ const Dashboard = () => {
         <Link to="/history" className="action-btn secondary">
           📜 Trade History
         </Link>
+      </div>
+
+      {/* Live Prices */}
+      <div className="section">
+        <h2>Live Prices</h2>
+        <div className="prices-grid">
+          {prices.map((asset) => (
+            <div key={asset.id} className="price-card">
+              <div className="price-header">
+                <span className="asset-symbol">{asset.symbol}</span>
+                <span className={`asset-type ${asset.asset_type.toLowerCase()}`}>
+                  {asset.asset_type}
+                </span>
+              </div>
+              <p className="asset-name">{asset.name}</p>
+              <p className="asset-price">
+                {asset.price ? `$${parseFloat(asset.price).toLocaleString()}` : 'Loading...'}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
 
     </div>
