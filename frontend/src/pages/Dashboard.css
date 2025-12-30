@@ -139,6 +139,40 @@
   font-weight: 700;
 }
 
+.asset-type {
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.asset-type.crypto {
+  background: rgba(108, 92, 231, 0.2);
+  color: #6c5ce7;
+}
+
+.asset-type.stock {
+  background: rgba(0, 212, 170, 0.2);
+  color: var(--accent-primary);
+}
+
+.asset-type.forex {
+  background: rgba(255, 217, 61, 0.2);
+  color: var(--warning);
+}
+
+.asset-name {
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.asset-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
 /* Positions Table */
 .positions-table {
   background: var(--bg-card);
