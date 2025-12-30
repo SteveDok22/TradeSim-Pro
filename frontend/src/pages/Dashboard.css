@@ -138,3 +138,41 @@
   font-size: 18px;
   font-weight: 700;
 }
+
+/* Positions Table */
+.positions-table {
+  background: var(--bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.positions-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.positions-table th,
+.positions-table td {
+  padding: 16px 20px;
+  text-align: left;
+}
+
+.positions-table th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.positions-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.positions-table tr:last-child td {
+  border-bottom: none;
+}
+
+.positions-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
