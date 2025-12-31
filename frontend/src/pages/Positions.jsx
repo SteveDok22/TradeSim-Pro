@@ -61,11 +61,26 @@ const Positions = () => {
     <div className="positions-page">
       <div className="positions-header">
         <div>
+            <h1>Open Positions</h1>
+          <p>{positions.length} active trade{positions.length !== 1 ? 's' : ''}</p>
         </div>
-            
-          
-        </div>
+        <div className="total-pnl">
+          <span>Total Unrealized P&L</span>
+          <p className={totalPnL >= 0 ? 'text-success' : 'text-danger'}>
+            {totalPnL >= 0 ? '+' : ''}${totalPnL.toFixed(2)}
+          </p>
+        </div>    
+      </div>
       
+      {positions.length === 0 ? (
+        <div className="no-positions">
+          <span className="icon">📊</span>
+          <h2>No Open Positions</h2>
+          <p>Start trading to see your positions here</p>
+          <a href="/trade" className="btn-start">Open a Trade</a>
+        </div>
+      ) : (
+        
     </div>
   )
 }
