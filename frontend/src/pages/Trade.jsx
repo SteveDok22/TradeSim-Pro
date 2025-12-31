@@ -146,6 +146,24 @@ const Trade = () => {
               📉 SELL
             </button>
           </div>
+
+          {/* Asset Selection */}
+          <div className="form-group">
+            <label>Select Asset</label>
+            <select
+              name="asset_id"
+              value={formData.asset_id}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Choose an asset...</option>
+              {assets.map(asset => (
+                <option key={asset.id} value={asset.id}>
+                  {asset.symbol} - {asset.name} ({asset.asset_type})
+                </option>
+              ))}
+            </select>
+          </div>
     
         </div>
       </div>
