@@ -138,7 +138,14 @@ const Trade = () => {
             >
               📈 BUY
             </button>
-            
+            <button
+              type="button"
+              className={`type-btn sell ${formData.trade_type === 'SELL' ? 'active' : ''}`}
+              onClick={() => setFormData({ ...formData, trade_type: 'SELL' })}
+            >
+              📉 SELL
+            </button>
+          </div>
     
         </div>
       </div>
