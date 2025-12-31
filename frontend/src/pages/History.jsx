@@ -21,3 +21,11 @@ const History = () => {
       setLoading(false)
     }
   }
+
+  const totalPnL = trades.reduce((sum, trade) => sum + parseFloat(trade.pnl || 0), 0)
+  const winningTrades = trades.filter(t => parseFloat(t.pnl) > 0).length
+  const winRate = trades.length > 0 ? ((winningTrades / trades.length) * 100).toFixed(1) : 0
+
+  if (loading) {
+    return <div className="loading">Loading history...</div>
+  }
