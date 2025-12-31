@@ -109,3 +109,41 @@ const Trade = () => {
       setSubmitting(false)
     }
   }
+
+  const selectedAsset = assets.find(a => a.id === parseInt(formData.asset_id))
+  const currentPrice = prices[formData.asset_id]
+  const estimatedQuantity = formData.amount_usd && currentPrice 
+    ? (parseFloat(formData.amount_usd) / parseFloat(currentPrice)).toFixed(8)
+    : '0'
+
+  if (loading) {
+    return <div className="loading">Loading assets...</div>
+  }
+
+  return (
+    <div className="trade-page">
+      <div className="trade-header">
+        <h1>Open New Trade</h1>
+        <p>Available Balance: <span className="balance">${parseFloat(user?.account_balance || 0).toLocaleString()}</span></p>
+      </div>
+
+      <div className="trade-container">
+        <form onSubmit={handleSubmit} className="trade-form">
+          {/* Trade Type */}
+          <div className="trade-type-selector">
+            <button
+              type="button"
+              className={`type-btn buy ${formData.trade_type === 'BUY' ? 'active' : ''}`}
+              onClick={() => setFormData({ ...formData, trade_type: 'BUY' })}
+            >
+              📈 BUY
+            </button>
+            
+    
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Trade
