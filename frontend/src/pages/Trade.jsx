@@ -64,3 +64,48 @@ const Trade = () => {
       }
     }
   }
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    
+    if (!formData.asset_id || !formData.amount_usd) {
+      toast.error('Please fill all fields')
+      return
+    }
+
+    const amount = parseFloat(formData.amount_usd)
+    if (amount < 1) {
+      toast.error('Minimum trade amount is $1')
+      return
+    }
+
+    if (amount > parseFloat(user.account_balance)) {
+      toast.error('Insufficient balance!')
+      return
+    }
+
+    setSubmitting(true)
+
+    try {
+      const response = await tradingAPI.openTrade({
+        asset_id: parseInt(formData.asset_id),
+        amount_usd: amount,
+        trade_type: formData.trade_type
+      })
+      
+      updateBalance(response.new_balance)
+      toast.success(`Trade opened! ${formData.trade_type} order placed 🚀`)
+      navigate('/positions')
+    } catch (error) {
+      toast.error(error.response?.data?.error || 'Failed to open trade')
+    } finally {
+      setSubmitting(false)
+    }
+  }
