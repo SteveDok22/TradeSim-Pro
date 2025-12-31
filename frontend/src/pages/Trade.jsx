@@ -49,4 +49,18 @@ const Trade = () => {
     }
   }
 
-  
+  const fetchPrice = async (assetId) => {
+    const asset = assets.find(a => a.id === parseInt(assetId))
+    if (asset) {
+      try {
+        const data = await tradingAPI.getPrices()
+        const priceMap = {}
+        data.forEach(p => {
+          priceMap[p.id] = p.price
+        })
+        setPrices(priceMap)
+      } catch (error) {
+        console.error('Error fetching price:', error)
+      }
+    }
+  }
