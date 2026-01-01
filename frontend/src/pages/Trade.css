@@ -98,3 +98,26 @@
   outline: none;
   border-color: var(--accent-primary);
 }
+
+/* Quick Amounts */
+.quick-amounts {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.quick-btn {
+  flex: 1;
+  padding: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quick-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
