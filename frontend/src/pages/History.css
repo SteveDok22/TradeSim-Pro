@@ -1,0 +1,16 @@
+.history-page {
+  padding: 20px 0;
+}
+
+.history-header {
+  margin-bottom: 30px;
+}
+
+.history-header h1 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.history-header p {
+  color: var(--text-secondary);
+}

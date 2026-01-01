@@ -121,3 +121,68 @@
   border-color: var(--accent-primary);
   color: var(--accent-primary);
 }
+
+/* Trade Summary */
+.trade-summary {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.trade-summary h3 {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+.summary-row span:first-child {
+  color: var(--text-secondary);
+}
+
+.summary-row span:last-child {
+  font-weight: 600;
+}
+
+/* Trade Button */
+.btn-trade {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-trade.buy {
+  background: var(--success);
+  color: var(--bg-primary);
+}
+
+.btn-trade.sell {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-trade:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-trade:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
