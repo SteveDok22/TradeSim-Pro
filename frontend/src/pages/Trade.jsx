@@ -231,6 +231,25 @@ const Trade = () => {
             {submitting ? 'Opening Trade...' : `${formData.trade_type} Now`}
           </button>
         </form>
+
+        {/* Live Prices Sidebar */}
+        <div className="prices-sidebar">
+          <h3>Live Prices</h3>
+          {assets.map(asset => (
+            <div 
+              key={asset.id} 
+              className={`price-item ${formData.asset_id === asset.id.toString() ? 'selected' : ''}`}
+              onClick={() => setFormData({ ...formData, asset_id: asset.id.toString() })}
+            >
+              <div className="price-info">
+                <span className="symbol">{asset.symbol}</span>
+                <span className="type">{asset.asset_type}</span>
+              </div>
+              <span className="price">
+                ${prices[asset.id] ? parseFloat(prices[asset.id]).toLocaleString() : '...'}
+              </span>
+            </div>
+          ))}
     
         </div>
       </div>
