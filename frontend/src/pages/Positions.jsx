@@ -115,7 +115,26 @@ const Positions = () => {
                   </div>
                 </div>
 
-
+                <div className="position-pnl">
+                  <div className={`pnl-value ${pnl >= 0 ? 'profit' : 'loss'}`}>
+                    <span>Unrealized P&L</span>
+                    <p>{pnl >= 0 ? '+' : ''}${pnl.toFixed(2)}</p>
+                    <span className="pnl-percent">({pnlPercent >= 0 ? '+' : ''}{pnlPercent.toFixed(2)}%)</span>
+                  </div>
+                  
+                  <button
+                    onClick={() => handleClose(position.id)}
+                    disabled={closingId === position.id}
+                    className="btn-close"
+                  >
+                    {closingId === position.id ? 'Closing...' : 'Close Position'}
+                  </button>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }
