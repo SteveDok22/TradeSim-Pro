@@ -193,6 +193,44 @@ const Trade = () => {
               </button>
             ))}
           </div>
+
+          {/* Trade Summary */}
+          {selectedAsset && formData.amount_usd && (
+            <div className="trade-summary">
+              <h3>Trade Summary</h3>
+              <div className="summary-row">
+                <span>Asset:</span>
+                <span>{selectedAsset.symbol}</span>
+              </div>
+              <div className="summary-row">
+                <span>Current Price:</span>
+                <span>${currentPrice ? parseFloat(currentPrice).toLocaleString() : 'Loading...'}</span>
+              </div>
+              <div className="summary-row">
+                <span>Amount:</span>
+                <span>${parseFloat(formData.amount_usd).toLocaleString()}</span>
+              </div>
+              <div className="summary-row">
+                <span>Est. Quantity:</span>
+                <span>{estimatedQuantity} {selectedAsset.symbol}</span>
+              </div>
+              <div className="summary-row">
+                <span>Type:</span>
+                <span className={formData.trade_type === 'BUY' ? 'text-success' : 'text-danger'}>
+                  {formData.trade_type}
+                </span>
+              </div>
+            </div>
+          )}
+
+          <button 
+            type="submit" 
+            className={`btn-trade ${formData.trade_type.toLowerCase()}`}
+            disabled={submitting}
+          >
+            {submitting ? 'Opening Trade...' : `${formData.trade_type} Now`}
+          </button>
+        </form>
     
         </div>
       </div>

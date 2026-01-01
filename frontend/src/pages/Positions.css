@@ -34,3 +34,36 @@
   font-size: 28px;
   font-weight: 700;
 }
+
+/* No Positions */
+.no-positions {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--bg-card);
+  border-radius: 16px;
+}
+
+.no-positions .icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.no-positions h2 {
+  margin-bottom: 10px;
+}
+
+.no-positions p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.btn-start {
+  display: inline-block;
+  background: var(--gradient-primary);
+  color: var(--bg-primary);
+  padding: 14px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
