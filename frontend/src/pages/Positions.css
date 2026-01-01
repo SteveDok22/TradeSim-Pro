@@ -1,0 +1,36 @@
+.positions-page {
+  padding: 20px 0;
+}
+
+.positions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.positions-header h1 {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.positions-header p {
+  color: var(--text-secondary);
+}
+
+.total-pnl {
+  text-align: right;
+  background: var(--bg-card);
+  padding: 15px 25px;
+  border-radius: 10px;
+}
+
+.total-pnl span {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.total-pnl p {
+  font-size: 28px;
+  font-weight: 700;
+}
