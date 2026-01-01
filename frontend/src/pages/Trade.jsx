@@ -164,6 +164,35 @@ const Trade = () => {
               ))}
             </select>
           </div>
+
+          {/* Amount */}
+          <div className="form-group">
+            <label>Amount (USD)</label>
+            <input
+              type="number"
+              name="amount_usd"
+              value={formData.amount_usd}
+              onChange={handleChange}
+              placeholder="Enter amount in USD"
+              min="1"
+              step="0.01"
+              required
+            />
+          </div>
+
+          {/* Quick Amount Buttons */}
+          <div className="quick-amounts">
+            {[100, 500, 1000, 5000].map(amount => (
+              <button
+                key={amount}
+                type="button"
+                className="quick-btn"
+                onClick={() => setFormData({ ...formData, amount_usd: amount.toString() })}
+              >
+                ${amount}
+              </button>
+            ))}
+          </div>
     
         </div>
       </div>

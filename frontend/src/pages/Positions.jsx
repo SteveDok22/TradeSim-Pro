@@ -80,7 +80,42 @@ const Positions = () => {
           <a href="/trade" className="btn-start">Open a Trade</a>
         </div>
       ) : (
-        
+        <div className="positions-list">
+          {positions.map(position => {
+            const pnl = parseFloat(position.unrealized_pnl || 0)
+            const pnlPercent = parseFloat(position.unrealized_pnl_percent || 0)
+            
+            return (
+              <div key={position.id} className="position-card">
+                <div className="position-main">
+                  <div className="position-asset">
+                    <h3>{position.asset_symbol}</h3>
+                    <span className={`trade-type ${position.trade_type.toLowerCase()}`}>
+                      {position.trade_type}
+                    </span>
+                  </div>
+                  
+                  <div className="position-details">
+                    <div className="detail">
+                      <span>Quantity</span>
+                      <p>{parseFloat(position.quantity).toFixed(6)}</p>
+                    </div>
+                    <div className="detail">
+                      <span>Entry Price</span>
+                      <p>${parseFloat(position.entry_price).toLocaleString()}</p>
+                    </div>
+                    <div className="detail">
+                      <span>Current Price</span>
+                      <p>${parseFloat(position.current_price || 0).toLocaleString()}</p>
+                    </div>
+                    <div className="detail">
+                      <span>Position Value</span>
+                      <p>${parseFloat(position.position_value || 0).toFixed(2)}</p>
+                    </div>
+                  </div>
+                </div>
+
+
     </div>
   )
 }
