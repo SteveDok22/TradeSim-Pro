@@ -67,3 +67,81 @@
   text-decoration: none;
   font-weight: 600;
 }
+
+/* Positions List */
+.positions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.position-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .position-card {
+    flex-direction: column;
+  }
+}
+
+.position-main {
+  flex: 1;
+}
+
+.position-asset {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.position-asset h3 {
+  font-size: 24px;
+}
+
+.trade-type {
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trade-type.buy {
+  background: rgba(0, 212, 170, 0.2);
+  color: var(--success);
+}
+
+.trade-type.sell {
+  background: rgba(255, 107, 107, 0.2);
+  color: var(--danger);
+}
+
+.position-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .position-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.detail span {
+  color: var(--text-muted);
+  font-size: 12px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.detail p {
+  font-weight: 600;
+}
