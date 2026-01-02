@@ -186,3 +186,57 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+/* Prices Sidebar */
+.prices-sidebar {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  height: fit-content;
+}
+
+.prices-sidebar h3 {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.price-item:hover {
+  background: var(--bg-secondary);
+}
+
+.price-item.selected {
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid var(--accent-primary);
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-info .symbol {
+  font-weight: 600;
+}
+
+.price-info .type {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.price-item .price {
+  font-weight: 700;
+  color: var(--accent-primary);
+}
