@@ -47,3 +47,56 @@
   margin-top: 5px;
 }
 
+/* Stats */
+.history-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .history-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.history-stats .stat-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.history-stats .stat-card span {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.history-stats .stat-card p {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+
+/* No History */
+.no-history {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--bg-card);
+  border-radius: 16px;
+}
+
+.no-history .icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.no-history h2 {
+  margin-bottom: 10px;
+}
+
+.no-history p {
+  color: var(--text-secondary);
+}
