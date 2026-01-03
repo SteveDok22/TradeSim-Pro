@@ -32,6 +32,8 @@
 8. [Deployment](#deployment)
    - [Heroku Deployment](#heroku-deployment)
    - [Local Development](#local-development)
+   - [Forking Repository](#forking-the-repository)
+   - [Cloning Repository](#cloning-the-repository)
 9. [Credits](#credits)
 
 ---
@@ -830,20 +832,24 @@ The application is deployed on Heroku using GitHub integration.
 #### Deployment Steps
 
 1. **Create Heroku App**
-   - Log in to [Heroku Dashboard](https://dashboard.heroku.com/)
+    - Log in to [Heroku Dashboard](https://dashboard.heroku.com/)
    - Click "New" → "Create new app"
    - Enter app name and select region (Europe)
+   - Click "Create app"
 
 2. **Connect GitHub Repository**
-   - In Deploy tab, select "GitHub" as deployment method
+  - Go to "Deploy" tab
+   - Select "GitHub" as deployment method
    - Search and connect your repository
    - Enable "Automatic Deploys" (optional)
 
+
 3. **Add PostgreSQL Database**
-   - Go to Resources tab
-   - Search for "Heroku Postgres"
-   - Select "Essential 0" plan
-   - Database URL automatically added to Config Vars
+   - Go to "Resources" tab
+   - In "Add-ons" search for "Heroku Postgres"
+   - Select "Essential 0" plan (or available free tier)
+   - Click "Submit Order Form"
+   - DATABASE_URL is automatically added to Config Vars
 
 4. **Configure Environment Variables**
    - Go to Settings tab → "Reveal Config Vars"
@@ -851,30 +857,67 @@ The application is deployed on Heroku using GitHub integration.
 
    | Key | Value |
    |-----|-------|
-   | `SECRET_KEY` | Your secret key |
+   | `SECRET_KEY` | Your Django secret key |
    | `DEBUG` | `False` |
    | `ALPHA_VANTAGE_KEY` | Your API key |
    | `DISABLE_COLLECTSTATIC` | `0` |
 
-5. **Add Buildpack**
-   - In Settings tab → Buildpacks
-   - Add "python" buildpack
+5. **Add Python Buildpack**
+   - In "Settings" tab → "Buildpacks"
+   - Click "Add buildpack"
+   - Select "python"
+   - Click "Save changes"
 
 6. **Deploy**
    - Go to Deploy tab
    - Click "Deploy Branch" (main)
    - Wait for build to complete
 
-7. **Run Migrations**
-   - Click "More" → "Run console"
+7. **Run Database Migrations**
+   - Click "More" (top right) → "Run console"
    - Enter: `cd backend && python manage.py migrate`
+   - Click "Run"
 
-8. **Create Superuser**
-   - In console: `cd backend && python manage.py createsuperuser`
+8. **Collect Static Files**
+   - In console enter: `cd backend && python manage.py collectstatic --noinput`
+   - Click "Run"
 
-9. **Add Initial Data**
-   - Access admin panel: `/admin/`
-   - Add Asset records (BTC, ETH, TSLA, etc.)
+9. **Create Superuser (Optional)**
+   - In console enter: `cd backend && python manage.py createsuperuser`
+   - Follow prompts to create admin account
+
+10. **Add Initial Assets**
+    - Go to `https://your-app.herokuapp.com/admin/`
+    - Login with superuser credentials
+    - Add Asset records:
+      - BTC (Bitcoin) - CRYPTO - BINANCE
+      - ETH (Ethereum) - CRYPTO - BINANCE
+      - TSLA (Tesla) - STOCK - ALPHAVANTAGE
+      - AAPL (Apple) - STOCK - ALPHAVANTAGE
+      - EURUSD - FOREX - ALPHAVANTAGE
+      - GBPUSD - FOREX - ALPHAVANTAGE
+
+#### Project Structure for Heroku
+```
+tradesim-pro/
+├── backend/
+│   ├── tradesim/          # Django project settings
+│   ├── accounts/          # User authentication app
+│   ├── trading/           # Trading functionality app
+│   ├── portfolio/         # Portfolio management app
+│   ├── templates/         # React index.html
+│   ├── static/            # React build assets
+│   ├── staticfiles/       # Collected static files
+│   ├── manage.py
+│   └── requirements.txt
+├── frontend/
+│   ├── src/               # React source code
+│   ├── dist/              # Production build
+│   └── package.json
+├── Procfile               # Heroku process file
+├── runtime.txt            # Python version
+└── requirements.txt       # Root requirements
+```
 
 #### Heroku Files
 
@@ -892,8 +935,8 @@ python-3.12.0
 
 #### Prerequisites
 - Python 3.12+
+- Node.js 18+ and npm
 - Git
-- Virtual environment
 
 #### Setup Steps
 
@@ -940,6 +983,85 @@ python manage.py runserver
 8. **Access Application**
 - API: http://127.0.0.1:8000/api/
 - Admin: http://127.0.0.1:8000/admin/
+
+#### Frontend Setup (Development)
+
+1. **Open New Terminal**
+
+2. **Navigate to Frontend**
+```bash
+cd frontend
+```
+
+3. **Install Node Dependencies**
+```bash
+npm install
+```
+
+4. **Run Development Server**
+```bash
+npm run dev
+```
+- Frontend available at: http://localhost:3000/
+- Hot reload enabled for development
+
+#### Running Both Together
+
+For local development, you need **two terminals**:
+
+**Terminal 1 - Backend:**
+```bash
+cd backend
+venv\Scripts\activate  # Windows
+python manage.py runserver
+```
+
+**Terminal 2 - Frontend:**
+```bash
+cd frontend
+npm run dev
+```
+
+#### Building Frontend for Production
+
+To update the production build:
+```bash
+cd frontend
+npm run build
+```
+
+Then copy build files to backend:
+```bash
+# From frontend folder
+Copy-Item dist\index.html ..\backend\templates\
+Copy-Item -Recurse -Force dist\assets\* ..\backend\static\assets\
+```
+
+Update paths in `backend/templates/index.html` if asset filenames changed.
+
+#### Environment Variables
+
+| Variable | Development | Production |
+|----------|-------------|------------|
+| `SECRET_KEY` | Any string | Strong random string |
+| `DEBUG` | `True` | `False` |
+| `ALPHA_VANTAGE_KEY` | My API key | My API key |
+| `DATABASE_URL` | Not needed (SQLite) | Heroku Postgres URL |
+
+---
+
+### Forking the Repository
+
+1. Go to [GitHub Repository](https://github.com/SteveDok22/tradesim-pro)
+2. Click "Fork" button (top right)
+3. Select your account
+4. Clone your forked repository
+
+### Cloning the Repository
+```bash
+git clone https://github.com/YOUR-USERNAME/tradesim-pro.git
+cd tradesim-pro
+```
 
 ## Credits
 

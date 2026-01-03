@@ -259,6 +259,117 @@ if price:
 
 ---
 
+## Frontend Libraries
+
+### React (v18.2.0) - UI Framework
+- **Source:** [React Documentation](https://react.dev/)
+- **License:** MIT License
+- **Usage:** Frontend user interface
+
+### React Router DOM (v6.21.0) - Routing
+- **Source:** [React Router Documentation](https://reactrouter.com/)
+- **License:** MIT License
+- **Usage:** Client-side routing
+
+#### Code Adaptations:
+```jsx
+// Protected Route pattern from React Router documentation
+// Used in frontend/src/App.jsx
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth()
+  
+  if (loading) return <div className="loading">Loading...</div>
+  return isAuthenticated ? children : <Navigate to="/login" />
+}
+```
+- **Reference:** [React Router Auth Example](https://reactrouter.com/en/main/start/examples)
+
+### Axios (v1.6.2) - HTTP Client
+- **Source:** [Axios Documentation](https://axios-http.com/)
+- **License:** MIT License
+- **Usage:** API requests to Django backend
+
+#### Code Adaptations:
+```javascript
+// Axios interceptors pattern from documentation
+// Used in frontend/src/api/axios.js
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('access_token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+```
+- **Reference:** [Axios Interceptors](https://axios-http.com/docs/interceptors)
+
+### React Toastify (v9.1.3) - Notifications
+- **Source:** [React Toastify Documentation](https://fkhadra.github.io/react-toastify/)
+- **License:** MIT License
+- **Usage:** User feedback notifications
+
+#### Code Adaptations:
+```jsx
+// Toast notifications from React Toastify documentation
+// Used throughout frontend pages
+import { toast } from 'react-toastify'
+
+toast.success('Trade opened successfully! 🚀')
+toast.error('Insufficient balance!')
+```
+- **Reference:** [React Toastify Usage](https://fkhadra.github.io/react-toastify/introduction)
+
+### Vite (v5.0.10) - Build Tool
+- **Source:** [Vite Documentation](https://vitejs.dev/)
+- **License:** MIT License
+- **Usage:** Frontend build and development server
+
+#### Code Adaptations:
+```javascript
+// Vite config from documentation
+// Used in frontend/vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,
+    open: true
+  }
+})
+```
+- **Reference:** [Vite Config](https://vitejs.dev/config/)
+
+---
+
+### React Context API - State Management
+- **Source:** [React Context Documentation](https://react.dev/learn/passing-data-deeply-with-context)
+- **License:** MIT License
+- **Usage:** Global authentication state
+
+#### Code Adaptations:
+```jsx
+// Auth Context pattern from React documentation
+// Used in frontend/src/context/AuthContext.jsx
+const AuthContext = createContext(null)
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null)
+  
+  return (
+    
+      {children}
+    
+  )
+}
+
+export const useAuth = () => useContext(AuthContext)
+```
+- **Reference:** [React useContext](https://react.dev/reference/react/useContext)
+
+---
+
 ## External APIs
 
 ### Binance API - Cryptocurrency Prices
