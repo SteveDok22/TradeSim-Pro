@@ -787,6 +787,135 @@ cd backend && python manage.py migrate
 
 ---
 
+---
+
+#### Bug #18: npm ENOENT spawn Error on Windows
+**Issue:** `npm error syscall spawn C:\Users\name\.local\bin ENOENT` when running any npm command  
+**Cause:** Windows COMSPEC environment variable pointing to non-existent path instead of cmd.exe  
+**Fix:** Corrected COMSPEC in Windows System Environment Variables:
+```
+# Windows Environment Variables
+# Changed COMSPEC from:
+C:\Users\name\.local\bin
+
+# To correct value:
+C:\Windows\System32\cmd.exe
+```
+**Status:** ✅ Resolved in v1.0.4
+
+---
+
+#### Bug #19: create-react-app Deprecated and Failing
+**Issue:** `create-react-app is deprecated` warning followed by installation failure  
+**Cause:** create-react-app no longer maintained, incompatible with Node.js v22  
+**Fix:** Used Vite instead of create-react-app for React project:
+```bash
+# Instead of:
+npx create-react-app frontend
+
+# Used:
+npm init -y
+npm install react react-dom react-router-dom axios react-toastify
+npm install --save-dev vite @vitejs/plugin-react
+```
+**Status:** ✅ Resolved in v1.0.4
+
+---
+
+#### Bug #20: Static Files 404 on Heroku
+**Issue:** React app showing white screen, console showing 404 for CSS and JS files  
+**Cause:** `backend/static/assets/` folder was in `.gitignore` and not pushed to repository  
+**Fix:** Force-added static files to git:
+```bash
+git add -f backend/static/assets/index-CL5wzFLI.js
+git add -f backend/static/assets/index-CzIug_8o.css
+git commit -m "Add React build assets for production"
+git push origin main
+```
+**Status:** ✅ Resolved in v1.0.5
+
+---
+
+#### Bug #21: React Router Routes Not Working on Heroku
+**Issue:** Direct URL access to `/dashboard` or `/trade` returning Django 404  
+**Cause:** Django not configured to serve React app for client-side routes  
+**Fix:** Added catch-all URL pattern in `tradesim/urls.py`:
+```python
+# tradesim/urls.py
+from django.urls import re_path
+from django.views.generic import TemplateView
+
+urlpatterns = [
+    # API routes first
+    path('api/', ...),
+    path('admin/', ...),
+    
+    # Catch-all for React Router (must be last)
+    re_path(r'^(?!api|admin|static).*$', 
+            TemplateView.as_view(template_name='index.html'), 
+            name='frontend'),
+]
+```
+**Status:** ✅ Resolved in v1.0.5
+
+---
+
+#### Bug #22: MIME Type Error for CSS on Heroku
+**Issue:** `Refused to apply style... MIME type ('text/html') is not a supported stylesheet MIME type`  
+**Cause:** Static files returning HTML error page instead of actual CSS/JS content  
+**Fix:** Ensured WhiteNoise properly configured and static files collected:
+```python
+# settings.py
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Must be second
+    ...
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+```
+```bash
+# On Heroku console
+cd backend && python manage.py collectstatic --noinput
+```
+**Status:** ✅ Resolved in v1.0.5
+
+---
+
+#### Bug #23: Vite Build Assets Path Mismatch
+**Issue:** Locally working React app failing on Heroku with wrong asset paths  
+**Cause:** Vite build creates hashed filenames, but `index.html` had hardcoded paths  
+**Fix:** Updated `backend/templates/index.html` with correct asset paths after each build:
+```html
+<!-- Check actual filenames in backend/static/assets/ -->
+<link rel="stylesheet" href="/static/assets/index-CzIug_8o.css">
+<script type="module" src="/static/assets/index-CL5wzFLI.js"></script>
+```
+**Note:** After each `npm run build`, asset filenames may change and need updating
+**Status:** ✅ Resolved in v1.0.5
+
+---
+
+#### Bug #24: Frontend API Calls to Wrong URL in Production
+**Issue:** React app calling `localhost:8000` instead of Heroku URL in production  
+**Cause:** Hardcoded API URL in axios configuration  
+**Fix:** Used Vite environment detection in `frontend/src/api/axios.js`:
+```javascript
+// axios.js
+const API_URL = import.meta.env.PROD 
+  ? '/api'                          // Production: same domain
+  : 'http://127.0.0.1:8000/api'     // Development: localhost
+
+const api = axios.create({
+  baseURL: API_URL,
+  ...
+})
+```
+**Status:** ✅ Resolved in v1.0.5
+
+---
+
 ### Known Issues
 
 #### Issue #1: Alpha Vantage Rate Limiting
@@ -818,6 +947,22 @@ cd backend && python manage.py migrate
 **Impact:** Medium - users must refresh to see latest prices  
 **Workaround:** Users can manually refresh the page  
 **Planned Fix:** Implement WebSocket connection for real-time updates (v2.0)
+
+---
+
+#### Issue #5: Manual Static File Update After Frontend Build
+**Description:** After running `npm run build`, asset filenames change (hash-based) and require manual update in `backend/templates/index.html`  
+**Impact:** Low - only affects deployment workflow  
+**Workaround:** Check `frontend/dist/assets/` for new filenames and update `index.html`  
+**Planned Fix:** Implement automated build script to copy and update paths (v2.0)
+
+---
+
+#### Issue #6: Two Servers Required for Local Development
+**Description:** Need to run both Django backend (port 8000) and Vite frontend (port 3000) simultaneously  
+**Impact:** Low - minor inconvenience during development  
+**Workaround:** Use two terminal windows  
+**Planned Fix:** Create combined development script or Docker setup (v2.0)
 
 ---
 
