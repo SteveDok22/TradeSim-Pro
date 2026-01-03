@@ -55,7 +55,38 @@ const Watchlist = () => {
     }
   }
 
- }
+  const handleAdd = async () => {
+    if (!selectedAsset) {
+      toast.error('Please select an asset')
+      return
+    }
+
+    setAdding(true)
+    try {
+      await portfolioAPI.addToWatchlist(parseInt(selectedAsset))
+      toast.success('Added to watchlist! ⭐')
+      setSelectedAsset('')
+      fetchData()
+    } catch (error) {
+      toast.error(error.response?.data?.error || 'Failed to add to watchlist')
+    } finally {
+      setAdding(false)
+    }
+  }
+
+  const handleRemove = async (id, symbol) => {
+    try {
+      await portfolioAPI.removeFromWatchlist(id)
+      toast.success(`${symbol} removed from watchlist`)
+      fetchData()
+    } catch (error) {
+      toast.error('Failed to remove from watchlist')
+    }
+  }
+
+  const handleTrade = (assetId) => {
+    navigate(`/trade?asset=${assetId}`)
+  }
 
   // Filter out assets already in watchlist
   const availableAssets = assets.filter(
@@ -64,4 +95,41 @@ const Watchlist = () => {
 
   if (loading) {
     return <div className="loading">Loading watchlist...</div>
-  }
+  } 
+
+   return (
+    <div className="watchlist-page">
+      <div className="watchlist-header">
+        <div>
+          <h1>⭐ My Watchlist</h1>
+          <p>Track your favorite assets</p>
+        </div>
+      </div>
+
+      {/* Add to Watchlist */}
+      <div className="add-watchlist-card">
+        <h3>Add Asset to Watchlist</h3>
+        <div className="add-form">
+          <select
+            value={selectedAsset}
+            onChange={(e) => setSelectedAsset(e.target.value)}
+          >
+            <option value="">Select an asset...</option>
+            {availableAssets.map(asset => (
+              <option key={asset.id} value={asset.id}>
+                {asset.symbol} - {asset.name} ({asset.asset_type})
+              </option>
+            ))}
+          </select>
+          <button 
+            onClick={handleAdd} 
+            disabled={adding || !selectedAsset}
+            className="btn-add"
+          >
+            {adding ? 'Adding...' : '+ Add'}
+          </button>
+        </div>
+        {availableAssets.length === 0 && (
+          <p className="no-assets-msg">All assets are already in your watchlist!</p>
+        )}
+      </div>
