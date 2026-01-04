@@ -76,3 +76,25 @@
   color: var(--text-muted);
   font-size: 14px;
 }
+
+/* Empty Watchlist */
+.empty-watchlist {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--bg-card);
+  border-radius: 16px;
+}
+
+.empty-watchlist .icon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.empty-watchlist h2 {
+  margin-bottom: 10px;
+}
+
+.empty-watchlist p {
+  color: var(--text-secondary);
+}
