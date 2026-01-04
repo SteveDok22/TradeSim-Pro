@@ -133,3 +133,67 @@ const Watchlist = () => {
           <p className="no-assets-msg">All assets are already in your watchlist!</p>
         )}
       </div>
+
+       {/* Watchlist Items */}
+      {watchlist.length === 0 ? (
+        <div className="empty-watchlist">
+          <span className="icon">⭐</span>
+          <h2>Your Watchlist is Empty</h2>
+          <p>Add assets above to start tracking them</p>
+        </div>
+      ) : (
+        <div className="watchlist-grid">
+          {watchlist.map(item => {
+            const currentPrice = prices[item.asset.symbol]
+            return (
+              <div key={item.id} className="watchlist-card">
+                <div className="card-header">
+                  <div className="asset-info">
+                    <h3>{item.asset.symbol}</h3>
+                    <span className={`asset-type ${item.asset.asset_type.toLowerCase()}`}>
+                      {item.asset.asset_type}
+                    </span>
+                  </div>
+                  <button 
+                    onClick={() => handleRemove(item.id, item.asset.symbol)}
+                    className="btn-remove"
+                    title="Remove from watchlist"
+                  >
+                    ✕
+                  </button>
+                </div>
+                
+                <p className="asset-name">{item.asset.name}</p>
+                
+                <div className="price-section">
+                  <span className="label">Current Price</span>
+                  <p className="price">
+                    {currentPrice 
+                      ? `$${parseFloat(currentPrice).toLocaleString()}`
+                      : 'Loading...'
+                    }
+                  </p>
+                </div>
+
+                <div className="card-actions">
+                  <button 
+                    onClick={() => handleTrade(item.asset.id)}
+                    className="btn-trade"
+                  >
+                    Trade Now
+                  </button>
+                </div>
+
+                <p className="added-date">
+                  Added: {new Date(item.added_at).toLocaleDateString()}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default Watchlist
