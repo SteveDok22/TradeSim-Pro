@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import Trade from './pages/Trade'
 import Positions from './pages/Positions'
 import History from './pages/History'
+import Watchlist from './pages/Watchlist'
 import { useAuth } from './context/AuthContext'
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/trade" element={<ProtectedRoute><Trade /></ProtectedRoute>} />
           <Route path="/positions" element={<ProtectedRoute><Positions /></ProtectedRoute>} />
           <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
+          <Route path="/watchlist" element={<ProtectedRoute><Watchlist /></ProtectedRoute>} />
         </Routes>
       </main>
     </div>

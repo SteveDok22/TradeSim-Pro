@@ -20,4 +20,9 @@ export const authAPI = {
     const response = await api.get('/auth/balance/')
     return response.data
   },
+
+  resetBalance: async () => {
+    const response = await api.post('/auth/balance/reset/')
+    return response.data
+  },
 }

@@ -96,6 +96,23 @@
   color: var(--accent-primary);
 }
 
+.action-btn.reset {
+  background: transparent;
+  color: var(--warning);
+  border: 1px solid var(--warning);
+  cursor: pointer;
+}
+
+.action-btn.reset:hover:not(:disabled) {
+  background: var(--warning);
+  color: var(--bg-primary);
+}
+
+.action-btn.reset:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Sections */
 .section {
   margin-bottom: 40px;

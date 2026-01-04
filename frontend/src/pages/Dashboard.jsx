@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { tradingAPI } from '../api/trading'
+import { authAPI } from '../api/auth'
+import { toast } from 'react-toastify'
 import './Dashboard.css'
 
 const Dashboard = () => {
-  const { user } = useAuth()
+  const { user, updateBalance } = useAuth()
   const [prices, setPrices] = useState([])
   const [positions, setPositions] = useState([])
   const [loading, setLoading] = useState(true)
+  const [resetting, setResetting] = useState(false)
 
   useEffect(() => {
     fetchData()
-    const interval = setInterval(fetchPrices, 30000) // Refresh every 30s
+    const interval = setInterval(fetchPrices, 30000)
     return () => clearInterval(interval)
   }, [])
 
@@ -37,6 +40,23 @@ const Dashboard = () => {
       setPrices(pricesData)
     } catch (error) {
       console.error('Error fetching prices:', error)
+    }
+  }
+
+  const handleResetBalance = async () => {
+    if (!window.confirm('Are you sure you want to reset your balance to $10,000? All open positions will remain.')) {
+      return
+    }
+    
+    setResetting(true)
+    try {
+      const response = await authAPI.resetBalance()
+      updateBalance(response.new_balance)
+      toast.success('Balance reset to $10,000! 🔄')
+    } catch (error) {
+      toast.error('Failed to reset balance')
+    } finally {
+      setResetting(false)
     }
   }
 
@@ -67,7 +87,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-       <div className="stat-card">
+        <div className="stat-card">
           <span className="stat-icon">📈</span>
           <div className="stat-info">
             <h3>Open Positions</h3>
@@ -92,9 +112,9 @@ const Dashboard = () => {
             <p className="stat-value">{user?.trading_tier || 'BASIC'}</p>
           </div>
         </div>
-       </div>
+      </div>
 
-       {/* Quick Actions */}
+      {/* Quick Actions */}
       <div className="quick-actions">
         <Link to="/trade" className="action-btn primary">
           ➕ New Trade
@@ -105,6 +125,16 @@ const Dashboard = () => {
         <Link to="/history" className="action-btn secondary">
           📜 Trade History
         </Link>
+        <Link to="/watchlist" className="action-btn secondary">
+          ⭐ Watchlist
+        </Link>
+        <button 
+          onClick={handleResetBalance} 
+          disabled={resetting}
+          className="action-btn reset"
+        >
+          {resetting ? '🔄 Resetting...' : '🔄 Reset Balance'}
+        </button>
       </div>
 
       {/* Live Prices */}

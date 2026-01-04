@@ -25,6 +25,7 @@ const Navbar = () => {
               <Link to="/dashboard" className="nav-link">Dashboard</Link>
               <Link to="/trade" className="nav-link">Trade</Link>
               <Link to="/positions" className="nav-link">Positions</Link>
+              <Link to="/watchlist" className="nav-link">Watchlist</Link>
               <span className="nav-balance">
                 ${parseFloat(user?.account_balance || 0).toLocaleString()}
               </span>
