@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAuth } from '../context/AuthContext'
 import { tradingAPI } from '../api/trading'
+import { 
+  FiTrendingUp, 
+  FiTrendingDown,
+  FiDollarSign,
+  FiBarChart2
+} from 'react-icons/fi'
 import './Trade.css'
 
 const Trade = () => {
@@ -132,18 +138,18 @@ const Trade = () => {
           {/* Trade Type */}
           <div className="trade-type-selector">
             <button
-              type="button"
-              className={`type-btn buy ${formData.trade_type === 'BUY' ? 'active' : ''}`}
-              onClick={() => setFormData({ ...formData, trade_type: 'BUY' })}
+             type="button"
+             className={`type-btn buy ${formData.trade_type === 'BUY' ? 'active' : ''}`}
+             onClick={() => setFormData({ ...formData, trade_type: 'BUY' })}
             >
-              📈 BUY
+             <FiTrendingUp /> BUY
             </button>
             <button
-              type="button"
-              className={`type-btn sell ${formData.trade_type === 'SELL' ? 'active' : ''}`}
-              onClick={() => setFormData({ ...formData, trade_type: 'SELL' })}
+             type="button"
+             className={`type-btn sell ${formData.trade_type === 'SELL' ? 'active' : ''}`}
+             onClick={() => setFormData({ ...formData, trade_type: 'SELL' })}
             >
-              📉 SELL
+             <FiTrendingDown /> SELL
             </button>
           </div>
 
