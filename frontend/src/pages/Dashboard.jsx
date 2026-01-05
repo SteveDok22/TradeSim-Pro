@@ -4,6 +4,20 @@ import { useAuth } from '../context/AuthContext'
 import { tradingAPI } from '../api/trading'
 import { authAPI } from '../api/auth'
 import { toast } from 'react-toastify'
+import { 
+  FiDollarSign, 
+  FiTrendingUp, 
+  FiActivity, 
+  FiAward,
+  FiPlus,
+  FiPieChart,
+  FiClock,
+  FiStar,
+  FiRefreshCw,
+  FiBarChart2
+} from 'react-icons/fi'
+import TradingViewChart from '../components/common/TradingViewChart'
+import ChartModal from '../components/common/ChartModal'
 import './Dashboard.css'
 
 const Dashboard = () => {
@@ -12,6 +26,7 @@ const Dashboard = () => {
   const [positions, setPositions] = useState([])
   const [loading, setLoading] = useState(true)
   const [resetting, setResetting] = useState(false)
+  const [chartModal, setChartModal] = useState({ isOpen: false, symbol: '' })
 
   useEffect(() => {
     fetchData()
@@ -52,12 +67,20 @@ const Dashboard = () => {
     try {
       const response = await authAPI.resetBalance()
       updateBalance(response.new_balance)
-      toast.success('Balance reset to $10,000! 🔄')
+      toast.success('Balance reset to $10,000!')
     } catch (error) {
       toast.error('Failed to reset balance')
     } finally {
       setResetting(false)
     }
+  }
+
+  const openChart = (symbol) => {
+    setChartModal({ isOpen: true, symbol })
+  }
+
+  const closeChart = () => {
+    setChartModal({ isOpen: false, symbol: '' })
   }
 
   const totalUnrealizedPnL = positions.reduce((sum, pos) => {
@@ -71,14 +94,16 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <h1>Welcome, {user?.username}! 👋</h1>
+        <h1>Welcome, {user?.username}!</h1>
         <p>Here's your trading overview</p>
       </div>
 
       {/* Stats Cards */}
       <div className="stats-grid">
         <div className="stat-card">
-          <span className="stat-icon">💰</span>
+          <span className="stat-icon">
+            <FiDollarSign />
+          </span>
           <div className="stat-info">
             <h3>Account Balance</h3>
             <p className="stat-value">
@@ -88,7 +113,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <span className="stat-icon">📈</span>
+          <span className="stat-icon">
+            <FiTrendingUp />
+          </span>
           <div className="stat-info">
             <h3>Open Positions</h3>
             <p className="stat-value">{positions.length}</p>
@@ -96,7 +123,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <span className="stat-icon">💹</span>
+          <span className="stat-icon">
+            <FiActivity />
+          </span>
           <div className="stat-info">
             <h3>Unrealized P&L</h3>
             <p className={`stat-value ${totalUnrealizedPnL >= 0 ? 'text-success' : 'text-danger'}`}>
@@ -106,7 +135,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <span className="stat-icon">🎯</span>
+          <span className="stat-icon">
+            <FiAward />
+          </span>
           <div className="stat-info">
             <h3>Trading Tier</h3>
             <p className="stat-value">{user?.trading_tier || 'BASIC'}</p>
@@ -117,27 +148,28 @@ const Dashboard = () => {
       {/* Quick Actions */}
       <div className="quick-actions">
         <Link to="/trade" className="action-btn primary">
-          ➕ New Trade
+          <FiPlus /> New Trade
         </Link>
         <Link to="/positions" className="action-btn secondary">
-          📊 View Positions
+          <FiPieChart /> Positions
         </Link>
         <Link to="/history" className="action-btn secondary">
-          📜 Trade History
+          <FiClock /> History
         </Link>
         <Link to="/watchlist" className="action-btn secondary">
-          ⭐ Watchlist
+          <FiStar /> Watchlist
         </Link>
         <button 
           onClick={handleResetBalance} 
           disabled={resetting}
           className="action-btn reset"
         >
-          {resetting ? '🔄 Resetting...' : '🔄 Reset Balance'}
+          <FiRefreshCw className={resetting ? 'spin' : ''} /> 
+          {resetting ? 'Resetting...' : 'Reset Balance'}
         </button>
       </div>
 
-      {/* Live Prices */}
+      {/* Live Prices with Charts */}
       <div className="section">
         <h2>Live Prices</h2>
         <div className="prices-grid">
@@ -153,6 +185,19 @@ const Dashboard = () => {
               <p className="asset-price">
                 {asset.price ? `$${parseFloat(asset.price).toLocaleString()}` : 'Loading...'}
               </p>
+              
+              {/* Mini Chart */}
+              <div className="mini-chart">
+                <TradingViewChart symbol={asset.symbol} />
+              </div>
+              
+              {/* Chart Button */}
+              <button 
+                className="btn-view-chart"
+                onClick={() => openChart(asset.symbol)}
+              >
+                <FiBarChart2 /> View Chart
+              </button>
             </div>
           ))}
         </div>
@@ -193,6 +238,13 @@ const Dashboard = () => {
           </div>
         </div>
       )}
+
+      {/* Chart Modal */}
+      <ChartModal 
+        symbol={chartModal.symbol}
+        isOpen={chartModal.isOpen}
+        onClose={closeChart}
+      />
     </div>
   )
 }
