@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { tradingAPI } from '../api/trading'
+import { FiClock } from 'react-icons/fi'
 import './History.css'
 
 const History = () => {
@@ -61,7 +62,9 @@ const History = () => {
 
       {trades.length === 0 ? (
         <div className="no-history">
-          <span className="icon">📜</span>
+          <span className="icon">
+            <FiClock />
+          </span>
           <h2>No Trade History</h2>
           <p>Your closed trades will appear here</p>
         </div>

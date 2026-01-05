@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { portfolioAPI } from '../api/portfolio'
 import { tradingAPI } from '../api/trading'
+import { 
+  FiStar, 
+  FiPlus, 
+  FiX,
+  FiTrendingUp,
+  FiBarChart2
+} from 'react-icons/fi'
 import './Watchlist.css'
 
 const Watchlist = () => {
@@ -64,7 +71,7 @@ const Watchlist = () => {
     setAdding(true)
     try {
       await portfolioAPI.addToWatchlist(parseInt(selectedAsset))
-      toast.success('Added to watchlist! ⭐')
+      toast.success('Added to watchlist!')
       setSelectedAsset('')
       fetchData()
     } catch (error) {
@@ -95,20 +102,20 @@ const Watchlist = () => {
 
   if (loading) {
     return <div className="loading">Loading watchlist...</div>
-  } 
+  }
 
-   return (
+  return (
     <div className="watchlist-page">
       <div className="watchlist-header">
         <div>
-          <h1>⭐ My Watchlist</h1>
+          <h1><FiStar className="header-icon" /> My Watchlist</h1>
           <p>Track your favorite assets</p>
         </div>
       </div>
 
       {/* Add to Watchlist */}
       <div className="add-watchlist-card">
-        <h3>Add Asset to Watchlist</h3>
+        <h3><FiPlus className="section-icon" /> Add Asset to Watchlist</h3>
         <div className="add-form">
           <select
             value={selectedAsset}
@@ -126,7 +133,7 @@ const Watchlist = () => {
             disabled={adding || !selectedAsset}
             className="btn-add"
           >
-            {adding ? 'Adding...' : '+ Add'}
+            <FiPlus /> {adding ? 'Adding...' : 'Add'}
           </button>
         </div>
         {availableAssets.length === 0 && (
@@ -134,10 +141,12 @@ const Watchlist = () => {
         )}
       </div>
 
-       {/* Watchlist Items */}
+      {/* Watchlist Items */}
       {watchlist.length === 0 ? (
         <div className="empty-watchlist">
-          <span className="icon">⭐</span>
+          <span className="icon">
+            <FiStar />
+          </span>
           <h2>Your Watchlist is Empty</h2>
           <p>Add assets above to start tracking them</p>
         </div>
@@ -159,7 +168,7 @@ const Watchlist = () => {
                     className="btn-remove"
                     title="Remove from watchlist"
                   >
-                    ✕
+                    <FiX />
                   </button>
                 </div>
                 
@@ -180,7 +189,7 @@ const Watchlist = () => {
                     onClick={() => handleTrade(item.asset.id)}
                     className="btn-trade"
                   >
-                    Trade Now
+                    <FiTrendingUp /> Trade Now
                   </button>
                 </div>
 

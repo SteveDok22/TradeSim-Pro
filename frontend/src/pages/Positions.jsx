@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useAuth } from '../context/AuthContext'
 import { tradingAPI } from '../api/trading'
+import { FiPieChart, FiPlus } from 'react-icons/fi'
 import './Positions.css'
 
 const Positions = () => {
@@ -74,10 +75,14 @@ const Positions = () => {
       
       {positions.length === 0 ? (
         <div className="no-positions">
-          <span className="icon">📊</span>
+          <span className="icon">
+            <FiPieChart />
+          </span>
           <h2>No Open Positions</h2>
           <p>Start trading to see your positions here</p>
-          <a href="/trade" className="btn-start">Open a Trade</a>
+          <a href="/trade" className="btn-start">
+          <FiPlus /> Open a Trade
+          </a>
         </div>
       ) : (
         <div className="positions-list">

@@ -180,3 +180,25 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-secondary);
 }
+
+/* Empty state icons */
+.no-positions .icon,
+.no-history .icon,
+.empty-watchlist .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 212, 170, 0.1);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  color: var(--accent-primary);
+}
+
+.no-positions .icon svg,
+.no-history .icon svg,
+.empty-watchlist .icon svg {
+  width: 48px;
+  height: 48px;
+}
