@@ -41,6 +41,19 @@
 
 .stat-icon {
   font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 212, 170, 0.1);
+  border-radius: 12px;
+  color: var(--accent-primary);
+}
+
+.stat-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .stat-info h3 {
@@ -73,6 +86,11 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.action-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .action-btn.primary {
@@ -135,6 +153,7 @@
   background: var(--bg-card);
   border-radius: 12px;
   padding: 20px;
+  padding-bottom: 15px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
 }
@@ -226,4 +245,52 @@
 
 .positions-table tr:hover td {
   background: rgba(255, 255, 255, 0.02);
+}
+
+/* Mini Chart */
+.mini-chart {
+  height: 120px;
+  margin: 15px -20px;
+  overflow: hidden;
+}
+
+.mini-chart .tradingview-widget-container {
+  margin-top: -10px;
+}
+
+/* View Chart Button */
+.btn-view-chart {
+  width: 100%;
+  padding: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-view-chart:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.btn-view-chart svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Spinning animation for reset */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
