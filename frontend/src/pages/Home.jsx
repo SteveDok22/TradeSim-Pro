@@ -1,6 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { 
+  FiTrendingUp, 
+  FiDollarSign, 
+  FiBarChart2,
+  FiArrowRight
+} from 'react-icons/fi'
 import './Home.css'
 
 const Home = () => {
@@ -15,12 +21,12 @@ const Home = () => {
         
         {isAuthenticated ? (
           <Link to="/dashboard" className="btn-cta">
-            Go to Dashboard
+            Go to Dashboard <FiArrowRight />
           </Link>
         ) : (
           <div className="hero-buttons">
             <Link to="/register" className="btn-cta">
-              Start Trading Now
+              Start Trading Now <FiArrowRight />
             </Link>
             <Link to="/login" className="btn-secondary">
               Login
@@ -31,17 +37,23 @@ const Home = () => {
 
       <div className="features">
         <div className="feature-card">
-          <span className="feature-icon">📈</span>
+          <span className="feature-icon">
+            <FiTrendingUp />
+          </span>
           <h3>Real-Time Prices</h3>
           <p>Live prices from Binance and Alpha Vantage</p>
         </div>
         <div className="feature-card">
-          <span className="feature-icon">💰</span>
+          <span className="feature-icon">
+            <FiDollarSign />
+          </span>
           <h3>Virtual $10,000</h3>
           <p>Practice without risking real money</p>
         </div>
         <div className="feature-card">
-          <span className="feature-icon">📊</span>
+          <span className="feature-icon">
+            <FiBarChart2 />
+          </span>
           <h3>Track Performance</h3>
           <p>Monitor your PnL and win rate</p>
         </div>
