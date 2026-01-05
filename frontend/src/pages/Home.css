@@ -51,7 +51,7 @@
 }
 
 .btn-cta {
-  display: inline-block;
+  display: inline-flex;
   background: var(--gradient-primary);
   color: var(--bg-primary);
   padding: 18px 40px;
@@ -61,6 +61,13 @@
   font-weight: 600;
   transition: all 0.3s ease;
   position: relative;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-cta svg {
+  width: 18px;
+  height: 18px;
 }
 
 .btn-cta:hover {
@@ -110,9 +117,21 @@
 }
 
 .feature-icon {
-  font-size: 56px;
-  display: block;
-  margin-bottom: 20px;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 212, 170, 0.1);
+  border-radius: 16px;
+  margin: 0 auto 20px;
+  color: var(--accent-primary);
+}
+
+.feature-icon svg {
+  width: 36px;
+  height: 36px;
 }
 
 .feature-card h3 {
