@@ -1,6 +1,17 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import { 
+  FiTrendingUp, 
+  FiGrid, 
+  FiTarget, 
+  FiPieChart, 
+  FiClock,
+  FiStar,
+  FiLogOut,
+  FiLogIn,
+  FiUserPlus
+} from 'react-icons/fi'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -16,27 +27,40 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          💹 TradeSim Pro
+          <FiTrendingUp className="logo-icon" />
+          <span>TradeSim Pro</span>
         </Link>
 
         <div className="navbar-links">
           {isAuthenticated ? (
             <>
-              <Link to="/dashboard" className="nav-link">Dashboard</Link>
-              <Link to="/trade" className="nav-link">Trade</Link>
-              <Link to="/positions" className="nav-link">Positions</Link>
-              <Link to="/watchlist" className="nav-link">Watchlist</Link>
+              <Link to="/dashboard" className="nav-link">
+                <FiGrid /> Dashboard
+              </Link>
+              <Link to="/trade" className="nav-link">
+                <FiTarget /> Trade
+              </Link>
+              <Link to="/positions" className="nav-link">
+                <FiPieChart /> Positions
+              </Link>
+              <Link to="/watchlist" className="nav-link">
+                <FiStar /> Watchlist
+              </Link>
               <span className="nav-balance">
                 ${parseFloat(user?.account_balance || 0).toLocaleString()}
               </span>
               <button onClick={handleLogout} className="btn-logout">
-                Logout
+                <FiLogOut /> Logout
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="nav-link">Login</Link>
-              <Link to="/register" className="btn-register">Register</Link>
+              <Link to="/login" className="nav-link">
+                <FiLogIn /> Login
+              </Link>
+              <Link to="/register" className="btn-register">
+                <FiUserPlus /> Register
+              </Link>
             </>
           )}
         </div>
