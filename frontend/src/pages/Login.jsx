@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAuth } from '../context/AuthContext'
+import { FiMail, FiLock } from 'react-icons/fi'
 import './Auth.css'
 
 const Login = () => {
@@ -26,7 +27,7 @@ const Login = () => {
 
     try {
       await login(formData)
-      toast.success('Welcome back! 🎉')
+      toast.success('Welcome back!')
       navigate('/dashboard')
     } catch (error) {
       toast.error(error.response?.data?.detail || 'Login failed. Check your credentials.')
@@ -37,6 +38,21 @@ const Login = () => {
 
   return (
     <div className="auth-container">
+      {/* Video Background */}
+      <div className="auth-video-bg">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="auth-bg-video"
+        >
+          <source src="/videos/trading-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="auth-video-overlay"></div>
+      </div>
+
+      {/* Login Card */}
       <div className="auth-card">
         <div className="auth-header">
           <h1>Welcome Back</h1>
@@ -45,7 +61,9 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">
+              <FiMail /> Email
+            </label>
             <input
               type="email"
               id="email"
@@ -58,7 +76,9 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              <FiLock /> Password
+            </label>
             <input
               type="password"
               id="password"

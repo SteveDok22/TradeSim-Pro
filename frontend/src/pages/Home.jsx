@@ -14,27 +14,45 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="hero">
-        <h1>Welcome to TradeSim Pro</h1>
-        <p>Practice trading cryptocurrencies, stocks, and forex with virtual money.</p>
-        <p>Start with $10,000 - No risk, all the learning!</p>
-        
-        {isAuthenticated ? (
-          <Link to="/dashboard" className="btn-cta">
-            Go to Dashboard <FiArrowRight />
-          </Link>
-        ) : (
-          <div className="hero-buttons">
-            <Link to="/register" className="btn-cta">
-              Start Trading Now <FiArrowRight />
-            </Link>
-            <Link to="/login" className="btn-secondary">
-              Login
-            </Link>
-          </div>
-        )}
+      {/* Full Screen Video Background */}
+      <div className="fullscreen-video-bg">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="bg-video"
+        >
+          <source src="/videos/background.mp4" type="video/mp4" />
+        </video>
+        <div className="video-overlay"></div>
       </div>
 
+      {/* Hero Section - как раньше */}
+      <div className="hero">
+        <div className="hero-content">
+          <h1>Welcome to TradeSim Pro</h1>
+          <p>Practice trading cryptocurrencies, stocks, and forex with virtual money.</p>
+          <p>Start with $10,000 - No risk, all the learning!</p>
+          
+          {isAuthenticated ? (
+            <Link to="/dashboard" className="btn-cta">
+              Go to Dashboard <FiArrowRight />
+            </Link>
+          ) : (
+            <div className="hero-buttons">
+              <Link to="/register" className="btn-cta">
+                Start Trading Now <FiArrowRight />
+              </Link>
+              <Link to="/login" className="btn-secondary">
+                Login
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Features Section */}
       <div className="features">
         <div className="feature-card">
           <span className="feature-icon">

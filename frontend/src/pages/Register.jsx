@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAuth } from '../context/AuthContext'
+import { FiUser, FiMail, FiLock, FiCheck } from 'react-icons/fi'
 import './Auth.css'
 
 const Register = () => {
@@ -39,7 +40,7 @@ const Register = () => {
 
     try {
       await register(formData)
-      toast.success('Account created! Welcome to TradeSim Pro! 🚀')
+      toast.success('Account created! Welcome to TradeSim Pro!')
       navigate('/dashboard')
     } catch (error) {
       const errorMsg = error.response?.data?.email?.[0] || 
@@ -53,6 +54,21 @@ const Register = () => {
 
   return (
     <div className="auth-container">
+      {/* Video Background */}
+      <div className="auth-video-bg">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="auth-bg-video"
+        >
+          <source src="/videos/trading-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="auth-video-overlay"></div>
+      </div>
+
+      {/* Register Card */}
       <div className="auth-card">
         <div className="auth-header">
           <h1>Create Account</h1>
@@ -61,7 +77,9 @@ const Register = () => {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">
+              <FiUser /> Username
+            </label>
             <input
               type="text"
               id="username"
@@ -74,7 +92,9 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">
+              <FiMail /> Email
+            </label>
             <input
               type="email"
               id="email"
@@ -87,7 +107,9 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">
+              <FiLock /> Password
+            </label>
             <input
               type="password"
               id="password"
@@ -100,7 +122,9 @@ const Register = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password_confirm">Confirm Password</label>
+            <label htmlFor="password_confirm">
+              <FiCheck /> Confirm Password
+            </label>
             <input
               type="password"
               id="password_confirm"
@@ -119,10 +143,10 @@ const Register = () => {
 
         <div className="auth-footer">
           <p>Already have an account? <Link to="/login">Login</Link></p>
-          </div>
+        </div>
       </div>
     </div>
   )
 }
 
-export default Register      
+export default Register

@@ -1,19 +1,62 @@
 .auth-container {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Video Background */
+.auth-video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.auth-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.auth-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 15, 0.85) 0%,
+    rgba(26, 26, 46, 0.75) 50%,
+    rgba(10, 10, 15, 0.85) 100%
+  );
+}
+
+/* Auth Card */
 .auth-card {
-  background: var(--bg-card);
+  background: rgba(26, 26, 46, 0.95);
   border-radius: 16px;
   padding: 40px;
   width: 100%;
   max-width: 420px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  position: relative;
+  z-index: 1;
 }
 
 .auth-header {
@@ -34,21 +77,30 @@
   color: var(--text-secondary);
 }
 
+/* Form */
 .auth-form .form-group {
   margin-bottom: 20px;
 }
 
 .auth-form label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 8px;
   color: var(--text-secondary);
   font-weight: 500;
 }
 
+.auth-form label svg {
+  width: 16px;
+  height: 16px;
+  color: var(--accent-primary);
+}
+
 .auth-form input {
   width: 100%;
   padding: 14px 16px;
-  background: var(--bg-secondary);
+  background: rgba(18, 18, 26, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   color: var(--text-primary);
@@ -66,6 +118,7 @@
   color: var(--text-muted);
 }
 
+/* Submit Button */
 .btn-submit {
   width: 100%;
   padding: 16px;
@@ -82,7 +135,7 @@
 
 .btn-submit:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
 }
 
 .btn-submit:disabled {
@@ -90,6 +143,7 @@
   cursor: not-allowed;
 }
 
+/* Footer */
 .auth-footer {
   text-align: center;
   margin-top: 25px;
@@ -109,4 +163,15 @@
 
 .auth-footer a:hover {
   text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 30px 20px;
+  }
+
+  .auth-header h1 {
+    font-size: 26px;
+  }
 }
