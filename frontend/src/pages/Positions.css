@@ -1,5 +1,50 @@
 .positions-page {
+  position: relative;
+  min-height: calc(100vh - 70px);
   padding: 20px 0;
+}
+
+/* Video Background */
+.page-video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.page-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.page-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 15, 0.9) 0%,
+    rgba(26, 26, 46, 0.85) 50%,
+    rgba(10, 10, 15, 0.9) 100%
+  );
+}
+
+/* Content */
+.page-content {
+  position: relative;
+  z-index: 1;
 }
 
 .positions-header {
@@ -20,9 +65,11 @@
 
 .total-pnl {
   text-align: right;
-  background: var(--bg-card);
+  background: rgba(26, 26, 46, 0.9);
   padding: 15px 25px;
   border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .total-pnl span {
@@ -39,14 +86,27 @@
 .no-positions {
   text-align: center;
   padding: 80px 20px;
-  background: var(--bg-card);
+  background: rgba(26, 26, 46, 0.9);
   border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .no-positions .icon {
-  font-size: 64px;
-  display: block;
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 212, 170, 0.1);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  color: var(--accent-primary);
+}
+
+.no-positions .icon svg {
+  width: 48px;
+  height: 48px;
 }
 
 .no-positions h2 {
@@ -59,13 +119,20 @@
 }
 
 .btn-start {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: var(--gradient-primary);
   color: var(--bg-primary);
   padding: 14px 30px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
+}
+
+.btn-start svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* Positions List */
@@ -76,13 +143,20 @@
 }
 
 .position-card {
-  background: var(--bg-card);
+  background: rgba(26, 26, 46, 0.9);
   border-radius: 16px;
   padding: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
   gap: 30px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.position-card:hover {
+  border-color: rgba(0, 212, 170, 0.3);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
