@@ -1,5 +1,36 @@
 .dashboard {
+  position: relative;
+  min-height: calc(100vh - 70px);
   padding: 20px 0;
+}
+
+/* Background Image */
+.page-image-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('/images/dashboard-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.page-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 15, 0.3);
+}
+
+/* Content */
+.page-content {
+  position: relative;
+  z-index: 1;
 }
 
 .dashboard-header {
@@ -24,19 +55,21 @@
 }
 
 .stat-card {
-  background: var(--bg-card);
+  background: rgba(26, 26, 46, 0.9);
   border-radius: 12px;
   padding: 24px;
   display: flex;
   align-items: center;
   gap: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .stat-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-glow);
+  border-color: rgba(0, 212, 170, 0.3);
 }
 
 .stat-icon {
@@ -104,9 +137,10 @@
 }
 
 .action-btn.secondary {
-  background: var(--bg-card);
+  background: rgba(26, 26, 46, 0.9);
   color: var(--text-primary);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .action-btn.secondary:hover {
@@ -131,6 +165,16 @@
   cursor: not-allowed;
 }
 
+/* Spinning animation for reset */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Sections */
 .section {
   margin-bottom: 40px;
@@ -145,21 +189,22 @@
 /* Prices Grid */
 .prices-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
 
 .price-card {
-  background: var(--bg-card);
+  background: rgba(26, 26, 46, 0.9);
   border-radius: 12px;
   padding: 20px;
   padding-bottom: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .price-card:hover {
-  border-color: var(--accent-primary);
+  border-color: rgba(0, 212, 170, 0.3);
   transform: translateY(-3px);
 }
 
@@ -209,44 +254,6 @@
   color: var(--accent-primary);
 }
 
-/* Positions Table */
-.positions-table {
-  background: var(--bg-card);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.positions-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.positions-table th,
-.positions-table td {
-  padding: 16px 20px;
-  text-align: left;
-}
-
-.positions-table th {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.positions-table td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.positions-table tr:last-child td {
-  border-bottom: none;
-}
-
-.positions-table tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
-}
-
 /* Mini Chart */
 .mini-chart {
   height: 120px;
@@ -262,7 +269,7 @@
 .btn-view-chart {
   width: 100%;
   padding: 10px;
-  background: var(--bg-secondary);
+  background: rgba(18, 18, 26, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-secondary);
   border-radius: 8px;
@@ -285,12 +292,41 @@
   height: 16px;
 }
 
-/* Spinning animation for reset */
-.spin {
-  animation: spin 1s linear infinite;
+/* Positions Table */
+.positions-table {
+  background: rgba(26, 26, 46, 0.9);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.positions-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.positions-table th,
+.positions-table td {
+  padding: 16px 20px;
+  text-align: left;
+}
+
+.positions-table th {
+  background: rgba(18, 18, 26, 0.8);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.positions-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.positions-table tr:last-child td {
+  border-bottom: none;
+}
+
+.positions-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
 }

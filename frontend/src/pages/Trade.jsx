@@ -7,7 +7,7 @@ import {
   FiTrendingUp, 
   FiTrendingDown,
   FiDollarSign,
-  FiBarChart2
+  FiCheck
 } from 'react-icons/fi'
 import './Trade.css'
 
@@ -107,7 +107,7 @@ const Trade = () => {
       })
       
       updateBalance(response.new_balance)
-      toast.success(`Trade opened! ${formData.trade_type} order placed 🚀`)
+      toast.success(`Trade opened! ${formData.trade_type} order placed`)
       navigate('/positions')
     } catch (error) {
       toast.error(error.response?.data?.error || 'Failed to open trade')
@@ -128,135 +128,151 @@ const Trade = () => {
 
   return (
     <div className="trade-page">
-      <div className="trade-header">
-        <h1>Open New Trade</h1>
-        <p>Available Balance: <span className="balance">${parseFloat(user?.account_balance || 0).toLocaleString()}</span></p>
+      {/* Video Background */}
+      <div className="page-video-bg">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="page-bg-video"
+        >
+          <source src="/videos/trade-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="page-video-overlay"></div>
       </div>
 
-      <div className="trade-container">
-        <form onSubmit={handleSubmit} className="trade-form">
-          {/* Trade Type */}
-          <div className="trade-type-selector">
-            <button
-             type="button"
-             className={`type-btn buy ${formData.trade_type === 'BUY' ? 'active' : ''}`}
-             onClick={() => setFormData({ ...formData, trade_type: 'BUY' })}
-            >
-             <FiTrendingUp /> BUY
-            </button>
-            <button
-             type="button"
-             className={`type-btn sell ${formData.trade_type === 'SELL' ? 'active' : ''}`}
-             onClick={() => setFormData({ ...formData, trade_type: 'SELL' })}
-            >
-             <FiTrendingDown /> SELL
-            </button>
-          </div>
+      {/* Content */}
+      <div className="page-content">
+        <div className="trade-header">
+          <h1>Open New Trade</h1>
+          <p>Available Balance: <span className="balance">${parseFloat(user?.account_balance || 0).toLocaleString()}</span></p>
+        </div>
 
-          {/* Asset Selection */}
-          <div className="form-group">
-            <label>Select Asset</label>
-            <select
-              name="asset_id"
-              value={formData.asset_id}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Choose an asset...</option>
-              {assets.map(asset => (
-                <option key={asset.id} value={asset.id}>
-                  {asset.symbol} - {asset.name} ({asset.asset_type})
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Amount */}
-          <div className="form-group">
-            <label>Amount (USD)</label>
-            <input
-              type="number"
-              name="amount_usd"
-              value={formData.amount_usd}
-              onChange={handleChange}
-              placeholder="Enter amount in USD"
-              min="1"
-              step="0.01"
-              required
-            />
-          </div>
-
-          {/* Quick Amount Buttons */}
-          <div className="quick-amounts">
-            {[100, 500, 1000, 5000].map(amount => (
+        <div className="trade-container">
+          <form onSubmit={handleSubmit} className="trade-form">
+            {/* Trade Type */}
+            <div className="trade-type-selector">
               <button
-                key={amount}
                 type="button"
-                className="quick-btn"
-                onClick={() => setFormData({ ...formData, amount_usd: amount.toString() })}
+                className={`type-btn buy ${formData.trade_type === 'BUY' ? 'active' : ''}`}
+                onClick={() => setFormData({ ...formData, trade_type: 'BUY' })}
               >
-                ${amount}
+                <FiTrendingUp /> BUY
               </button>
-            ))}
-          </div>
+              <button
+                type="button"
+                className={`type-btn sell ${formData.trade_type === 'SELL' ? 'active' : ''}`}
+                onClick={() => setFormData({ ...formData, trade_type: 'SELL' })}
+              >
+                <FiTrendingDown /> SELL
+              </button>
+            </div>
 
-          {/* Trade Summary */}
-          {selectedAsset && formData.amount_usd && (
-            <div className="trade-summary">
-              <h3>Trade Summary</h3>
-              <div className="summary-row">
-                <span>Asset:</span>
-                <span>{selectedAsset.symbol}</span>
+            {/* Asset Selection */}
+            <div className="form-group">
+              <label>Select Asset</label>
+              <select
+                name="asset_id"
+                value={formData.asset_id}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Choose an asset...</option>
+                {assets.map(asset => (
+                  <option key={asset.id} value={asset.id}>
+                    {asset.symbol} - {asset.name} ({asset.asset_type})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Amount */}
+            <div className="form-group">
+              <label>Amount (USD)</label>
+              <input
+                type="number"
+                name="amount_usd"
+                value={formData.amount_usd}
+                onChange={handleChange}
+                placeholder="Enter amount in USD"
+                min="1"
+                step="0.01"
+                required
+              />
+            </div>
+
+            {/* Quick Amount Buttons */}
+            <div className="quick-amounts">
+              {[100, 500, 1000, 5000].map(amount => (
+                <button
+                  key={amount}
+                  type="button"
+                  className={`quick-btn ${formData.amount_usd === amount.toString() ? 'active' : ''}`}
+                  onClick={() => setFormData({ ...formData, amount_usd: amount.toString() })}
+                >
+                  ${amount}
+                </button>
+              ))}
+            </div>
+
+            {/* Trade Summary */}
+            {selectedAsset && formData.amount_usd && (
+              <div className="trade-summary">
+                <h3>Trade Summary</h3>
+                <div className="summary-row">
+                  <span>Asset:</span>
+                  <span>{selectedAsset.symbol}</span>
+                </div>
+                <div className="summary-row">
+                  <span>Current Price:</span>
+                  <span>${currentPrice ? parseFloat(currentPrice).toLocaleString() : 'Loading...'}</span>
+                </div>
+                <div className="summary-row">
+                  <span>Amount:</span>
+                  <span>${parseFloat(formData.amount_usd).toLocaleString()}</span>
+                </div>
+                <div className="summary-row">
+                  <span>Est. Quantity:</span>
+                  <span>{estimatedQuantity} {selectedAsset.symbol}</span>
+                </div>
+                <div className="summary-row">
+                  <span>Type:</span>
+                  <span className={formData.trade_type === 'BUY' ? 'text-success' : 'text-danger'}>
+                    {formData.trade_type}
+                  </span>
+                </div>
               </div>
-              <div className="summary-row">
-                <span>Current Price:</span>
-                <span>${currentPrice ? parseFloat(currentPrice).toLocaleString() : 'Loading...'}</span>
-              </div>
-              <div className="summary-row">
-                <span>Amount:</span>
-                <span>${parseFloat(formData.amount_usd).toLocaleString()}</span>
-              </div>
-              <div className="summary-row">
-                <span>Est. Quantity:</span>
-                <span>{estimatedQuantity} {selectedAsset.symbol}</span>
-              </div>
-              <div className="summary-row">
-                <span>Type:</span>
-                <span className={formData.trade_type === 'BUY' ? 'text-success' : 'text-danger'}>
-                  {formData.trade_type}
+            )}
+
+            <button 
+              type="submit" 
+              className={`btn-trade ${formData.trade_type.toLowerCase()}`}
+              disabled={submitting}
+            >
+              {submitting ? 'Opening Trade...' : `${formData.trade_type} Now`}
+            </button>
+          </form>
+
+          {/* Live Prices Sidebar */}
+          <div className="prices-sidebar">
+            <h3>Live Prices</h3>
+            {assets.map(asset => (
+              <div 
+                key={asset.id} 
+                className={`price-item ${formData.asset_id === asset.id.toString() ? 'selected' : ''}`}
+                onClick={() => setFormData({ ...formData, asset_id: asset.id.toString() })}
+              >
+                <div className="price-info">
+                  <span className="symbol">{asset.symbol}</span>
+                  <span className="type">{asset.asset_type}</span>
+                </div>
+                <span className="price">
+                  ${prices[asset.id] ? parseFloat(prices[asset.id]).toLocaleString() : '...'}
                 </span>
               </div>
-            </div>
-          )}
-
-          <button 
-            type="submit" 
-            className={`btn-trade ${formData.trade_type.toLowerCase()}`}
-            disabled={submitting}
-          >
-            {submitting ? 'Opening Trade...' : `${formData.trade_type} Now`}
-          </button>
-        </form>
-
-        {/* Live Prices Sidebar */}
-        <div className="prices-sidebar">
-          <h3>Live Prices</h3>
-          {assets.map(asset => (
-            <div 
-              key={asset.id} 
-              className={`price-item ${formData.asset_id === asset.id.toString() ? 'selected' : ''}`}
-              onClick={() => setFormData({ ...formData, asset_id: asset.id.toString() })}
-            >
-              <div className="price-info">
-                <span className="symbol">{asset.symbol}</span>
-                <span className="type">{asset.asset_type}</span>
-              </div>
-              <span className="price">
-                ${prices[asset.id] ? parseFloat(prices[asset.id]).toLocaleString() : '...'}
-              </span>
-            </div>
-          ))}
-    
+            ))}
+          </div>
         </div>
       </div>
     </div>

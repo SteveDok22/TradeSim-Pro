@@ -2,11 +2,9 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { 
-  FiTrendingUp, 
   FiGrid, 
   FiTarget, 
-  FiPieChart, 
-  FiClock,
+  FiPieChart,
   FiStar,
   FiLogOut,
   FiLogIn,
@@ -27,7 +25,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <FiTrendingUp className="logo-icon" />
+          <img src="/images/logo.png" alt="TradeSim Pro" className="logo-image" />
           <span>TradeSim Pro</span>
         </Link>
 
