@@ -35,8 +35,8 @@
 }
 
 .logo-image {
-  width: 55px;
-  height: 55px;
+  width: 155px;
+  height: 155px;
   object-fit: contain;
   margin: -10px 0;
 }
@@ -170,8 +170,9 @@
   }
 
   .logo-image {
-    width: 45px;
-    height: 45px;
+    width: 70px;
+    height: 70px;
+    margin: -15px 0;
   }
 
   .mobile-menu-btn {
@@ -242,12 +243,17 @@
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    height: 50px;
+  }
+
   .navbar-logo span {
     display: none;
   }
 
   .logo-image {
-    width: 40px;
-    height: 40px;
+    width: 125px;
+    height: 125px;
+    margin: -12px 0;
   }
 }

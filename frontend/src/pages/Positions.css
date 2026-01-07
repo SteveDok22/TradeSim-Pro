@@ -351,3 +351,32 @@
     height: 36px;
   }
 }
+
+@media (max-width: 480px) {
+  .position-details {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .detail span {
+    font-size: 11px;
+  }
+
+  .detail p {
+    font-size: 14px;
+  }
+
+  .position-pnl {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .pnl-value {
+    text-align: center;
+    width: 100%;
+  }
+
+  .btn-close {
+    width: 100%;
+  }
+}
