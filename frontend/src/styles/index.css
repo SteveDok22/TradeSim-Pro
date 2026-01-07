@@ -202,3 +202,42 @@ body {
   width: 48px;
   height: 48px;
 }
+
+/* ============ GLOBAL MOBILE STYLES ============ */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 15px;
+  }
+
+  .loading {
+    font-size: 16px;
+    padding: 40px 20px;
+  }
+
+  /* Text utilities */
+  .text-success,
+  .text-danger {
+    font-size: inherit;
+  }
+
+  /* Scrollbar for mobile */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+  }
+
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Prevent horizontal scroll */
+html, body {
+  overflow-x: hidden;
+}

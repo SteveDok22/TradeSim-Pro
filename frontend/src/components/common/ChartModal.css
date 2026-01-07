@@ -58,3 +58,14 @@
   padding: 10px;
   overflow: hidden;
 }
+
+/* ============ MOBILE STYLES ============ */
+@media (max-width: 768px) {
+  .chart-modal-overlay {
+    padding: 10px;
+  }
+
+  .chart-modal {
+    height: 90vh;
+    border-radius: 12px;
+  }
