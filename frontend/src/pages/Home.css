@@ -211,3 +211,36 @@
     justify-content: center;
   }
 }
+
+/* ============ MOBILE STYLES ============ */
+@media (max-width: 768px) {
+  .home {
+    padding: 15px;
+  }
+
+  .hero {
+    padding: 60px 20px;
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+  }
+
+  .btn-cta,
+  .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    padding: 16px 30px;
+  }

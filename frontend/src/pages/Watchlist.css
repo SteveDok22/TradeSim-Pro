@@ -311,3 +311,9 @@
   font-size: 12px;
   text-align: center;
 }
+
+/* ============ MOBILE STYLES ============ */
+@media (max-width: 768px) {
+  .watchlist-header h1 {
+    font-size: 24px;
+  }

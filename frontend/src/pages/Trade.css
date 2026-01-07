@@ -307,3 +307,36 @@
     order: -1;
   }
 }
+
+/* ============ MOBILE STYLES ============ */
+@media (max-width: 900px) {
+  .trade-container {
+    grid-template-columns: 1fr;
+  }
+
+  .prices-sidebar {
+    order: -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .prices-sidebar h3 {
+    grid-column: 1 / -1;
+  }
+
+  .price-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .price-info {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .trade-header h1 {
+    font-size: 24px;
+  }
