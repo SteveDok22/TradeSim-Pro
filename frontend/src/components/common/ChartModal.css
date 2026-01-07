@@ -69,3 +69,16 @@
     height: 90vh;
     border-radius: 12px;
   }
+
+  .chart-modal-header {
+    padding: 15px;
+  }
+
+  .chart-modal-header h2 {
+    font-size: 18px;
+  }
+
+  .chart-modal-body {
+    padding: 5px;
+  }
+}

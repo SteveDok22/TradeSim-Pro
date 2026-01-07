@@ -317,3 +317,47 @@
   .watchlist-header h1 {
     font-size: 24px;
   }
+
+  .add-watchlist-card {
+    padding: 20px;
+  }
+
+  .add-form {
+    flex-direction: column;
+  }
+
+  .add-form select {
+    width: 100%;
+  }
+
+  .btn-add {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .watchlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .watchlist-card {
+    padding: 20px;
+  }
+
+  .asset-info h3 {
+    font-size: 20px;
+  }
+
+  .price-section .price {
+    font-size: 22px;
+  }
+
+  .empty-watchlist {
+    padding: 60px 20px;
+  }
+
+  .empty-watchlist .icon {
+    width: 80px;
+    height: 80px;
+  }
+}

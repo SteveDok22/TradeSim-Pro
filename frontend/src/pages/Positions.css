@@ -289,3 +289,65 @@
   .positions-header h1 {
     font-size: 24px;
   }
+
+  .total-pnl {
+    width: 100%;
+    text-align: center;
+  }
+
+  .total-pnl p {
+    font-size: 24px;
+  }
+
+  .position-card {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .position-asset h3 {
+    font-size: 20px;
+  }
+
+  .position-details {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .position-pnl {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .pnl-value {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .pnl-value p {
+    font-size: 22px;
+  }
+
+  .btn-close {
+    width: auto;
+    padding: 12px 20px;
+  }
+
+  .no-positions {
+    padding: 60px 20px;
+  }
+
+  .no-positions .icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .no-positions .icon svg {
+    width: 36px;
+    height: 36px;
+  }
+}

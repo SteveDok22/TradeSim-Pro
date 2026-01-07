@@ -205,3 +205,22 @@
     font-size: 16px;
   }
 }
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 25px 15px;
+    border-radius: 12px;
+  }
+
+  .auth-header h1 {
+    font-size: 22px;
+  }
+
+  .auth-form label {
+    font-size: 14px;
+  }
+
+  .auth-footer p {
+    font-size: 14px;
+  }
+}
