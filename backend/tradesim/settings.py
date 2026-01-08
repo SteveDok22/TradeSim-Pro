@@ -190,4 +190,4 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
 
 # Allow iframe embedding (for Am I Responsive mockup)
-X_FRAME_OPTIONS = 'ALLOWALL'
+X_FRAME_OPTIONS = 'DENY'
