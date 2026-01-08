@@ -33,7 +33,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          <img src="/images/logo.png" alt="TradeSim Pro" className="logo-image" />
+          <img src="/static/images/logo.png" alt="TradeSim Pro" className="logo-image" />
           <span>TradeSim Pro</span>
         </Link>
 

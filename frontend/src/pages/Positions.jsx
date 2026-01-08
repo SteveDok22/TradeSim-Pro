@@ -70,7 +70,7 @@ const Positions = () => {
           playsInline
           className="page-bg-video"
         >
-          <source src="/videos/background.mp4" type="video/mp4" />
+          <source src="/static/videos/background.mp4" type="video/mp4" />
         </video>
         <div className="page-video-overlay"></div>
       </div>

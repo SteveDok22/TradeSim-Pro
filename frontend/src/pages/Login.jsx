@@ -47,7 +47,7 @@ const Login = () => {
           playsInline
           className="auth-bg-video"
         >
-          <source src="/videos/trading-bg.mp4" type="video/mp4" />
+          <source src="/static/videos/trading-bg.mp4" type="video/mp4" />
         </video>
         <div className="auth-video-overlay"></div>
       </div>

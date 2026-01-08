@@ -137,7 +137,7 @@ const Trade = () => {
           playsInline
           className="page-bg-video"
         >
-          <source src="/videos/trade-bg.mp4" type="video/mp4" />
+          <source src="/static/videos/trade-bg.mp4" type="video/mp4" />
         </video>
         <div className="page-video-overlay"></div>
       </div>
