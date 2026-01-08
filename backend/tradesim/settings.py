@@ -188,3 +188,6 @@ if not DEBUG:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+
+# Allow iframe embedding (for Am I Responsive mockup)
+X_FRAME_OPTIONS = 'ALLOWALL'
