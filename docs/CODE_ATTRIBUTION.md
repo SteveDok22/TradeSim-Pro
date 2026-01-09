@@ -319,6 +319,55 @@ toast.error('Insufficient balance!')
 ```
 - **Reference:** [React Toastify Usage](https://fkhadra.github.io/react-toastify/introduction)
 
+### React Icons (v5.0.1) - Icon Library
+- **Source:** [React Icons Documentation](https://react-icons.github.io/react-icons/)
+- **License:** MIT License
+- **Usage:** Professional Feather/Lucide icons throughout the app
+
+#### Code Adaptations:
+```jsx
+// Feather icons import from react-icons
+// Used throughout frontend components
+import { 
+  FiDollarSign, 
+  FiTrendingUp, 
+  FiActivity, 
+  FiAward,
+  FiPlus,
+  FiPieChart,
+  FiClock,
+  FiStar,
+  FiRefreshCw,
+  FiBarChart2,
+  FiMenu,
+  FiX
+} from 'react-icons/fi'
+```
+- **Reference:** [React Icons Feather](https://react-icons.github.io/react-icons/icons?name=fi)
+
+---
+
+### TradingView Widgets - Interactive Charts
+- **Source:** [TradingView Widget Documentation](https://www.tradingview.com/widget/)
+- **License:** Free for non-commercial use
+- **Usage:** Mini charts and full chart modals
+
+#### Code Adaptations:
+```jsx
+// TradingView Widget integration
+// Used in frontend/src/components/common/TradingViewChart.jsx
+const script = document.createElement('script')
+script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js'
+script.innerHTML = JSON.stringify({
+  symbol: getTradingViewSymbol(symbol),
+  width: '100%',
+  height: '100%',
+  locale: 'en',
+  colorTheme: 'dark',
+  isTransparent: true,
+})
+```
+- **Reference:** [TradingView Mini Symbol Overview Widget](https://www.tradingview.com/widget/mini-chart/)
 ### Vite (v5.0.10) - Build Tool
 - **Source:** [Vite Documentation](https://vitejs.dev/)
 - **License:** MIT License

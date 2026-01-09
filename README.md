@@ -1,6 +1,6 @@
 # TradeSim Pro - Prop Trading Simulator
 
-![Am I Responsive](docs/responsive-mockup.png)
+![Am I Responsive](docs\screenshots\responsive-mockup.gif)
 
 **Live Site:** [TradeSim Pro on Heroku](https://tradesim-pro-stiven-62203fadbb77.herokuapp.com)
 
@@ -216,62 +216,94 @@ The flowchart above shows the main user journey through the application, from re
 
 ### Existing Features
 
+### Existing Features
+
 #### F1: User Authentication
 
-![Authentication Screenshot](docs/features/auth.png)
+![Authentication Screenshot](docs/screenshots/login-desktop.png)
 
 - Secure registration with email validation
 - Login with JWT token authentication
 - Password hashing with Django
 - Session management
 
-#### F2: Real-Time Market Data
+#### F2: Real-Time Market Data with TradingView Charts
 
-![Prices Screenshot](docs/features/prices.png)
+![Dashboard Demo](docs/screenshots/dashboard-demo.gif)
 
 - Live cryptocurrency prices (BTC, ETH) from Binance
 - Stock quotes (TSLA, META, AAPL) from Alpha Vantage
 - Forex rates (GBPUSD, EURUSD, USDJPY) from Alpha Vantage
+- **TradingView mini charts** for each asset
+- **Full TradingView chart modal** on click
 - Auto-refresh every 30 seconds
 
 #### F3: Trading Simulator
 
-![Trading Screenshot](docs/features/trading.png)
+![Trading Demo](docs/screenshots/trade-demo.gif)
 
-- Open BUY positions with one click
-- Close positions (SELL) and see PnL
-- Position sizing based on percentage of balance
-- Optional Stop-Loss and Take-Profit
+- Open BUY/SELL positions with one click
+- Real-time price display
+- Quick amount buttons ($100, $500, $1000, $5000)
+- Trade summary before execution
+- Live prices sidebar
+- **Video background** for immersive experience
 
 #### F4: Portfolio Dashboard
 
-![Portfolio Screenshot](docs/features/portfolio.png)
+![Dashboard Screenshot](docs\screenshots\dashboard-demo.gif)
 
 - Real-time account balance
-- Total PnL calculation
-- Win rate percentage
-- Performance chart over time
+- Total unrealized PnL calculation
+- Open positions count
+- Trading tier display
+- **Reset Balance** button to restart with $10,000
+- Quick action buttons
 
-#### F5: Trade History
+#### F5: Positions Management
 
-![History Screenshot](docs/features/history.png)
+![Positions Demo](docs/screenshots/positions-demo.gif)
 
-- Complete trade log
-- Filter by asset, status, date
-- Sort by any column
-- PnL per trade
+- View all open positions
+- Real-time PnL updates
+- Close positions with one click
+- Position details (entry price, current price, quantity)
+- Total unrealized PnL summary
 
 #### F6: Watchlist
 
-![Watchlist Screenshot](docs/features/watchlist.png)
+![Watchlist Demo](docs/screenshots/watchlist-demo.gif)
 
 - Add/remove favorite assets
 - Quick access to watched prices
 - One-click trade from watchlist
+- Asset type badges (Crypto, Stock, Forex)
 
-#### F7: User Feedback System
+#### F7: Mobile Responsive Design
 
-![Toast Screenshot](docs/features/toast.png)
+![Mobile Demo](docs\screenshots\mobile-demo1.gif) ![Mobile Demo](docs\screenshots\mobile-demo2.gif)
+
+- Fully responsive on all devices
+- **Hamburger menu** for mobile navigation
+- Touch-friendly interface
+- Optimized layouts for small screens
+
+#### F8: Video Backgrounds
+
+- Dynamic video backgrounds on key pages:
+  - Home page - Trading animation
+  - Login/Register - Chart visualization
+  - Trade page - Market data animation
+  - Positions/Watchlist - Trading theme
+
+#### F9: Professional UI with React Icons
+
+- **Feather/Lucide icons** throughout the app
+- Clean, modern FinTech aesthetic
+- TradingView-inspired design
+- Consistent visual language
+
+![Toast Screenshot](docs\screenshots\notification.png)
 
 - Success notifications on actions
 - Error messages for validation
@@ -377,6 +409,8 @@ The flowchart above shows the main user journey through the application, from re
 
 ### Frameworks & Libraries
 
+#### Backend
+
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | Django | 5.0.1 | Backend framework |
@@ -390,6 +424,17 @@ The flowchart above shows the main user journey through the application, from re
 | gunicorn | 21.2.0 | WSGI server |
 | whitenoise | 6.6.0 | Static files |
 | requests | 2.31.0 | HTTP requests |
+
+#### Frontend
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| React | 18.2.0 | UI framework |
+| React Router DOM | 6.21.0 | Client-side routing |
+| Axios | 1.6.2 | HTTP client |
+| React Toastify | 9.1.3 | Toast notifications |
+| React Icons | 5.0.1 | Professional icons (Feather/Lucide) |
+| Vite | 5.0.10 | Build tool & dev server |
 
 ### Databases
 
