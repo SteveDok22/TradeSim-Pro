@@ -1,10 +1,16 @@
 # TradeSim Pro - Prop Trading Simulator
 
-![Am I Responsive](docs\screenshots\responsive-mockup.gif)
+<div align="center">
+<img src="docs/screenshots/responsive-mockup.gif" alt="Am I Responsive" width="900">
+</div>
+
+<div align="center">
 
 **Live Site:** [TradeSim Pro on Heroku](https://tradesim-pro-stiven-62203fadbb77.herokuapp.com)
 
 **Repository:** [GitHub](https://github.com/SteveDok22/tradesim-pro)
+
+</div>
 
 ---
 
@@ -60,13 +66,17 @@ TradeSim Pro is a comprehensive prop trading simulator designed for beginner tra
 
 ### Application Flowchart
 
-![Application Flowchart](docs\images\TradeSimProApplicationFlow.png)
+<div align="center">
+<img src="docs/images/TradeSimProApplicationFlow.png" alt="Application Flowchart" width="800">
+</div>
 
 ---
 
 ### API Request Flowchart
 
-![Application API Request Flowchart](docs\images\API-RequestFlow.png)
+<div align="center">
+<img src="docs/images/API-RequestFlow.png" alt="API Request Flowchart" width="800">
+</div>
 
 The flowchart above shows the main user journey through the application, from registration to trading operations.
 
@@ -147,21 +157,27 @@ The flowchart above shows the main user journey through the application, from re
 <details>
 <summary>Landing Page</summary>
 
-![Landing Page Wireframe](docs/wireframes/landing-desktop.png)
+<div align="center">
+<img src="docs/wireframes/landing-desktop.png" alt="Landing Page Wireframe" width="700">
+</div>
 
 </details>
 
 <details>
 <summary>Dashboard</summary>
 
-![Dashboard Wireframe](docs/wireframes/dashboard-desktop.png)
+<div align="center">
+<img src="docs/wireframes/dashboard-desktop.png" alt="Dashboard Wireframe" width="700">
+</div>
 
 </details>
 
 <details>
 <summary>Trading View</summary>
 
-![Trading Wireframe](docs/wireframes/trading-desktop.png)
+<div align="center">
+<img src="docs/wireframes/trading-desktop.png" alt="Trading Wireframe" width="700">
+</div>
 
 </details>
 
@@ -170,14 +186,18 @@ The flowchart above shows the main user journey through the application, from re
 <details>
 <summary>Mobile Landing</summary>
 
-![Mobile Landing Wireframe](docs/wireframes/landing-mobile.png)
+<div align="center">
+<img src="docs/wireframes/landing-mobile.png" alt="Mobile Landing Wireframe" width="300">
+</div>
 
 </details>
 
 <details>
 <summary>Mobile Dashboard</summary>
 
-![Mobile Dashboard Wireframe](docs/wireframes/dashboard-mobile.png)
+<div align="center">
+<img src="docs/wireframes/dashboard-mobile.png" alt="Mobile Dashboard Wireframe" width="300">
+</div>
 
 </details>
 
@@ -187,13 +207,14 @@ The flowchart above shows the main user journey through the application, from re
 
 | Color | Hex | Usage |
 |-------|-----|-------|
-| Primary Blue | `#2563EB` | Buttons, links, accents |
-| Success Green | `#10B981` | Profit indicators, buy buttons |
-| Danger Red | `#EF4444` | Loss indicators, sell buttons |
-| Dark Background | `#1F2937` | Header, cards |
-| Light Background | `#F9FAFB` | Page background |
-| Text Primary | `#111827` | Main text |
-| Text Secondary | `#6B7280` | Secondary text |
+| Accent Teal | `#00d4aa` | Primary buttons, success states |
+| Success Green | `#00d4aa` | Profit indicators, buy buttons |
+| Danger Red | `#ff6b6b` | Loss indicators, sell buttons |
+| Warning Yellow | `#ffd93d` | Forex badges, warnings |
+| Dark Background | `#0a0a0f` | Page background |
+| Card Background | `#1a1a2e` | Cards, containers |
+| Text Primary | `#ffffff` | Main text |
+| Text Secondary | `#b8b8d3` | Secondary text |
 
 #### Typography
 
@@ -209,6 +230,7 @@ The flowchart above shows the main user journey through the application, from re
 - **Color-Coded Data:** Green/red for instant profit/loss recognition
 - **Monospace Numbers:** Easier to read and compare financial data
 - **Responsive Layout:** Trading on any device
+- **Video Backgrounds:** Immersive, professional FinTech aesthetic
 
 ---
 
@@ -216,20 +238,25 @@ The flowchart above shows the main user journey through the application, from re
 
 ### Existing Features
 
-### Existing Features
-
 #### F1: User Authentication
 
-![Authentication Screenshot](docs/screenshots/login-desktop.png)
+<div align="center">
+<img src="docs/screenshots/login-desktop.png" alt="Login Screenshot" width="700">
+</div>
 
 - Secure registration with email validation
 - Login with JWT token authentication
 - Password hashing with Django
 - Session management
+- Video background for immersive experience
+
+---
 
 #### F2: Real-Time Market Data with TradingView Charts
 
-![Dashboard Demo](docs/screenshots/dashboard-demo.gif)
+<div align="center">
+<img src="docs/screenshots/dashboard-demo.gif" alt="Dashboard Demo" width="700">
+</div>
 
 - Live cryptocurrency prices (BTC, ETH) from Binance
 - Stock quotes (TSLA, META, AAPL) from Alpha Vantage
@@ -238,9 +265,13 @@ The flowchart above shows the main user journey through the application, from re
 - **Full TradingView chart modal** on click
 - Auto-refresh every 30 seconds
 
+---
+
 #### F3: Trading Simulator
 
-![Trading Demo](docs/screenshots/trade-demo.gif)
+<div align="center">
+<img src="docs/screenshots/trade-demo.gif" alt="Trading Demo" width="700">
+</div>
 
 - Open BUY/SELL positions with one click
 - Real-time price display
@@ -249,20 +280,28 @@ The flowchart above shows the main user journey through the application, from re
 - Live prices sidebar
 - **Video background** for immersive experience
 
+---
+
 #### F4: Portfolio Dashboard
 
-![Dashboard Screenshot](docs\screenshots\dashboard-demo.gif)
+<div align="center">
+<img src="docs/screenshots/dashboard-demo.gif" alt="Dashboard Screenshot" width="700">
+</div>
 
 - Real-time account balance
 - Total unrealized PnL calculation
 - Open positions count
 - Trading tier display
 - **Reset Balance** button to restart with $10,000
-- Quick action buttons
+- Quick action buttons with professional icons
+
+---
 
 #### F5: Positions Management
 
-![Positions Demo](docs/screenshots/positions-demo.gif)
+<div align="center">
+<img src="docs/screenshots/positions-demo.gif" alt="Positions Demo" width="700">
+</div>
 
 - View all open positions
 - Real-time PnL updates
@@ -270,23 +309,34 @@ The flowchart above shows the main user journey through the application, from re
 - Position details (entry price, current price, quantity)
 - Total unrealized PnL summary
 
+---
+
 #### F6: Watchlist
 
-![Watchlist Demo](docs/screenshots/watchlist-demo.gif)
+<div align="center">
+<img src="docs/screenshots/watchlist-demo.gif" alt="Watchlist Demo" width="700">
+</div>
 
 - Add/remove favorite assets
 - Quick access to watched prices
 - One-click trade from watchlist
 - Asset type badges (Crypto, Stock, Forex)
 
+---
+
 #### F7: Mobile Responsive Design
 
-![Mobile Demo](docs\screenshots\mobile-demo1.gif) ![Mobile Demo](docs\screenshots\mobile-demo2.gif)
+<div align="center">
+<img src="docs/screenshots/mobile-demo1.gif" alt="Mobile Demo 1" width="250">
+<img src="docs/screenshots/mobile-demo2.gif" alt="Mobile Demo 2" width="250">
+</div>
 
 - Fully responsive on all devices
 - **Hamburger menu** for mobile navigation
 - Touch-friendly interface
 - Optimized layouts for small screens
+
+---
 
 #### F8: Video Backgrounds
 
@@ -296,6 +346,8 @@ The flowchart above shows the main user journey through the application, from re
   - Trade page - Market data animation
   - Positions/Watchlist - Trading theme
 
+---
+
 #### F9: Professional UI with React Icons
 
 - **Feather/Lucide icons** throughout the app
@@ -303,12 +355,20 @@ The flowchart above shows the main user journey through the application, from re
 - TradingView-inspired design
 - Consistent visual language
 
-![Toast Screenshot](docs\screenshots\notification.png)
+---
+
+#### F10: User Feedback System
+
+<div align="center">
+<img src="docs/screenshots/notification.png" alt="Toast Notification" width="400">
+</div>
 
 - Success notifications on actions
 - Error messages for validation
 - Confirmation dialogs for critical actions
 - Loading indicators
+
+---
 
 ### Future Features
 
@@ -316,7 +376,7 @@ The flowchart above shows the main user journey through the application, from re
 |---------|-------------|----------|
 | Trade Journal | Notes and emotions per trade | Medium |
 | Paper Trading Leagues | Compete with other users | Low |
-| Advanced Charts | TradingView integration | Medium |
+| Advanced Charts | More TradingView features | Medium |
 | Mobile App | Native iOS/Android app | Low |
 | Email Alerts | Price alert notifications | Medium |
 
@@ -326,7 +386,9 @@ The flowchart above shows the main user journey through the application, from re
 
 ### Entity Relationship Diagram
 
-![ERD Diagram](docs\images\ERD-Diagram.png)
+<div align="center">
+<img src="docs/images/ERD-Diagram.png" alt="ERD Diagram" width="800">
+</div>
 
 ### Models
 
@@ -436,6 +498,14 @@ The flowchart above shows the main user journey through the application, from re
 | React Icons | 5.0.1 | Professional icons (Feather/Lucide) |
 | Vite | 5.0.10 | Build tool & dev server |
 
+#### External Services
+
+| Service | Purpose |
+|---------|---------|
+| TradingView Widgets | Interactive charts |
+| Binance API | Cryptocurrency prices |
+| Alpha Vantage API | Stock & forex prices |
+
 ### Databases
 
 | Database | Usage |
@@ -454,8 +524,6 @@ The flowchart above shows the main user journey through the application, from re
 | Postman | API testing |
 | VS Code | Code editor |
 | Draw.io | Flowcharts & ERD diagrams |
-| Binance API | Cryptocurrency prices |
-| Alpha Vantage API | Stock & forex prices |
 
 ---
 
@@ -465,7 +533,7 @@ The flowchart above shows the main user journey through the application, from re
 
 This project was developed using Agile methodology with GitHub Projects as the management tool.
 
-**Board Link:** [TradeSim Pro Project Board](https://github.com/users/SteveDok22/projects/XX)
+**Board Link:** [TradeSim Pro Project Board](https://github.com/users/SteveDok22/projects/5)
 
 ### Sprint Structure
 
@@ -499,6 +567,10 @@ coverage run manage.py test
 coverage report
 ```
 
+**Test Results:** 29 tests passing ✅
+
+---
+
 ### Bugs
 
 ### Resolved Issues
@@ -508,13 +580,12 @@ coverage report
 **Cause:** Custom User Model was defined after initial Django migrations were created  
 **Fix:** Deleted all migration files and database, created CustomUser before first migration:
 ```bash
-# Terminal commands
 rm -rf accounts/migrations/0*.py
 rm db.sqlite3
 python manage.py makemigrations accounts
 python manage.py migrate
 ```
-**Status:** ✅ Resolved in v1.0.0
+**Status:** ✅ Resolved
 
 ---
 
@@ -523,491 +594,116 @@ python manage.py migrate
 **Cause:** Django backend rejecting requests from React frontend running on different port (3000)  
 **Fix:** Installed and configured django-cors-headers in `settings.py`:
 ```python
-# settings.py lines 25-30
 INSTALLED_APPS = [
-    ...
     'corsheaders',
 ]
 
 MIDDLEWARE = [
-    ...
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
-# Lines 95-100
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
 ]
-CORS_ALLOW_CREDENTIALS = True
 ```
-**Status:** ✅ Resolved in v1.0.0
+**Status:** ✅ Resolved
 
 ---
 
 #### Bug #3: JWT Token 401 Unauthorized
 **Issue:** API returning `401 Unauthorized` even with valid JWT token  
 **Cause:** Missing "Bearer " prefix when sending token in Authorization header  
-**Fix:** Updated Postman/frontend to use correct header format:
+**Fix:** Updated frontend to use correct header format:
 ```python
-# Correct format
 headers = {
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
 }
-
-# Wrong format (was causing error)
-headers = {
-    'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
-}
 ```
-**Status:** ✅ Resolved in v1.0.0
+**Status:** ✅ Resolved
 
 ---
 
 #### Bug #4: User Has No Portfolio Error
 **Issue:** `RelatedObjectDoesNotExist: User has no portfolio` when accessing portfolio endpoint  
 **Cause:** Portfolio instance not automatically created when new user registers  
-**Fix:** Added Django signal to create Portfolio on user creation in `accounts/signals.py`:
+**Fix:** Added Django signal to create Portfolio on user creation:
 ```python
-# accounts/signals.py lines 10-20
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.contrib.auth import get_user_model
-from portfolio.models import Portfolio
-
-User = get_user_model()
-
 @receiver(post_save, sender=User)
 def create_user_portfolio(sender, instance, created, **kwargs):
     if created:
         Portfolio.objects.create(user=instance)
 ```
-**Status:** ✅ Resolved in v1.0.1
+**Status:** ✅ Resolved
 
 ---
 
 #### Bug #5: Floating Point Precision Error
 **Issue:** Prices showing incorrect decimals (e.g., BTC: 97000.12345678901234)  
-**Cause:** Using `FloatField` for monetary values caused floating-point precision errors  
-**Fix:** Changed all monetary fields to `DecimalField` in models:
+**Cause:** Using `FloatField` for monetary values  
+**Fix:** Changed all monetary fields to `DecimalField`:
 ```python
-# trading/models.py lines 45-55
-from decimal import Decimal
-
-entry_price = models.DecimalField(
-    max_digits=18,
-    decimal_places=8
-)
-pnl = models.DecimalField(
-    max_digits=18,
-    decimal_places=2
-)
+entry_price = models.DecimalField(max_digits=18, decimal_places=8)
 ```
-**Status:** ✅ Resolved in v1.0.0
+**Status:** ✅ Resolved
 
 ---
 
-#### Bug #6: Django Sites Framework Error
-**Issue:** `django.contrib.sites.models.Site.DoesNotExist` on startup  
-**Cause:** Django Allauth requires Site object but database had none  
-**Fix:** Added SITE_ID to settings and ran migrations:
-```python
-# settings.py line 75
-SITE_ID = 1
-```
-```bash
-# Terminal
-python manage.py migrate sites
-```
-**Status:** ✅ Resolved in v1.0.0
-
----
-
-#### Bug #7: Alpha Vantage Returning None
-**Issue:** Stock and forex prices returning `None` instead of actual values  
+#### Bug #6: Alpha Vantage Returning None
+**Issue:** Stock and forex prices returning `None`  
 **Cause:** Free tier API rate limit (5 calls/minute) exceeded  
-**Fix:** Implemented price caching in `trading/services/price_service.py`:
+**Fix:** Implemented 30-second price caching:
 ```python
-# price_service.py lines 25-40
-from django.core.cache import cache
-
-CACHE_TIMEOUT = 30  # seconds
-
-def get_price(self, symbol):
-    # Check cache first
-    cache_key = f'price_{symbol}'
-    cached = cache.get(cache_key)
-    if cached:
-        return Decimal(str(cached))
-    
-    # Fetch from API
-    price = self._fetch_from_api(symbol)
-    
-    # Cache the result
-    if price:
-        cache.set(cache_key, str(price), self.CACHE_TIMEOUT)
-    
-    return price
+cache_key = f'price_{symbol}'
+cached = cache.get(cache_key)
+if cached:
+    return Decimal(str(cached))
 ```
-**Status:** ✅ Resolved in v1.0.2
+**Status:** ✅ Resolved
 
 ---
 
-#### Bug #8: Binance API KeyError
-**Issue:** `KeyError: 'BTCUSDT'` when fetching cryptocurrency prices  
-**Cause:** Sending internal symbol 'BTC' to Binance API instead of required format 'BTCUSDT'  
-**Fix:** Created symbol mapping dictionary in `price_service.py`:
-```python
-# price_service.py lines 15-20
-BINANCE_SYMBOLS = {
-    'BTC': 'BTCUSDT',
-    'ETH': 'ETHUSDT',
-}
-
-def _fetch_binance(self, symbol):
-    api_symbol = self.BINANCE_SYMBOLS.get(symbol)
-    response = requests.get(
-        self.BINANCE_URL,
-        params={'symbol': api_symbol}
-    )
-```
-**Status:** ✅ Resolved in v1.0.0
-
----
-
-#### Bug #9: Incorrect PnL for SELL Positions
-**Issue:** Short (SELL) positions calculating profit/loss incorrectly  
-**Cause:** Using same PnL formula for both BUY and SELL trade types  
-**Fix:** Added conditional calculation in `trading/models.py`:
-```python
-# trading/models.py lines 70-85
-def calculate_pnl(self, current_price):
-    current_price = Decimal(str(current_price))
-    
-    if self.trade_type == 'BUY':
-        # Long: profit when price goes UP
-        price_diff = current_price - self.entry_price
-    else:
-        # Short: profit when price goes DOWN
-        price_diff = self.entry_price - current_price
-    
-    pnl_amount = price_diff * self.quantity
-    pnl_percent = (price_diff / self.entry_price) * 100
-    
-    return (round(pnl_amount, 2), round(pnl_percent, 2))
-```
-**Status:** ✅ Resolved in v1.0.1
-
----
-
-#### Bug #10: Allauth Middleware Missing
-**Issue:** `ImproperlyConfigured: allauth requires AccountMiddleware`  
-**Cause:** Django-allauth v0.60+ requires explicit middleware configuration  
-**Fix:** Added middleware to `settings.py`:
-```python
-# settings.py MIDDLEWARE list
-MIDDLEWARE = [
-    ...
-    'allauth.account.middleware.AccountMiddleware',
-]
-```
-**Status:** ✅ Resolved in v1.0.0
-
----
-
-#### Bug #11: Negative Balance After Trade
-**Issue:** User balance becoming negative when opening large trades  
-**Cause:** No validation checking if user has sufficient funds before trade  
-**Fix:** Added balance validation in `trading/views.py`:
-```python
-# trading/views.py lines 85-95
-def post(self, request):
-    amount_usd = Decimal(str(data['amount_usd']))
-    
-    # Check balance before trade
-    if amount_usd > request.user.account_balance:
-        return Response(
-            {'error': f'Insufficient funds. Available: ${request.user.account_balance}'},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-    
-    # Proceed with trade...
-```
-**Status:** ✅ Resolved in v1.0.0
-
----
-
-#### Bug #12: ModuleNotFoundError for Services
-**Issue:** `ModuleNotFoundError: No module named 'trading.services'`  
-**Cause:** Missing `__init__.py` file in services directory  
-**Fix:** Created init file in `trading/services/__init__.py`:
-```python
-# trading/services/__init__.py
-from .price_service import PriceService
-
-__all__ = ['PriceService']
-```
-**Status:** ✅ Resolved in v1.0.0
-
----
-
-#### Bug #13: Circular Import Error
-**Issue:** `ImportError: cannot import name 'Trade' from partially initialized module`  
-**Cause:** Portfolio model directly importing Trade model which imports User  
-**Fix:** Used string reference instead of direct import in ForeignKey:
-```python
-# portfolio/models.py line 25
-# Before (causing error)
-from trading.models import Asset
-asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
-
-# After (fixed)
-asset = models.ForeignKey(
-    'trading.Asset',
-    on_delete=models.CASCADE
-)
-```
-**Status:** ✅ Resolved in v1.0.1
-
----
-
-#### Bug #14: Token Blacklist Table Missing
-**Issue:** `ProgrammingError: relation "token_blacklist_outstandingtoken" does not exist`  
-**Cause:** SimpleJWT blacklist app not in INSTALLED_APPS  
-**Fix:** Added app and ran migrations:
-```python
-# settings.py
-INSTALLED_APPS = [
-    ...
-    'rest_framework_simplejwt.token_blacklist',
-]
-```
-```bash
-python manage.py migrate
-```
-**Status:** ✅ Resolved in v1.0.0
-
----
-
-#### Bug #15: DisallowedHost on Heroku
-**Issue:** `DisallowedHost at / - Invalid HTTP_HOST header`  
-**Cause:** Heroku domain not included in Django ALLOWED_HOSTS  
-**Fix:** Updated production settings:
-```python
-# settings.py
-import os
-
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-
-# Heroku config
-# heroku config:set ALLOWED_HOSTS=tradesim-pro-app.herokuapp.com
-```
-**Status:** ✅ Resolved in v1.0.0
-
----
-
-#### Bug #16: Heroku "No Process Types" Warning
-**Issue:** Heroku showing "This app has no process types yet" after deployment  
-**Cause:** Procfile was in `backend/` folder but Heroku reads from repository root  
-**Fix:** Created Procfile in repository root with correct path:
-```
-# Procfile (in repository root)
-web: cd backend && gunicorn tradesim.wsgi:application
-```
-**Status:** ✅ Resolved in v1.0.3
-
----
-
-#### Bug #17: 43 Unapplied Migrations on Heroku
-**Issue:** Console showing "I have 43 unapplied migration(s)" after first deploy  
-**Cause:** Database migrations not automatically run on Heroku PostgreSQL  
-**Fix:** Manually ran migrations via Heroku Console:
-```bash
-# Heroku Console
-cd backend && python manage.py migrate
-```
-**Note:** For future deploys, added release command to Procfile (optional)
-**Status:** ✅ Resolved in v1.0.3
-
----
-
----
-
-#### Bug #18: npm ENOENT spawn Error on Windows
-**Issue:** `npm error syscall spawn C:\Users\name\.local\bin ENOENT` when running any npm command  
-**Cause:** Windows COMSPEC environment variable pointing to non-existent path instead of cmd.exe  
-**Fix:** Corrected COMSPEC in Windows System Environment Variables:
-```
-# Windows Environment Variables
-# Changed COMSPEC from:
-C:\Users\name\.local\bin
-
-# To correct value:
-C:\Windows\System32\cmd.exe
-```
-**Status:** ✅ Resolved in v1.0.4
-
----
-
-#### Bug #19: create-react-app Deprecated and Failing
-**Issue:** `create-react-app is deprecated` warning followed by installation failure  
-**Cause:** create-react-app no longer maintained, incompatible with Node.js v22  
-**Fix:** Used Vite instead of create-react-app for React project:
-```bash
-# Instead of:
-npx create-react-app frontend
-
-# Used:
-npm init -y
-npm install react react-dom react-router-dom axios react-toastify
-npm install --save-dev vite @vitejs/plugin-react
-```
-**Status:** ✅ Resolved in v1.0.4
-
----
-
-#### Bug #20: Static Files 404 on Heroku
-**Issue:** React app showing white screen, console showing 404 for CSS and JS files  
-**Cause:** `backend/static/assets/` folder was in `.gitignore` and not pushed to repository  
+#### Bug #7: Static Files 404 on Heroku
+**Issue:** React app showing white screen, 404 for CSS and JS files  
+**Cause:** `backend/static/assets/` folder was in `.gitignore`  
 **Fix:** Force-added static files to git:
 ```bash
-git add -f backend/static/assets/index-CL5wzFLI.js
-git add -f backend/static/assets/index-CzIug_8o.css
-git commit -m "Add React build assets for production"
-git push origin main
+git add -f backend/static/assets/
 ```
-**Status:** ✅ Resolved in v1.0.5
+**Status:** ✅ Resolved
 
 ---
 
-#### Bug #21: React Router Routes Not Working on Heroku
-**Issue:** Direct URL access to `/dashboard` or `/trade` returning Django 404  
+#### Bug #8: React Router Routes Not Working on Heroku
+**Issue:** Direct URL access to `/dashboard` returning Django 404  
 **Cause:** Django not configured to serve React app for client-side routes  
-**Fix:** Added catch-all URL pattern in `tradesim/urls.py`:
+**Fix:** Added catch-all URL pattern:
 ```python
-# tradesim/urls.py
-from django.urls import re_path
-from django.views.generic import TemplateView
-
-urlpatterns = [
-    # API routes first
-    path('api/', ...),
-    path('admin/', ...),
-    
-    # Catch-all for React Router (must be last)
-    re_path(r'^(?!api|admin|static).*$', 
-            TemplateView.as_view(template_name='index.html'), 
-            name='frontend'),
-]
+re_path(r'^(?!api|admin|static).*$', 
+        TemplateView.as_view(template_name='index.html'))
 ```
-**Status:** ✅ Resolved in v1.0.5
+**Status:** ✅ Resolved
 
 ---
 
-#### Bug #22: MIME Type Error for CSS on Heroku
-**Issue:** `Refused to apply style... MIME type ('text/html') is not a supported stylesheet MIME type`  
-**Cause:** Static files returning HTML error page instead of actual CSS/JS content  
-**Fix:** Ensured WhiteNoise properly configured and static files collected:
-```python
-# settings.py
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Must be second
-    ...
-]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-```
+#### Bug #9: MIME Type Error for CSS on Heroku
+**Issue:** `Refused to apply style... MIME type ('text/html')`  
+**Cause:** Static files returning HTML error page  
+**Fix:** Properly configured WhiteNoise and ran collectstatic:
 ```bash
-# On Heroku console
 cd backend && python manage.py collectstatic --noinput
 ```
-**Status:** ✅ Resolved in v1.0.5
-
----
-
-#### Bug #23: Vite Build Assets Path Mismatch
-**Issue:** Locally working React app failing on Heroku with wrong asset paths  
-**Cause:** Vite build creates hashed filenames, but `index.html` had hardcoded paths  
-**Fix:** Updated `backend/templates/index.html` with correct asset paths after each build:
-```html
-<!-- Check actual filenames in backend/static/assets/ -->
-<link rel="stylesheet" href="/static/assets/index-CzIug_8o.css">
-<script type="module" src="/static/assets/index-CL5wzFLI.js"></script>
-```
-**Note:** After each `npm run build`, asset filenames may change and need updating
-**Status:** ✅ Resolved in v1.0.5
-
----
-
-#### Bug #24: Frontend API Calls to Wrong URL in Production
-**Issue:** React app calling `localhost:8000` instead of Heroku URL in production  
-**Cause:** Hardcoded API URL in axios configuration  
-**Fix:** Used Vite environment detection in `frontend/src/api/axios.js`:
-```javascript
-// axios.js
-const API_URL = import.meta.env.PROD 
-  ? '/api'                          // Production: same domain
-  : 'http://127.0.0.1:8000/api'     // Development: localhost
-
-const api = axios.create({
-  baseURL: API_URL,
-  ...
-})
-```
-**Status:** ✅ Resolved in v1.0.5
+**Status:** ✅ Resolved
 
 ---
 
 ### Known Issues
 
-#### Issue #1: Alpha Vantage Rate Limiting
-**Description:** Free Alpha Vantage API tier limited to 5 calls/minute, 500 calls/day  
-**Impact:** Medium - stock and forex prices may show "unavailable" during high usage  
-**Workaround:** Implemented 30-second caching to reduce API calls  
-**Planned Fix:** Upgrade to premium API key for production (v2.0)
-
----
-
-#### Issue #2: Price Delay on First Load
-**Description:** First price fetch after cache expiry takes 1-2 seconds  
-**Impact:** Low - slight delay on initial page load  
-**Workaround:** Prices cached for 30 seconds, subsequent loads instant  
-**Planned Fix:** Implement background price refresh task with Celery (v2.0)
-
----
-
-#### Issue #3: UTC Timezone Display
-**Description:** All timestamps displayed in UTC regardless of user location  
-**Impact:** Low - user sees trades in UTC time  
-**Workaround:** None currently  
-**Planned Fix:** Add user timezone preference in profile settings (v2.0)
-
----
-
-#### Issue #4: No Real-Time Price Updates
-**Description:** Prices require manual page refresh to update  
-**Impact:** Medium - users must refresh to see latest prices  
-**Workaround:** Users can manually refresh the page  
-**Planned Fix:** Implement WebSocket connection for real-time updates (v2.0)
-
----
-
-#### Issue #5: Manual Static File Update After Frontend Build
-**Description:** After running `npm run build`, asset filenames change (hash-based) and require manual update in `backend/templates/index.html`  
-**Impact:** Low - only affects deployment workflow  
-**Workaround:** Check `frontend/dist/assets/` for new filenames and update `index.html`  
-**Planned Fix:** Implement automated build script to copy and update paths (v2.0)
-
----
-
-#### Issue #6: Two Servers Required for Local Development
-**Description:** Need to run both Django backend (port 8000) and Vite frontend (port 3000) simultaneously  
-**Impact:** Low - minor inconvenience during development  
-**Workaround:** Use two terminal windows  
-**Planned Fix:** Create combined development script or Docker setup (v2.0)
+| Issue | Description | Impact | Workaround |
+|-------|-------------|--------|------------|
+| API Rate Limiting | Alpha Vantage limited to 5 calls/minute | Medium | 30-second caching |
+| Price Delay | First price fetch takes 1-2 seconds | Low | Prices cached after first load |
+| UTC Timezone | Timestamps displayed in UTC | Low | None currently |
 
 ---
 
@@ -1022,110 +718,48 @@ The application is deployed on Heroku using GitHub integration.
 #### Deployment Steps
 
 1. **Create Heroku App**
-    - Log in to [Heroku Dashboard](https://dashboard.heroku.com/)
+   - Log in to [Heroku Dashboard](https://dashboard.heroku.com/)
    - Click "New" → "Create new app"
    - Enter app name and select region (Europe)
-   - Click "Create app"
 
 2. **Connect GitHub Repository**
-  - Go to "Deploy" tab
+   - Go to "Deploy" tab
    - Select "GitHub" as deployment method
-   - Search and connect your repository
-   - Enable "Automatic Deploys" (optional)
-
+   - Connect your repository
 
 3. **Add PostgreSQL Database**
    - Go to "Resources" tab
-   - In "Add-ons" search for "Heroku Postgres"
-   - Select "Essential 0" plan (or available free tier)
-   - Click "Submit Order Form"
-   - DATABASE_URL is automatically added to Config Vars
+   - Search for "Heroku Postgres"
+   - Select "Essential 0" plan
 
 4. **Configure Environment Variables**
-   - Go to Settings tab → "Reveal Config Vars"
-   - Add the following variables:
+   - Go to Settings → "Reveal Config Vars"
+   - Add:
 
    | Key | Value |
    |-----|-------|
    | `SECRET_KEY` | Your Django secret key |
    | `DEBUG` | `False` |
    | `ALPHA_VANTAGE_KEY` | Your API key |
-   | `DISABLE_COLLECTSTATIC` | `0` |
 
-5. **Add Python Buildpack**
-   - In "Settings" tab → "Buildpacks"
-   - Click "Add buildpack"
-   - Select "python"
-   - Click "Save changes"
-
-6. **Deploy**
+5. **Deploy**
    - Go to Deploy tab
-   - Click "Deploy Branch" (main)
-   - Wait for build to complete
+   - Click "Deploy Branch"
 
-7. **Run Database Migrations**
-   - Click "More" (top right) → "Run console"
+6. **Run Migrations**
+   - Click "More" → "Run console"
    - Enter: `cd backend && python manage.py migrate`
-   - Click "Run"
 
-8. **Collect Static Files**
-   - In console enter: `cd backend && python manage.py collectstatic --noinput`
-   - Click "Run"
+7. **Collect Static Files**
+   - Enter: `cd backend && python manage.py collectstatic --noinput`
 
-9. **Create Superuser (Optional)**
-   - In console enter: `cd backend && python manage.py createsuperuser`
-   - Follow prompts to create admin account
-
-10. **Add Initial Assets**
-    - Go to `https://your-app.herokuapp.com/admin/`
-    - Login with superuser credentials
-    - Add Asset records:
-      - BTC (Bitcoin) - CRYPTO - BINANCE
-      - ETH (Ethereum) - CRYPTO - BINANCE
-      - TSLA (Tesla) - STOCK - ALPHAVANTAGE
-      - AAPL (Apple) - STOCK - ALPHAVANTAGE
-      - EURUSD - FOREX - ALPHAVANTAGE
-      - GBPUSD - FOREX - ALPHAVANTAGE
-
-#### Project Structure for Heroku
-```
-tradesim-pro/
-├── backend/
-│   ├── tradesim/          # Django project settings
-│   ├── accounts/          # User authentication app
-│   ├── trading/           # Trading functionality app
-│   ├── portfolio/         # Portfolio management app
-│   ├── templates/         # React index.html
-│   ├── static/            # React build assets
-│   ├── staticfiles/       # Collected static files
-│   ├── manage.py
-│   └── requirements.txt
-├── frontend/
-│   ├── src/               # React source code
-│   ├── dist/              # Production build
-│   └── package.json
-├── Procfile               # Heroku process file
-├── runtime.txt            # Python version
-└── requirements.txt       # Root requirements
-```
-
-#### Heroku Files
-
-**Procfile** (repository root):
-```
-web: cd backend && gunicorn tradesim.wsgi:application
-```
-
-**runtime.txt** (repository root):
-```
-python-3.12.0
-```
+---
 
 ### Local Development
 
 #### Prerequisites
 - Python 3.12+
-- Node.js 18+ and npm
+- Node.js 18+
 - Git
 
 #### Setup Steps
@@ -1139,8 +773,7 @@ cd TradeSim-Pro/backend
 2. **Create Virtual Environment**
 ```bash
 python -m venv venv
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate     # Windows
+venv\Scripts\activate  # Windows
 ```
 
 3. **Install Dependencies**
@@ -1148,104 +781,30 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-4. **Create .env File**
-```
-SECRET_KEY=your-secret-key
-DEBUG=True
-ALPHA_VANTAGE_KEY=your-api-key
-```
-
-5. **Run Migrations**
+4. **Run Migrations**
 ```bash
 python manage.py migrate
 ```
 
-6. **Create Superuser**
-```bash
-python manage.py createsuperuser
-```
-
-7. **Run Server**
+5. **Run Server**
 ```bash
 python manage.py runserver
 ```
 
-8. **Access Application**
-- API: http://127.0.0.1:8000/api/
-- Admin: http://127.0.0.1:8000/admin/
-
-#### Frontend Setup (Development)
-
-1. **Open New Terminal**
-
-2. **Navigate to Frontend**
+#### Frontend Setup
 ```bash
 cd frontend
-```
-
-3. **Install Node Dependencies**
-```bash
 npm install
-```
-
-4. **Run Development Server**
-```bash
 npm run dev
 ```
-- Frontend available at: http://localhost:3000/
-- Hot reload enabled for development
-
-#### Running Both Together
-
-For local development, you need **two terminals**:
-
-**Terminal 1 - Backend:**
-```bash
-cd backend
-venv\Scripts\activate  # Windows
-python manage.py runserver
-```
-
-**Terminal 2 - Frontend:**
-```bash
-cd frontend
-npm run dev
-```
-
-#### Building Frontend for Production
-
-To update the production build:
-```bash
-cd frontend
-npm run build
-```
-
-Then copy build files to backend:
-```bash
-# From frontend folder
-Copy-Item dist\index.html ..\backend\templates\
-Copy-Item -Recurse -Force dist\assets\* ..\backend\static\assets\
-```
-
-Update paths in `backend/templates/index.html` if asset filenames changed.
-
-#### Environment Variables
-
-| Variable | Development | Production |
-|----------|-------------|------------|
-| `SECRET_KEY` | Any string | Strong random string |
-| `DEBUG` | `True` | `False` |
-| `ALPHA_VANTAGE_KEY` | My API key | My API key |
-| `DATABASE_URL` | Not needed (SQLite) | Heroku Postgres URL |
 
 ---
 
 ### Forking the Repository
 
 1. Go to [GitHub Repository](https://github.com/SteveDok22/tradesim-pro)
-2. Click "Fork" button (top right)
-3. Select your account
-4. Clone your forked repository
+2. Click "Fork" button
+3. Clone your forked repository
 
 ### Cloning the Repository
 ```bash
@@ -1253,9 +812,11 @@ git clone https://github.com/YOUR-USERNAME/tradesim-pro.git
 cd tradesim-pro
 ```
 
+---
+
 ## Credits
 
-For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)
+For detailed code attribution, see [CODE_ATTRIBUTION.md](docs/CODE_ATTRIBUTION.md)
 
 ### Quick Summary
 
@@ -1264,6 +825,8 @@ For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE
 | Backend Framework | [Django 5.0](https://docs.djangoproject.com/) |
 | API Framework | [Django REST Framework](https://www.django-rest-framework.org/) |
 | Authentication | [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/) |
+| Charts | [TradingView Widgets](https://www.tradingview.com/widget/) |
+| Icons | [React Icons](https://react-icons.github.io/react-icons/) |
 | Crypto Prices | [Binance API](https://binance-docs.github.io/apidocs/) |
 | Stock/Forex Prices | [Alpha Vantage](https://www.alphavantage.co/documentation/) |
 
@@ -1275,4 +838,8 @@ For detailed code attribution and resources, see [CODE_ATTRIBUTION.md](docs/CODE
 
 ---
 
+<div align="center">
+
 **Developed by Stiven** | [GitHub](https://github.com/SteveDok22) | 2025
+
+</div>
