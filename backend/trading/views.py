@@ -32,27 +32,28 @@ class PriceListView(APIView):
     Get current prices for all assets.
     """
     permission_classes = [AllowAny]
-    
+
     def get(self, request):
         assets = Asset.objects.filter(is_active=True)
-        
+
         # Initialize price service with API key
         price_service = PriceService(
             alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
         )
-        
+
         prices = price_service.get_all_prices(assets)
-        
+
         data = []
         for asset in assets:
+            price_value = prices.get(asset.symbol)
             data.append({
                 'id': asset.id,
                 'symbol': asset.symbol,
                 'name': asset.name,
                 'asset_type': asset.asset_type,
-                'price': str(prices.get(asset.symbol)) if prices.get(asset.symbol) else None,
+                'price': str(price_value) if price_value else None,
             })
-        
+
         return Response(data)
 
 
@@ -62,7 +63,7 @@ class PriceDetailView(APIView):
     Get current price for a specific asset.
     """
     permission_classes = [AllowAny]
-    
+
     def get(self, request, symbol):
         try:
             asset = Asset.objects.get(symbol=symbol.upper(), is_active=True)
@@ -71,12 +72,12 @@ class PriceDetailView(APIView):
                 {'error': f'Asset {symbol} not found'},
                 status=status.HTTP_404_NOT_FOUND
             )
-        
+
         price_service = PriceService(
             alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
         )
         price = price_service.get_price(asset.symbol)
-        
+
         return Response({
             'id': asset.id,
             'symbol': asset.symbol,
@@ -84,21 +85,22 @@ class PriceDetailView(APIView):
             'asset_type': asset.asset_type,
             'price': str(price) if price else None,
         })
-        
+
+
 class OpenTradeView(APIView):
     """
     POST /api/trading/trades/open/
     Open a new trade position.
     """
     permission_classes = [IsAuthenticated]
-    
+
     def post(self, request):
         serializer = OpenTradeSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        
+
         data = serializer.validated_data
         user = request.user
-        
+
         # Get asset
         try:
             asset = Asset.objects.get(id=data['asset_id'], is_active=True)
@@ -107,31 +109,32 @@ class OpenTradeView(APIView):
                 {'error': 'Asset not found'},
                 status=status.HTTP_404_NOT_FOUND
             )
-        
+
         # Get current price
         price_service = PriceService(
             alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
         )
         current_price = price_service.get_price(asset.symbol)
-        
+
         if not current_price:
             return Response(
                 {'error': 'Could not fetch current price'},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE
             )
-        
+
         amount_usd = Decimal(str(data['amount_usd']))
-        
+
         # Check balance
         if amount_usd > user.account_balance:
+            avail = user.account_balance
             return Response(
-                {'error': f'Insufficient funds. Available: ${user.account_balance}'},
+                {'error': f'Insufficient funds. Available: ${avail}'},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        
+
         # Calculate quantity
         quantity = amount_usd / current_price
-        
+
         # Create trade
         trade = Trade.objects.create(
             user=user,
@@ -143,31 +146,32 @@ class OpenTradeView(APIView):
             take_profit=data.get('take_profit'),
             status='OPEN',
         )
-        
+
         # Deduct from balance
         user.account_balance -= amount_usd
         user.save()
-        
+
         return Response({
             'message': 'Trade opened successfully!',
             'trade': TradeSerializer(trade).data,
             'new_balance': str(user.account_balance),
-        }, status=status.HTTP_201_CREATED)        
-        
+        }, status=status.HTTP_201_CREATED)
+
+
 class CloseTradeView(APIView):
     """
     POST /api/trading/trades/close/
     Close an existing trade position.
     """
     permission_classes = [IsAuthenticated]
-    
+
     def post(self, request):
         serializer = CloseTradeSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        
+
         trade_id = serializer.validated_data['trade_id']
         user = request.user
-        
+
         # Get trade
         try:
             trade = Trade.objects.get(id=trade_id, user=user, status='OPEN')
@@ -176,35 +180,36 @@ class CloseTradeView(APIView):
                 {'error': 'Trade not found or already closed'},
                 status=status.HTTP_404_NOT_FOUND
             )
-        
+
         # Get current price
         price_service = PriceService(
             alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
         )
         current_price = price_service.get_price(trade.asset.symbol)
-        
+
         if not current_price:
             return Response(
                 {'error': 'Could not fetch current price'},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE
             )
-        
+
         # Close trade and calculate PnL
         pnl = trade.close_trade(current_price)
-        
+
         # Return position value + PnL to balance
         position_value = trade.quantity * trade.entry_price
         return_amount = position_value + pnl
         user.account_balance += return_amount
         user.save()
-        
+
         return Response({
             'message': 'Trade closed successfully!',
             'trade': TradeSerializer(trade).data,
             'pnl': str(pnl),
             'new_balance': str(user.account_balance),
-        })        
-        
+        })
+
+
 class OpenPositionsView(generics.ListAPIView):
     """
     GET /api/trading/trades/open/
@@ -212,23 +217,23 @@ class OpenPositionsView(generics.ListAPIView):
     """
     serializer_class = TradeSerializer
     permission_classes = [IsAuthenticated]
-    
+
     def get_queryset(self):
         return Trade.objects.filter(user=self.request.user, status='OPEN')
-    
+
     def list(self, request, *args, **kwargs):
         trades = self.get_queryset()
-        
+
         # Get current prices
         price_service = PriceService(
             alpha_vantage_key=settings.ALPHA_VANTAGE_KEY
         )
-        
+
         data = []
         for trade in trades:
             current_price = price_service.get_price(trade.asset.symbol)
             trade_data = TradeSerializer(trade).data
-            
+
             if current_price:
                 pnl, pnl_percent = trade.calculate_pnl(current_price)
                 trade_data['current_price'] = str(current_price)
@@ -238,11 +243,12 @@ class OpenPositionsView(generics.ListAPIView):
                 trade_data['current_price'] = None
                 trade_data['unrealized_pnl'] = None
                 trade_data['unrealized_pnl_percent'] = None
-            
+
             data.append(trade_data)
-        
-        return Response(data)        
-    
+
+        return Response(data)
+
+
 class TradeHistoryView(generics.ListAPIView):
     """
     GET /api/trading/trades/history/
@@ -250,6 +256,8 @@ class TradeHistoryView(generics.ListAPIView):
     """
     serializer_class = TradeSerializer
     permission_classes = [IsAuthenticated]
-    
+
     def get_queryset(self):
-        return Trade.objects.filter(user=self.request.user, status='CLOSED')   
+        return Trade.objects.filter(
+            user=self.request.user, status='CLOSED'
+        )
