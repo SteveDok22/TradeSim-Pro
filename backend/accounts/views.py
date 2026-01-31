@@ -9,6 +9,7 @@ from .serializers import UserSerializer, RegisterSerializer, BalanceSerializer
 
 User = get_user_model()
 
+
 class RegisterView(generics.CreateAPIView):
     """
     API endpoint for user registration.
@@ -17,15 +18,15 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
-    
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        
+
         # Create tokens for the new user
         refresh = RefreshToken.for_user(user)
-        
+
         return Response({
             'message': 'Registration successful!',
             'user': UserSerializer(user).data,
@@ -44,17 +45,18 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     """
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
-    
+
     def get_object(self):
         return self.request.user
-    
+
+
 class BalanceView(APIView):
     """
     API endpoint for user balance.
     GET /api/auth/balance/
     """
     permission_classes = [IsAuthenticated]
-    
+
     def get(self, request):
         serializer = BalanceSerializer(request.user)
         return Response(serializer.data)
@@ -66,25 +68,26 @@ class ResetBalanceView(APIView):
     POST /api/auth/balance/reset/
     """
     permission_classes = [IsAuthenticated]
-    
+
     def post(self, request):
         user = request.user
         old_balance = user.account_balance
         user.reset_balance()
-        
+
         return Response({
             'message': 'Balance reset successful!',
             'old_balance': f'${old_balance:,.2f}',
             'new_balance': f'${user.account_balance:,.2f}',
-        })    
-        
+        })
+
+
 class LogoutView(APIView):
     """
     API endpoint for logout (blacklist refresh token).
     POST /api/auth/logout/
     """
     permission_classes = [IsAuthenticated]
-    
+
     def post(self, request):
         try:
             refresh_token = request.data.get('refresh')
@@ -93,4 +96,4 @@ class LogoutView(APIView):
                 token.blacklist()
             return Response({'message': 'Logout successful!'})
         except Exception:
-            return Response({'message': 'Logout successful!'})        
+            return Response({'message': 'Logout successful!'})
