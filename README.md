@@ -1,7 +1,7 @@
 # TradeSim Pro - Prop Trading Simulator
 
 <div align="center">
-<img src="docs/screenshots/responsive-mockup.gif" alt="Am I Responsive" width="900">
+<img src="docs\screenshots\tradesim-pro.gif" alt="Am I Responsive" width="900">
 </div>
 
 <div align="center">
