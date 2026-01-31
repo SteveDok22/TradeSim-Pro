@@ -37,13 +37,17 @@ def api_root(request):
 urlpatterns = [
     # Admin
     path('admin/', admin.site.urls),
-    
+
     # API endpoints
     path('api/', api_root, name='api-root'),
     path('api/auth/', include('accounts.urls')),
     path('api/trading/', include('trading.urls')),
     path('api/portfolio/', include('portfolio.urls')),
-    
+
     # React frontend - catch all other routes
-    re_path(r'^(?!api|admin|static).*$', TemplateView.as_view(template_name='index.html'), name='frontend'),
+    re_path(
+        r'^(?!api|admin|static).*$',
+        TemplateView.as_view(template_name='index.html'),
+        name='frontend'
+    ),
 ]
