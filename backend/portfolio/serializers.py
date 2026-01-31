@@ -5,7 +5,7 @@ from trading.serializers import AssetSerializer
 
 class PortfolioSerializer(serializers.ModelSerializer):
     """Serializer for Portfolio model."""
-    
+
     username = serializers.CharField(source='user.username', read_only=True)
     account_balance = serializers.DecimalField(
         source='user.account_balance',
@@ -13,7 +13,7 @@ class PortfolioSerializer(serializers.ModelSerializer):
         decimal_places=2,
         read_only=True
     )
-    
+
     class Meta:
         model = Portfolio
         fields = [
@@ -27,13 +27,14 @@ class PortfolioSerializer(serializers.ModelSerializer):
             'losing_trades',
             'updated_at',
         ]
-        
+
+
 class WatchlistSerializer(serializers.ModelSerializer):
     """Serializer for Watchlist model."""
-    
+
     asset = AssetSerializer(read_only=True)
     asset_id = serializers.IntegerField(write_only=True)
-    
+
     class Meta:
         model = Watchlist
         fields = ['id', 'asset', 'asset_id', 'added_at']
@@ -42,5 +43,5 @@ class WatchlistSerializer(serializers.ModelSerializer):
 
 class AddToWatchlistSerializer(serializers.Serializer):
     """Serializer for adding asset to watchlist."""
-    
-    asset_id = serializers.IntegerField()        
+
+    asset_id = serializers.IntegerField()
