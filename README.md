@@ -647,7 +647,7 @@ All CSS files were validated using the W3C CSS Validation Service.
 
 </div>
 
----
+--
 
 ### HTML (W3C HTML Validator)
 
