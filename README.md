@@ -605,18 +605,20 @@ All React components and JavaScript files were validated using ESLint.
 | `api/portfolio.js` | 28 | 0 | ✅ Pass | ![View](docs/screenshots/api.portfolio.js.png) |
 | `components/common/Navbar.jsx` | 95 | 0 | ✅ Pass | ![View](docs/screenshots/components.common.Navbar.jsx.png) |
 | `components/common/TradingViewChart.jsx` | 55 | 0 | ✅ Pass | ![View](docs/screenshots/components.common.TradingViewChart.jsx.png) |
-| `components/common/ChartModal.jsx` | 45 | 0 | ✅ Pass | ![View](docs/screenshots/components.common.ChartModal.jsx.png) |
-| `pages/Home.jsx` | 85 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Home.jsx.png) |
-| `pages/Login.jsx` | 75 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Login.jsx.png) |
-| `pages/Register.jsx` | 80 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Register.jsx.png) |
-| `pages/Dashboard.jsx` | 180 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Dashboard.jsx.png) |
-| `pages/Trade.jsx` | 165 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Trade.jsx.png) |
-| `pages/Positions.jsx` | 120 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Positions.jsx.png) |
-| `pages/History.jsx` | 95 | 0 | ✅ Pass | ![View](docs/screenshots/pages.History.jsx.png) |
-| `pages/Watchlist.jsx` | 110 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Watchlist.jsx.png) |
+| `components/common/ChartModal.jsx` | 45 | 0 | ✅ Pass | ![View](docs\screenshots\components.commonChartModal.jsx.png) |
+| `pages/Home.jsx` | 85 | 0 | ✅ Pass | ![View](docs\screenshots\pagesHome.jsx.png) |
+| `pages/Login.jsx` | 75 | 0 | ✅ Pass | ![View](docs\screenshots\pagesLogin.jsx.png) |
+| `pages/Register.jsx` | 80 | 0 | ✅ Pass | ![View](docs\screenshots\pagesRegister.jsx.png) |
+| `pages/Dashboard.jsx` | 180 | 0 | ✅ Pass | ![View](docs\screenshots\pagesDashboard.jsx.png) |
+| `pages/Trade.jsx` | 165 | 0 | ✅ Pass | ![View](docs\screenshots\pagesTrade.jsx.png) |
+| `pages/Positions.jsx` | 120 | 0 | ✅ Pass | ![View](docs\screenshots\pagesPositions.jsx.png) |
+| `pages/History.jsx` | 95 | 0 | ✅ Pass | ![View](docs\screenshots\pagesHistory.jsx.png) |
+| `pages/Watchlist.jsx` | 110 | 0 | ✅ Pass | ![View](docs\screenshots\pagesWatchlist.jsx.png) |
 | **TOTAL** | **1,424** | **0** | **100%** | - |
 
 [Validate JS Code →](https://eslint.org/play/)
+
+[Validate JSX/Reac Code →](https://jsontotable.org/jsx-validator?utm_source=chatgpt.com)
 
 </div>
 
