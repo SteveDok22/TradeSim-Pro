@@ -494,6 +494,78 @@ def _fetch_forex(self, symbol):
 
 ---
 
+---
+
+## Media Assets
+
+### Logo
+- **Source:** Created from scratch using [ChatGPT](https://chat.openai.com/) (AI Image Generation)
+- **License:** Original creation for this project
+- **Usage:** Site logo in navbar and favicon
+- **File:** `frontend/public/images/logo.png`
+
+---
+
+### Background Images
+- **Source:** [Pinterest - Pin on Wallpapers 🖼](https://www.pinterest.com/)
+- **License:** Free for personal use
+- **Usage:** Dashboard page background
+
+| File | Description |
+|------|-------------|
+| `dashboard-bg.jpg` | Abstract teal spheres background |
+
+---
+
+### Background Videos
+
+#### Home, Positions, Watchlist Pages
+- **Source:** [Pixabay - Binary, Digital, Code. Free Stock Video](https://pixabay.com/)
+- **License:** Pixabay License (Free for commercial use, no attribution required)
+- **Usage:** Video backgrounds for Home, Positions, and Watchlist pages
+
+| File | Description |
+|------|-------------|
+| `background.mp4` | Binary code animation |
+
+---
+
+#### Login & Register Pages
+- **Source:** [Pixabay - Binary, Digital, Code. Free Stock Video](https://pixabay.com/)
+- **License:** Pixabay License (Free for commercial use, no attribution required)
+- **Usage:** Video background for authentication pages
+
+| File | Description |
+|------|-------------|
+| `trading-bg.mp4` | Trading charts animation |
+
+---
+
+#### Trade Page
+- **Source:** [Pixabay - Stock market concept, 3D - Free Stock Video](https://pixabay.com/)
+- **License:** Pixabay License (Free for commercial use, no attribution required)
+- **Usage:** Video background for Trade page
+
+| File | Description |
+|------|-------------|
+| `trade-bg.mp4` | 3D stock market visualization |
+
+---
+
+### Media License Summary
+
+| Asset | Source | License | Attribution Required |
+|-------|--------|---------|---------------------|
+| Logo | ChatGPT | Original | No (own creation) |
+| Dashboard Background | Pinterest | Free for personal use | No |
+| Home/Positions/Watchlist Video | Pixabay | Pixabay License | No |
+| Login/Register Video | Pixabay | Pixabay License | No |
+| Trade Video | Pixabay | Pixabay License | No |
+
+All media assets used in this project are either original creations or sourced from platforms that offer free usage licenses.
+
+---
+
 ## Python Standard Library
 
 ### Decimal Module - Financial Calculations
