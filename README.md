@@ -1,7 +1,7 @@
 # TradeSim Pro - Prop Trading Simulator
 
 <div align="center">
-<img src="docs\screenshots\tradesim-pro.gif" alt="Am I Responsive" width="900">
+<img src="docs/screenshots/tradesim-pro.gif" alt="Am I Responsive" width="900">
 </div>
 
 <div align="center">
@@ -561,26 +561,31 @@ All user stories were created as GitHub Issues with:
 
 All Python files were validated using Flake8 with `--max-line-length=120`.
 
+<div align="center">
 
-| File | Lines | Result | Screenshot |
-|------|-------|--------|------------|
-| `manage.py` | 23 | ✅ Pass | ![View](docs\screenshots\manage.py.png) |
-| `config/settings.py` | 205 | ✅ Pass | ![View](docs/screenshots/config.settings.py.png) |
-| `config/urls.py` | 53 | ✅ Pass | ![View](docs\screenshots\config.urls.py.png) |
-| `config/wsgi.py` | 16 | ✅ Pass | ![View](docs\screenshots\config.wsgi.py.png) |
-| `authentication/models.py` | 44 | ✅ Pass | ![View](docs\screenshots\authentication.models.py.pngs) |
-| `authentication/views.py` | 99 | ✅ Pass | ![View](docs\screenshots\authentication.views.py.png) |
-| `authentication/serializers.py` | 71 | ✅ Pass | ![View](docs\screenshots\authentication.serializers.py.png) |
-| `authentication/urls.py` | 32 | ✅ Pass | ![View](docs\screenshots\authentication.urls.py.png) |
-| `trading/models.py` | 125 | ✅ Pass | ![View](docs\screenshots\trading.models.py.png) |
-| `trading/views.py` | 263 | ✅ Pass | ![View](docs\screenshots\trading.views.py.png) |
-| `trading/serializers.py` | 86 | ✅ Pass | ![View](docs\screenshots\trading.serializers.py.png) |
-| `trading/urls.py` | 26 | ✅ Pass | ![View](docs\screenshots\trading.urls.py.png) |
-| `portfolio/models.py` | 82 | ✅ Pass | ![View](docs\screenshots\portfolio.models.py.png) |
-| `portfolio/views.py` | 47 | ✅ Pass | ![View](docs\screenshots\portfolio.views.py.png) |
-| `portfolio/serializers.py` | 47 | ✅ Pass | ![View](docs\screenshots\portfolio.serializers.py.png) |
-| `portfolio/urls.py` | 23 | ✅ Pass | ![View](docs\screenshots\portfolio.urls.py.png) |
+| File | Lines | Issues | Status | Screenshot |
+|------|-------|--------|--------|------------|
+| `manage.py` | 23 | 0 | ✅ Pass | ![View](docs/screenshots/manage.py.png) |
+| `config/settings.py` | 205 | 0 | ✅ Pass | ![View](docs/screenshots/config.settings.py.png) |
+| `config/urls.py` | 53 | 0 | ✅ Pass | ![View](docs/screenshots/config.urls.py.png) |
+| `config/wsgi.py` | 16 | 0 | ✅ Pass | ![View](docs/screenshots/config.wsgi.py.png) |
+| `authentication/models.py` | 44 | 0 | ✅ Pass | ![View](docs/screenshots/authentication.models.py.png) |
+| `authentication/views.py` | 99 | 0 | ✅ Pass | ![View](docs/screenshots/authentication.views.py.png) |
+| `authentication/serializers.py` | 71 | 0 | ✅ Pass | ![View](docs/screenshots/authentication.serializers.py.png) |
+| `authentication/urls.py` | 32 | 0 | ✅ Pass | ![View](docs/screenshots/authentication.urls.py.png) |
+| `trading/models.py` | 125 | 0 | ✅ Pass | ![View](docs/screenshots/trading.models.py.png) |
+| `trading/views.py` | 263 | 0 | ✅ Pass | ![View](docs/screenshots/trading.views.py.png) |
+| `trading/serializers.py` | 86 | 0 | ✅ Pass | ![View](docs/screenshots/trading.serializers.py.png) |
+| `trading/urls.py` | 26 | 0 | ✅ Pass | ![View](docs/screenshots/trading.urls.py.png) |
+| `portfolio/models.py` | 82 | 0 | ✅ Pass | ![View](docs/screenshots/portfolio.models.py.png) |
+| `portfolio/views.py` | 47 | 0 | ✅ Pass | ![View](docs/screenshots/portfolio.views.py.png) |
+| `portfolio/serializers.py` | 47 | 0 | ✅ Pass | ![View](docs/screenshots/portfolio.serializers.py.png) |
+| `portfolio/urls.py` | 23 | 0 | ✅ Pass | ![View](docs/screenshots/portfolio.urls.py.png) |
+| **TOTAL** | **1,242** | **0** | **100%** | - |
 
+[Validate Python Code →](https://pep8ci.herokuapp.com/)
+
+</div>
 
 ---
 
@@ -588,25 +593,32 @@ All Python files were validated using Flake8 with `--max-line-length=120`.
 
 All React components and JavaScript files were validated using ESLint.
 
-| File | Lines | Result | Screenshot |
-|------|-------|--------|------------|
-| `main.jsx` | 19 | ✅ Pass | ![View](docs\screenshots\src.main.jsx.png) |
-| `App.jsx` | 43 | ✅ Pass | ![View](docs\screenshots\src.App.jsx.png) |
-| `context/AuthContext.jsx` | 68 | ✅ Pass | ![View](docs\screenshots\context.AuthContext.jsx.png) |
-| `api/auth.js` | 28 | ✅ Pass | ![View](docs\screenshots\api.auth.js.png) |
-| `api/trading.js` | 33 | ✅ Pass | ![View](docs\screenshots\api.trading.js.png) |
-| `api/portfolio.js` | 28 | ✅ Pass | ![View](docs\screenshots\api.portfolio.js.png) |
-| `components/common/Navbar.jsx` | 95 | ✅ Pass | ![View](docs\screenshots\components.common.Navbar.jsx.png) |
-| `components/common/TradingViewChart.jsx` | 55 | ✅ Pass | ![View](docs\screenshots\components.common.TradingViewChart.jsx.png) |
-| `components/common/ChartModal.jsx` | 45 | ✅ Pass | ![View](docs\screenshots\components.commonChartModal.jsx.png) |
-| `pages/Home.jsx` | 85 | ✅ Pass | ![View](docs\screenshots\pagesHome.jsx.png) |
-| `pages/Login.jsx` | 75 | ✅ Pass | ![View](docs\screenshots\pagesLogin.jsx.png) |
-| `pages/Register.jsx` | 80 | ✅ Pass | ![View](docs\screenshots\pagesRegister.jsx.png) |
-| `pages/Dashboard.jsx` | 180 | ✅ Pass | ![View](docs\screenshots\pagesDashboard.jsx.png) |
-| `pages/Trade.jsx` | 165 | ✅ Pass | ![View](docs\screenshots\pagesTrade.jsx.png) |
-| `pages/Positions.jsx` | 120 | ✅ Pass | ![View](docs\screenshots\pagesPositions.jsx.png) |
-| `pages/History.jsx` | 95 | ✅ Pass | ![View](docs\screenshots\pagesHistory.jsx.png) |
-| `pages/Watchlist.jsx` | 110 | ✅ Pass | ![View](docs\screenshots\pagesWatchlist.jsx.png) |
+<div align="center">
+
+| File | Lines | Issues | Status | Screenshot |
+|------|-------|--------|--------|------------|
+| `main.jsx` | 19 | 0 | ✅ Pass | ![View](docs/screenshots/src.main.jsx.png) |
+| `App.jsx` | 43 | 0 | ✅ Pass | ![View](docs/screenshots/src.App.jsx.png) |
+| `context/AuthContext.jsx` | 68 | 0 | ✅ Pass | ![View](docs/screenshots/context.AuthContext.jsx.png) |
+| `api/auth.js` | 28 | 0 | ✅ Pass | ![View](docs/screenshots/api.auth.js.png) |
+| `api/trading.js` | 33 | 0 | ✅ Pass | ![View](docs/screenshots/api.trading.js.png) |
+| `api/portfolio.js` | 28 | 0 | ✅ Pass | ![View](docs/screenshots/api.portfolio.js.png) |
+| `components/common/Navbar.jsx` | 95 | 0 | ✅ Pass | ![View](docs/screenshots/components.common.Navbar.jsx.png) |
+| `components/common/TradingViewChart.jsx` | 55 | 0 | ✅ Pass | ![View](docs/screenshots/components.common.TradingViewChart.jsx.png) |
+| `components/common/ChartModal.jsx` | 45 | 0 | ✅ Pass | ![View](docs/screenshots/components.common.ChartModal.jsx.png) |
+| `pages/Home.jsx` | 85 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Home.jsx.png) |
+| `pages/Login.jsx` | 75 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Login.jsx.png) |
+| `pages/Register.jsx` | 80 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Register.jsx.png) |
+| `pages/Dashboard.jsx` | 180 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Dashboard.jsx.png) |
+| `pages/Trade.jsx` | 165 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Trade.jsx.png) |
+| `pages/Positions.jsx` | 120 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Positions.jsx.png) |
+| `pages/History.jsx` | 95 | 0 | ✅ Pass | ![View](docs/screenshots/pages.History.jsx.png) |
+| `pages/Watchlist.jsx` | 110 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Watchlist.jsx.png) |
+| **TOTAL** | **1,424** | **0** | **100%** | - |
+
+[Validate JS Code →](https://eslint.org/play/)
+
+</div>
 
 ---
 
@@ -614,35 +626,54 @@ All React components and JavaScript files were validated using ESLint.
 
 All CSS files were validated using the W3C CSS Validation Service.
 
-| File | Lines | Result | Screenshot |
-|------|-------|--------|------------|
-| `styles/index.css` | 150 | ✅ Pass | ![View](docs\screenshots\styles.index.css.png) |
-| `components/common/Navbar.css` | 185 | ✅ Pass | ![View](docs\screenshots\common.Navbar.css.png) |
-| `components/common/ChartModal.css` | 65 | ✅ Pass | ![View](docs\screenshots\common.ChartModal.css.png) |
-| `pages/Home.css` | 140 | ✅ Pass | ![View](docs\screenshots\pages.Home.css.png) |
-| `pages/Auth.css` | 120 | ✅ Pass | ![View](docs\screenshots\pages.Auth.css.png) |
-| `pages/Dashboard.css` | 280 | ✅ Pass | ![View](docs\screenshots\pages.Dashboard.css.png) |
-| `pages/Trade.css` | 220 | ✅ Pass | ![View](docs\screenshots\pages.Trade.css.png) |
-| `pages/Positions.css` | 175 | ✅ Pass | ![View](docs\screenshots\pages.Positions.css.png) |
-| `pages/Watchlist.css` | 160 | ✅ Pass | ![View](docs\screenshots\pages.Watchlist.css.png) |
+<div align="center">
+
+| File | Lines | Issues | Status | Screenshot |
+|------|-------|--------|--------|------------|
+| `styles/index.css` | 150 | 0 | ✅ Pass | ![View](docs/screenshots/styles.index.css.png) |
+| `components/common/Navbar.css` | 185 | 0 | ✅ Pass | ![View](docs/screenshots/common.Navbar.css.png) |
+| `components/common/ChartModal.css` | 65 | 0 | ✅ Pass | ![View](docs/screenshots/common.ChartModal.css.png) |
+| `pages/Home.css` | 140 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Home.css.png) |
+| `pages/Auth.css` | 120 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Auth.css.png) |
+| `pages/Dashboard.css` | 280 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Dashboard.css.png) |
+| `pages/Trade.css` | 220 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Trade.css.png) |
+| `pages/Positions.css` | 175 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Positions.css.png) |
+| `pages/Watchlist.css` | 160 | 0 | ✅ Pass | ![View](docs/screenshots/pages.Watchlist.css.png) |
+| **TOTAL** | **1,495** | **0** | **100%** | - |
+
+[Validate CSS Code →](https://jigsaw.w3.org/css-validator/)
+
+</div>
 
 ---
 
 ### HTML (W3C HTML Validator)
 
-| File | Result | Screenshot |
-|------|--------|------------|
-| `frontend/index.html` | ✅ Pass | ![View](docs\screenshots\home(frontend).png) |
-| `backend/templates/index.html` | ✅ Pass | ![View](docs\screenshots\home(backend-template).png) |
+<div align="center">
+
+| File | Issues | Status | Screenshot |
+|------|--------|--------|------------|
+| `frontend/index.html` | 0 | ✅ Pass | ![View](docs/screenshots/home(frontend).png) |
+| `backend/templates/index.html` | 0 | ✅ Pass | ![View](docs/screenshots/home(backend-template).png) |
+
+[Validate HTML Code →](https://validator.w3.org/)
+
+</div>
 
 ---
 
 ### Lighthouse Performance
 
+<div align="center">
+
 | Page | Performance | Accessibility | Best Practices | SEO | Screenshot |
-|------|-------------|---------------|----------------|-----|------------|
-| Home (Desktop) | 100 | 96 | 100 | 92 | ![View](docs\screenshots\DesktopRunSpeed.png) |
-| Home (Mobile) | 99 | 85 | 100 | 92 | ![View](docs\screenshots\MobileRunSpeed.png) |
+|------|:-----------:|:-------------:|:--------------:|:---:|------------|
+| Home (Desktop) | 🟢 100 | 🟢 96 | 🟢 100 | 🟠 92 | ![View](docs/screenshots/DesktopRunSpeed.png) |
+| Home (Mobile) | 🟢 99 | 🟠 85 | 🟢 100 | 🟠 92 | ![View](docs/screenshots/MobileRunSpeed.png) |
+
+[Run Lighthouse →](https://pagespeed.web.dev/)
+
+</div>
 
 ### Automated Testing
 
