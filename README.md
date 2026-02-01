@@ -673,7 +673,7 @@ All CSS files were validated using the W3C CSS Validation Service.
 | Home (Desktop) | 🟢 100 | 🟢 96 | 🟢 100 | 🟠 92 | ![View](docs/screenshots/DesktopRunSpeed.png) |
 | Home (Mobile) | 🟢 99 | 🟠 85 | 🟢 100 | 🟠 92 | ![View](docs/screenshots/MobileRunSpeed.png) |
 
-[Run Lighthouse →](https://pagespeed.web.dev/)
+[Run Lighthouse →](https://pagespeed.web.dev/analysis/https-tradesim-pro-stiven-62203fadbb77-herokuapp-com/aboic5dd8d?form_factor=mobile)
 
 </div>
 
