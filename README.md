@@ -555,6 +555,93 @@ All user stories were created as GitHub Issues with:
 
 ## Testing
 
+## Validation Testing
+
+### Python (PEP8 / Flake8)
+
+All Python files were validated using Flake8 with `--max-line-length=120`.
+
+| File | Lines | Result | Screenshot |
+|------|-------|--------|------------|
+| `manage.py` | 22 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `config/settings.py` | 180 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `config/urls.py` | 25 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `config/wsgi.py` | 16 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `authentication/models.py` | 45 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `authentication/views.py` | 85 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `authentication/serializers.py` | 55 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `authentication/urls.py` | 15 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `trading/models.py` | 70 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `trading/views.py` | 150 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `trading/serializers.py` | 65 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `trading/urls.py` | 18 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `portfolio/models.py` | 40 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `portfolio/views.py` | 95 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `portfolio/serializers.py` | 45 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `portfolio/urls.py` | 15 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+
+---
+
+### JavaScript/JSX (ESLint)
+
+All React components and JavaScript files were validated using ESLint.
+
+| File | Lines | Result | Screenshot |
+|------|-------|--------|------------|
+| `main.jsx` | 12 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `App.jsx` | 45 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `context/AuthContext.jsx` | 85 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `api/auth.js` | 55 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `api/trading.js` | 45 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `api/portfolio.js` | 65 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `components/common/Navbar.jsx` | 95 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `components/common/TradingViewChart.jsx` | 55 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `components/common/ChartModal.jsx` | 45 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Home.jsx` | 85 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Login.jsx` | 75 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Register.jsx` | 80 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Dashboard.jsx` | 180 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Trade.jsx` | 165 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Positions.jsx` | 120 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/History.jsx` | 95 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Watchlist.jsx` | 110 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+
+---
+
+### CSS (W3C CSS Validator)
+
+All CSS files were validated using the W3C CSS Validation Service.
+
+| File | Lines | Result | Screenshot |
+|------|-------|--------|------------|
+| `styles/index.css` | 150 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `components/common/Navbar.css` | 185 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `components/common/ChartModal.css` | 65 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Home.css` | 140 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Auth.css` | 120 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Dashboard.css` | 280 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Trade.css` | 220 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Positions.css` | 175 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `pages/Watchlist.css` | 160 | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+
+---
+
+### HTML (W3C HTML Validator)
+
+| File | Result | Screenshot |
+|------|--------|------------|
+| `frontend/index.html` | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+| `backend/templates/index.html` | ✅ Pass | ![View](assets/Linter/linter-run.py.png) |
+
+---
+
+### Lighthouse Performance
+
+| Page | Performance | Accessibility | Best Practices | SEO | Screenshot |
+|------|-------------|---------------|----------------|-----|------------|
+| Home (Desktop) | 100 | 96 | 100 | 92 | ![View](assets/Linter/linter-run.py.png) |
+| Home (Mobile) | 99 | 85 | 100 | 92 | ![View](assets/Linter/linter-run.py.png) |
+
 ### Automated Testing
 
 #### Python Tests (Django)
